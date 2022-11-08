@@ -4,7 +4,15 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ghibli</title>
+  {# favicon 설정 #}
+  {% comment %} <link rel="shortcut icon" href="{% static 'imgs/favicon.ico' %}"/> {% endcomment %}
+  {# fontawesome 추가 #}
+  <script src="https://kit.fontawesome.com/21a0726bae.js" crossorigin="anonymous"></script>
+  {# CSS 파일 추가 #}
+  {% comment %} <link rel='stylesheet' href="{% static 'css/style.css' %}"/> {% endcomment %}
+  {# JS 파일 추가 #}
+  {% comment %} <script src="{% static 'js/main.js' %}" defer></script> {% endcomment %}
+  <title>지브리의 숲</title>
 </head>
 <body>
   {% if request.user.is_authenticated %}
