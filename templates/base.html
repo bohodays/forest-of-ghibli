@@ -4,9 +4,30 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Ghibli</title>
 </head>
 <body>
+  {% if request.user.is_authenticated %}
+    <h3>환영합니다, {{ user }}</h3>
+    <a href="{% url 'accounts:update' %}">회원정보 수정</a>
+    
+    
+    <form action="{% url 'accounts:logout' %}" method="POST">
+      {% csrf_token %}
+      <input type="submit" value="Logout">
+    </form>
+    
+    
+    
+    <form action="{% url 'accounts:delete' %}" method="POST">
+      {% csrf_token %}
+      <input type="submit" value="탈퇴">
+    </form>
+  {% else %}
+    <a href="{% url 'accounts:login' %}">Login</a>
+    <a href="{% url 'accounts:signup' %}" method="POST">SignUp</a>
+  {% endif %}
+  <hr>
   {% block content %}
   {% endblock content %}
 </body>
