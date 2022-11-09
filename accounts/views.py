@@ -10,7 +10,7 @@ from .forms import CustomUserCreationForm, CustomUserChangeForm
 # Create your views here.
 def login(request):
     if request.user.is_authenticated:
-        return redirect('movies:index')
+        return redirect('movies:main')
     if request.method =="POST":
         form = AuthenticationForm(request, request.POST)
         if form.is_valid():
@@ -31,7 +31,7 @@ def logout(request):
 def signup(request):
     if request.method=="POST":
         # 프로필 사진을 따로 받아주기위해 인자 추가
-        form = CustomUserCreationForm(request.POST, request.FILES)
+        form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             user =form.save()
             auth_login(request,user)
@@ -53,8 +53,7 @@ def delete(request):
 def update(request):
     if request.method =="POST":
         form = CustomUserChangeForm(request.POST, request.FILES,instance=request.user)
-
-        # print(request.POST)
+        
         if form.is_valid():
             form.save()
             return redirect('movies:main')
@@ -63,6 +62,7 @@ def update(request):
     context = {
         'form':form,
     }
+    # print('??????????????',form)
     return render(request, 'accounts/update.html',context)
 
 
