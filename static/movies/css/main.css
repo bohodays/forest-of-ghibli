@@ -1,0 +1,73 @@
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  margin: 0;
+}
+
+
+a {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+@font-face {
+  font-family: 'GmarketSansMedium';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+
+body {
+  font-family: 'GmarketSansMedium';
+}
+
+#navbar {
+  position: fixed;
+  z-index: 2;
+  height: 50px;
+  width: 100%;
+  background-color: #000000;
+  margin: 0;
+}
+
+.navbar__menu {
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo {
+  width: 30px;
+  height: 30px;
+}
+
+.menu__item {
+  padding: 0 16px;
+}
+
+.a__logo {
+  padding-right: 6px;
+}
+
+.user__info {
+  padding: 0;
+  padding-right: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+
+.info__item {
+  padding: 0 12px;
+}
+
+/* 임시용 */
+.index {
+  padding-top: 50px;
+}
