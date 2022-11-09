@@ -4,6 +4,16 @@
   box-sizing: border-box;
 }
 
+body {
+  opacity: 1;
+  transition-duration: 1s;
+  transition-property: opacity;
+}
+
+body.fade {
+  opacity: 0;
+}
+
 /* @font-face {
   font-family: 'PyeongChangPeace-Light';
   src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-02@1.0/PyeongChangPeace-Light.woff2') format('woff2');
