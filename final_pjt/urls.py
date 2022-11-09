@@ -15,9 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf.urls.static import static
+from django.conf import settings
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('accounts.urls')),
     path('movies/', include('movies.urls')),
-]
+]+ static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+# 개발 단계에서 사용자가 업로드한 미디어 파일 제공하기 위해 
+# urls.py에 업로드된 파일의 url과 실제위치 작성
