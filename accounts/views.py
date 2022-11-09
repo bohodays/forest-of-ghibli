@@ -10,12 +10,12 @@ from .forms import CustomUserCreationForm, CustomUserChangeForm
 # Create your views here.
 def login(request):
     if request.user.is_authenticated:
-        return redirect('movies:index')
+        return redirect('movies:main')
     if request.method =="POST":
         form = AuthenticationForm(request, request.POST)
         if form.is_valid():
             auth_login(request, form.get_user())
-            return redirect('movies:index')
+            return redirect('movies:main')
     else:
         form = AuthenticationForm()
     context = {
@@ -33,7 +33,7 @@ def signup(request):
         if form.is_valid():
             user =form.save()
             auth_login(request,user)
-            return redirect('movies:index')
+            return redirect('movies:main')
     else:
         form = CustomUserCreationForm()
     context = {
@@ -45,7 +45,7 @@ def signup(request):
 def delete(request):
     request.user.delete()
     auth_logout(request)
-    return redirect('movies:index')
+    return redirect('movies:main')
 
 def update(request):
     if request.method =="POST":
@@ -64,7 +64,7 @@ def change_password(request):
         if form.is_valid():
             form.save()
             update_session_auth_hash(request, form.user)
-            return redirect('movies:index')
+            return redirect('movies:main')
     form = PasswordChangeForm(request.user)
     context = {
         'form':form,
