@@ -35,6 +35,10 @@ body {
   margin: 0;
 }
 
+.blurred {
+  opacity: 0.8;
+}
+
 .navbar__menu {
   padding: 0;
   display: flex;
@@ -67,7 +71,75 @@ body {
   padding: 0 12px;
 }
 
+.fa-magnifying-glass {
+  color: white;
+  /* padding-bottom: 4px; */
+  padding-left: 4px;
+}
+
 /* 임시용 */
-.index {
-  padding-top: 50px;
+.main {
+  padding-top: 120px;
+}
+
+.movie {
+  margin: auto;
+  margin-bottom: 70px;
+  max-width: 1000px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* border: 1px solid black; */
+  border-radius: 20px;
+  padding: 24px 0px 24px 20px;
+  box-shadow: 10px 10px 30px 0px rgb(158 158 158);
+}
+
+.movie__poster {
+  width: 300px;
+  height: 447px;
+}
+
+.wise-saying-container {
+  padding-left: 30px;
+  position: relative;
+}
+
+.wise-saying-bubble {
+  width: 600px;
+  height: 250px;
+}
+
+.wise-saying {
+  position: absolute;
+  top: 100px;
+  left: 140px;
+  max-width: 390px;
+  font-size: 16px;
+}
+
+.arrow-up {
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  font-size: 40px;
+  width: 60px;
+  height: 60px;
+  background-color: #1ba1ec;
+  /* background-color: black; */
+  color: white;
+  border: 0px;
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+  transition: all var(--animation-duration) linear;
+}
+
+.arrow-up.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.fa-arrow-up {
+  padding-top: 8px;
 }
