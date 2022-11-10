@@ -33,7 +33,7 @@ def signup(request):
         # 프로필 사진을 따로 받아주기위해 인자 추가
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
-            user =form.save()
+            user = form.save()
             auth_login(request,user)
             return redirect('movies:main')
     else:
@@ -41,7 +41,7 @@ def signup(request):
     context = {
         'form' : form,
     }
-    return render(request,  'accounts/signup.html', context)
+    return render(request, 'accounts/signup.html', context)
 
 
 def delete(request):
