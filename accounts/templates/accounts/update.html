@@ -1,10 +1,14 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <form action="{% url 'accounts:update' %}" method="POST">
+  
+  {% comment %} <img src="{{user.profileImg.url}}" alt="profile image"><br> {% endcomment %}
+  {% comment %} 파일 이미지 업로드 하기위해 form 태그에 enctype 작성해야함 {% endcomment %}
+  <form action="{% url 'accounts:update' %}" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p}}
+    <a href="{% url 'accounts:change_password' %}" style="color:black">비밀번호 변경</a><br>
     <input type="submit" value = '수정하기'>
   </form>
-  <a href="{% url 'accounts:change_password' %}">비밀번호 변경</a>
 {% endblock content %}
+
