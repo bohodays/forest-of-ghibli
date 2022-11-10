@@ -1,8 +1,20 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
 {% block content %}
-  <div class="index">
-    <h1>Index</h1>
+  <div class="main">
+    {% for movie in movies %}
+      <div class="movie" data-id={{ movie.pk }}>
+        <a href="#">
+          <img class="movie__poster" src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}" alt="">
+        </a>
+        <div class="wise-saying-container">
+          <img class="wise-saying-bubble" src="{% static 'movies/imgs/wise_saying.png' %}" alt="">
+          <h1 class="wise-saying">{{ movie.wise_saying }}</h1>
+        </div>
+      </div>
+    {% endfor %}
   </div>
 {% endblock content %}
 
