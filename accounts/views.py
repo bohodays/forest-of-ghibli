@@ -31,13 +31,14 @@ def logout(request):
 def signup(request):
     if request.method=="POST":
         # 프로필 사진을 따로 받아주기위해 인자 추가
-        form = CustomUserCreationForm(request.POST)
+        form = CustomUserCreationForm(request.POST,request.FILES)
+        print('request\n', request.FILES)
         if form.is_valid():
             user = form.save()
             auth_login(request,user)
             return redirect('movies:main')
     else:
-        form = CustomUserCreationForm()
+        form = CustomUserCreationForm(request.FILES)
     context = {
         'form' : form,
     }
