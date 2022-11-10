@@ -15,6 +15,7 @@
   {# JS 파일 추가 #}
   <script src="{% static 'movies/js/main.js' %}" defer></script>
   <title>지브리의 숲</title>
+  
 </head>
 <body>
 
@@ -34,7 +35,8 @@
     </div>
     <div class="user__info col-4">
       {% if request.user.is_authenticated %}
-        <h3>환영합니다, {{ user }}</h3>
+        <h3 style="color:white; margin-right:5px;"> {{ user }}</h3>
+        <img src="{{user.profileImg.url}}" alt="profile image" style="width: 30px; height: 30px;margin-right:5px;">
         <a href="{% url 'accounts:update' %}">회원정보 수정</a>
         
         <form action="{% url 'accounts:logout' %}" method="POST">
@@ -62,4 +64,5 @@
   </button>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 </body>
+
 </html>
