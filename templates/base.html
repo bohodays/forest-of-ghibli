@@ -36,13 +36,18 @@
     <div class="user__info col-4">
       {% if request.user.is_authenticated %}
 
-        <h3 style="color:white; margin-right:5px;"> {{ user }}</h3>
-        {% if user.profileImg %}
-          <img src="{{user.profileImg.url}}" alt="profile image" style="width: 30px; height: 30px;margin-right:5px;">
-        {% else %}
-          <img class="defaultProfile" style="width: 30px; height: 30px;margin-right:5px;" src="{% static 'accounts/imgs/defaultProfileImg.png' %}" alt="logo">
-        {% endif %}
-        <a href="{% url 'accounts:update' %}">회원정보 수정</a>
+        <a class="info__item profile__container" href="#">
+          <div class="img__container">
+            {% if user.profileImg %}
+              <img class="default-profile-img" src="{{user.profileImg.url}}" alt="profile image">
+            {% else %}
+              <img class="default-profile-img" src="{% static 'accounts/imgs/default_profile_img.jpg' %}" alt="defaul-profile-img">
+            {% endif %}
+          </div>
+          {{ user }}
+        </a>
+
+        {% comment %} <a href="{% url 'accounts:update' %}">회원정보 수정</a> {% endcomment %}
 
         
         <form class="logout-form" action="{% url 'accounts:logout' %}" method="POST">
