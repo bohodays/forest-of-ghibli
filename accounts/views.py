@@ -34,7 +34,7 @@ def signup(request):
         form = CustomUserCreationForm(request.POST,request.FILES)
         print('request\n', request.FILES)
         if form.is_valid():
-            user =form.save()
+            user = form.save()
             auth_login(request,user)
             return redirect('movies:main')
     else:
@@ -42,7 +42,7 @@ def signup(request):
     context = {
         'form' : form,
     }
-    return render(request,  'accounts/signup.html', context)
+    return render(request, 'accounts/signup.html', context)
 
 
 def delete(request):

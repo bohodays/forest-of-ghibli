@@ -35,6 +35,7 @@
     </div>
     <div class="user__info col-4">
       {% if request.user.is_authenticated %}
+
         <h3 style="color:white; margin-right:5px;"> {{ user }}</h3>
         {% if user.profileImg %}
           <img src="{{user.profileImg.url}}" alt="profile image" style="width: 30px; height: 30px;margin-right:5px;">
@@ -42,16 +43,18 @@
           <img class="defaultProfile" style="width: 30px; height: 30px;margin-right:5px;" src="{% static 'accounts/imgs/defaultProfileImg.png' %}" alt="logo">
         {% endif %}
         <a href="{% url 'accounts:update' %}">회원정보 수정</a>
+
         
-        <form action="{% url 'accounts:logout' %}" method="POST">
+        <form class="logout-form" action="{% url 'accounts:logout' %}" method="POST">
           {% csrf_token %}
           <input type="submit" value="Logout">
         </form>
         
-        <form action="{% url 'accounts:delete' %}" method="POST">
+        {% comment %} <form action="{% url 'accounts:delete' %}" method="POST">
           {% csrf_token %}
           <input type="submit" value="탈퇴">
-        </form>
+        </form> {% endcomment %}
+
       {% else %}
         <a class="info__item" href="{% url 'accounts:login' %}">Login</a>
         <a class="info__item" href="{% url 'accounts:signup' %}" method="POST">SignUp</a>
