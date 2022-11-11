@@ -1,10 +1,60 @@
-{% extends 'base.html' %}
+{% extends 'accounts_base.html' %}
+{% load static %}
+
+{% block css %}
+  <link rel='stylesheet' href="{% static 'accounts/css/login.css' %}"/>
+{% endblock css %}
+
+{% block js %}
+  <script src="{% static 'accounts/js/login.js' %}" defer></script>
+{% endblock js %}
+
+{% block background %}
+  <style>
+    body {
+      background: url({% static 'accounts/imgs/signup_background.jpg' %}) center/cover no-repeat;
+    }
+  </style>
+{% endblock  %}
 
 {% block content %}
-  <h1>로그인</h1>
-  <form action="" method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit">
-  </form>
+  <section class="login">
+    <h1 class='login__title'>로그인</h1>
+    <form action="" method="POST">
+      {% csrf_token %}
+      <div class="item username">
+        <div class="item__label username__label">
+          <div class="label-wrap">
+            <i class="fas fa-user"></i>
+            <span class="username__text">아이디</span>
+          </div>
+        </div>
+        <div class="form__box more">
+          {{ form.username }}
+          <img class="error__img error__visible" src="{% static 'accounts/imgs/icon-error.svg' %}" alt="error icon">
+        </div>
+
+        <div class="item password1">
+          <div class="password__exclamation">
+            <div class="item__label password__label">
+              <div class="label-wrap">
+                <i class="fas fa-unlock"></i>
+                <span class="password1__text">비밀번호</span>
+              </div>
+            </div>
+          </div>
+          <div class="form__box more">
+            {{ form.password }}
+            <img class="error__img error__visible" src="{% static 'accounts/imgs/icon-error.svg' %}" alt="error icon">
+          </div>
+        </div>
+        
+        {% comment %} <button type="submit" class="submit__button btn btn-primary"> {% endcomment %}
+        <button type="submit" class="submit__button btn">
+          로그인
+        </button>
+
+      </form>
+  </section>
+
 {% endblock content %}

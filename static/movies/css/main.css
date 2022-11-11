@@ -70,12 +70,32 @@ a {
   padding-right: 6px;
 }
 
+.profile__container {
+  display: flex;
+  align-items: center;
+}
+
+.default-profile-img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  border-radius: 50%;
+}
+
 .user__info {
   padding: 0;
   padding-right: 8px;
   display: flex;
   align-items: center;
   justify-content: end;
+}
+
+.img__container {
+  /* background-color: #ffffff; */
+  width: 30px; 
+  height: 30px;
+  margin-right: 10px;
+  border-radius: 50%;
 }
 
 .info__item {
