@@ -17,7 +17,7 @@ const nickNameLabel = document.querySelector('.nickname__label');
 const nickNameLabelWrap = document.querySelector('.nickname__label > div');
 nickNameInput.addEventListener('focus', () => {
   nickNameLabel.style.transform = 'translateY(-30px)';
-  nickNameLabelWrap.style.color = 'rgb(130 193 237)';
+  nickNameLabelWrap.style.color = 'rgb(146 96 58)';
 })
 
 nickNameInput.addEventListener('blur', () => {
@@ -32,7 +32,7 @@ const userNameLabel = document.querySelector('.username__label');
 const userNameInputWrap = document.querySelector('.username__label > div');
 userNameInput.addEventListener('focus', () => {
   userNameLabel.style.transform = 'translateY(-30px)';
-  userNameInputWrap.style.color = 'rgb(130 193 237)';
+  userNameInputWrap.style.color = 'rgb(146 96 58)';
 })
 
 userNameInput.addEventListener('blur', () => {
@@ -47,7 +47,7 @@ const passwordLabel = document.querySelector('.password__label');
 const passwordInputWrap = document.querySelector('.password__label > div');
 passwordInput.addEventListener('focus', () => {
   passwordLabel.style.transform = 'translateY(-30px)';
-  passwordInputWrap.style.color = 'rgb(130 193 237)';
+  passwordInputWrap.style.color = 'rgb(146 96 58)';
 })
 
 passwordInput.addEventListener('blur', () => {
@@ -62,7 +62,7 @@ const password2Label = document.querySelector('.password2__label');
 const password2InputWrap = document.querySelector('.password2__label > div');
 password2Input.addEventListener('focus', () => {
   password2Label.style.transform = 'translateY(-30px)';
-  password2InputWrap.style.color = 'rgb(130 193 237)';
+  password2InputWrap.style.color = 'rgb(146 96 58)';
 })
 
 password2Input.addEventListener('blur', () => {

@@ -10,8 +10,7 @@
 }
 
 html {
-  /* 수정필요할지 확인해야 함 */
-  height: 1000px;
+  height: 100%;
 }
 
 body {
@@ -33,11 +32,11 @@ input {
   background-color: transparent;
 }
 
-.signup {
+.login {
   width: 380px;
   padding: 10px 0px;
   text-align: center;
-  border: 2px solid rgb(146 96 58);
+  border: 2px solid rgb(130 193 237);
   border-radius: 4px;
   background-color: #ffffff;
   -webkit-box-shadow: 10px 10px 5px 3000px rgba(0,0,0,0.7);
@@ -45,7 +44,7 @@ input {
   box-shadow: 10px 10px 5px 3000px rgba(0,0,0,0.7);
 }
 
-.signup__title {
+.login__title {
   margin-top: 10px;
 }
 
@@ -71,67 +70,6 @@ input {
   margin-top: 45px;
 }
 
-.more {
-  margin-top: 80px;
-}
-
-.img__form {
-  margin-top: 0px;
-}
-
-.profile-img__label {
-  margin-top: 40px;
-  margin-bottom: 10px;
-}
-
-.exclamation__comments {
-  width: 280px;
-  z-index: 5;
-  position: absolute;
-  border: 2px solid black;
-  border-radius: 8px;
-  font-size: 10px;
-  font-weight: bold;
-  padding: 10px;
-  margin: 0px;
-  list-style: none;
-  text-align: left;
-  position: absolute;
-  left: 100px;
-  top: 42px;
-  box-shadow: 10px 10px 30px 0px rgb(158 158 158);
-  background-color: #ffffff;
-}
-
-.comments__visible {
-  display: none;
-}
-
-.exclamation__img {
-  width: 18px;
-  height: 18px;
-  margin-bottom: 2px;
-  cursor: pointer;
-}
-
-.default-profile-img {
-  width: 250px;
-  height: 250px;
-  border-radius: 50%;
-}
-
-.form__info {
-  margin-top: 3px;
-  font-size: 12px;
-  position: absolute;
-  left: 70px;
-  bottom: -38px;
-}
-
-.password__info {
-  bottom: -40px;
-}
-
 .error__img {
   position: absolute;
   top: 7px;
@@ -142,39 +80,18 @@ input {
   display: none;
 }
 
-#id_profileImg {
-  display: none;
-}
-
-.input-file-button {  
-  cursor: pointer;
-  margin-top: 10px;
-  border: 2px solid black;
-  border-radius: 4px;
-  line-height: 100%;
-  padding: 6px;
-}
-
-.img__form-wrap {
-  margin-top: 10px;
-}
-
-.submit__button {
-  margin-top: 24px;
-}
-
 .submit__button {
   outline: none;
   border: none;
   margin-top: 24px;
-  background-color: rgb(146 96 58);
+  background-color: rgb(130 193 237);
 }
 
 .submit__button:hover {
-  background-color: rgb(146 96 58);
+  background-color: rgb(130 193 237);
 }
 
 .btn-check:checked+.btn, .btn:active, .btn.show, .btn:first-child:active, :not(.btn-check)+.btn:active {
-  background-color: rgb(146 96 58);
+  background-color: rgb(130 193 237);
   
 }
