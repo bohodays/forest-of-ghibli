@@ -17,6 +17,10 @@ a {
   color: #ffffff;
 }
 
+a:hover {
+  color: #77aaff;
+}
+
 .logout-form > input {
   background-color: transparent;
   color: #ffffff;
@@ -25,7 +29,7 @@ a {
 }
 
 .logout-form > input:hover {
-  color: #0d6efd;
+  color: #77aaff;
 }
 
 
@@ -104,8 +108,13 @@ a {
 
 .fa-magnifying-glass {
   color: white;
-  /* padding-bottom: 4px; */
+  cursor: pointer;
   padding-left: 4px;
+  margin-bottom: 8px;
+}
+
+.fa-magnifying-glass:hover {
+  color: #77aaff;
 }
 
 

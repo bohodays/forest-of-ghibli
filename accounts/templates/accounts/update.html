@@ -1,14 +1,140 @@
 {% extends 'accounts_base.html' %}
+{% load static %}
+
+{% block css %}
+  <link rel='stylesheet' href="{% static 'accounts/css/update.css' %}"/>
+{% endblock css %}
+
+{% block js %}
+  <script src="{% static 'accounts/js/update.js' %}" defer></script>
+{% endblock js %}
+
+{% block background %}
+  <style>
+    body {
+      background: url({% static 'accounts/imgs/background후보5.jpg' %}) center/cover no-repeat;
+    }
+  </style>
+{% endblock  %}
 
 {% block content %}
-  
-  {% comment %} <img src="{{user.profileImg.url}}" alt="profile image"><br> {% endcomment %}
-  {% comment %} 파일 이미지 업로드 하기위해 form 태그에 enctype 작성해야함 {% endcomment %}
-  <form action="{% url 'accounts:update' %}" method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p}}
-    <a href="{% url 'accounts:change_password' %}" style="color:black">비밀번호 변경</a><br>
-    <input type="submit" value = '수정하기'>
-  </form>
+  <section class="update">
+    <h1 class="update__title">프로필 수정</h1>
+    {% comment %} <img src="{{user.profileImg.url}}" alt="profile image"><br> {% endcomment %}
+    {% comment %} 파일 이미지 업로드 하기위해 form 태그에 enctype 작성해야함 {% endcomment %}
+    <form action="{% url 'accounts:update' %}" method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="item nickName">
+        <div class="item__label nickname__label">
+          <div class="label-wrap">
+            <i class="fas fa-user-edit"></i>
+            <span class="nickname__text">닉네임</span>
+          </div>
+        </div>
+        <div class="form__box more">
+          {{ form.nickName }}
+          <img class="error__img error__visible" src="{% static 'accounts/imgs/icon-error.svg' %}" alt="error icon">
+        </div>
+        <p class="form__info">
+          사이트 이용시 사용될 닉네임을 입력해주세요.
+        </p>
+      </div>
+
+      <div class="item profile-img">
+        <div class="item__label profile-img__label">
+          <i class="fa-solid fa-image-portrait"></i>
+          <span class="password2__text">프로필 이미지</span>
+        </div>
+        <div class="form__box img__form">
+
+
+          {% if user.profileImg %}
+            <img class="default-profile-img" src="{{user.profileImg.url}}" alt="profile image" onchange="setThumbnail(event)">
+          {% else %}
+            <img class="default-profile-img" src="{% static 'accounts/imgs/default_profile_img.jpg' %}" alt="defaul-profile-img" onchange="setThumbnail(event)">
+          {% endif %}
+
+
+          {% comment %} <img class="default-profile-img" src="{% static 'accounts/imgs/default_profile_img.jpg' %}" alt="default-profile-img" onchange="setThumbnail(event)"> {% endcomment %}
+          <div class="img__form-wrap">
+            <label class="input-file-button" for="id_profileImg">
+              파일선택
+            </label>
+            <div style="display: none;">
+              {{ form.profileImg }}
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="btn-wrap">
+        <button type="submit" class="submit__button btn">
+          수정하기
+        </button>
+      </div>
+    </form>
+      <div class="wrap__container">
+        <a class="move_to_change_password" href="{% url 'accounts:change_password' %}">비밀번호 변경</a>
+        <div class="contour">|</div>
+        <a class="withdrawal-btn" type="button" data-bs-toggle="modal" data-bs-target="#withdrawl-modal">회원 탈퇴</a>
+
+        <div class="modal fade" id="withdrawl-modal" tabindex="-1" aria-labelledby="withdrawl-modal__label" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">회원 탈퇴 확인</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <p class="modal__content">탈퇴 후에는 아이디와 데이터를 복구할 수 없습니다.</p>
+                <p class="modal__content">탈퇴를 원하시면 확인을 눌러주세요.</p>
+              </div>
+              <div class="modal-footer">
+                <form action="{% url 'accounts:delete' %}" method="POST">
+                  {% csrf_token %}
+                  <button class="btn btn-danger delete-check-btn" type="submit">확인</button>
+                </form>
+                <button type="button" class="btn btn-secondary tt" data-bs-dismiss="modal">취소</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    
+  </section>
 {% endblock content %}
 
+
+
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+
+
+
+
+{% block script %}
+  <script>
+    function setThumbnail(event) {
+      const reader = new FileReader();
+
+      reader.onload = function(event) {
+        const img = document.querySelector('.default-profile-img');
+        img.setAttribute('src', event.target.result)
+      }
+      reader.readAsDataURL(event.target.files[0]);
+    }
+
+    const inputImage = document.querySelector('#id_profileImg');
+    inputImage.addEventListener('change', (event) => {
+      setThumbnail(event)
+    })
+  </script>
+
+{% endblock script %}
