@@ -1,0 +1,6 @@
+from .models import Movie, Comment
+from django.forms import forms
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model= Comment
+        fields= ('comment',)

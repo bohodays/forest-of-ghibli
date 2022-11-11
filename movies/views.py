@@ -11,3 +11,11 @@ def main(request):
 
 def intro(request):
     return render(request, 'movies/intro.html')
+
+
+def detail(request, pk):
+    movie = Movie.objects.get(pk=pk)
+    context = {
+        'movie':movie,
+    }
+    return render(request, 'movies/detail.html',context)

@@ -13,3 +13,8 @@ class Movie(models.Model):
 
     def __str__(self):
         return f'{ self.title }'
+
+
+class Comment(models.Model):
+    movie = models.ForeignKey(Movie,on_delete=models.CASCADE,related_name='comments')
+    

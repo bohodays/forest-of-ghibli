@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+  <h1>제목: {{ movie.title }}</h1>
+  <p> 요약: {{movie.overview}}</p>
+
+  <p>{{movie.release_date}}</p>
+
+  <img src=https://image.tmdb.org/t/p/w500{{movie.poster_path}} alt="">
+  <p>{{movie.poster_path}}</p>
+  <p>평점{{movie.vote_average}}</p>
+
+  
+  
+  <p>{{movie.director}}</p>
+  
+  <p>{{movie.wise_saying}}</p>
+
+
+{% endblock content %}
