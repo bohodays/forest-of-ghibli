@@ -24,14 +24,16 @@
   <nav id="navbar" class="row">
     <div class="col-4"></div>
     <div class="navbar__menu col-4">
-      <a class="menu__item a__logo" href="">
+      {% comment %} <a class="menu__item a__logo" href="">
         <img class="logo" src="{% static 'movies/imgs/logo.png' %}" alt="logo">
-      </a>
+      </a> {% endcomment %}
       <a class="menu__item" href="">DIRECTORS</a>
       <a class="menu__item" href="">GBTI</a>
       <a class="menu__item" href="">QUIZ</a>
       <a class="menu__item" href="">POLL</a>
       <i class="fa-solid fa-magnifying-glass"></i>
+      <input class="search__input menu__hidden" type="text" placeholder="지브리 영화를 검색해보세요.">
+      <i class="fa-solid fa-xmark menu__hidden"></i>
       {% comment %} <a href=""> {% endcomment %}
       {% comment %} </a> {% endcomment %}
     </div>

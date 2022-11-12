@@ -6,13 +6,19 @@
   <div class="main">
     {% for movie in movies %}
       <div class="movie" data-id={{ movie.pk }}>
-        <a href="#">
+        <div class="shadow"></div>
+        <a class="movie-wrap" href="#">
           <img class="movie__poster" src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}" alt="">
+          <div class="movie__description">
+
+            {% comment %} 1.명대사만 띄우기 {% endcomment %}
+            
+            {% comment %} 2. 간략한 영화 정보 띄우기 {% endcomment %}
+            <h3>{{ movie.title }}</h3>
+            <p>{{ movie.director }}</p>
+            <p>{{ movie.release_date }}</p>
+          </div>
         </a>
-        <div class="wise-saying-container">
-          <img class="wise-saying-bubble" src="{% static 'movies/imgs/wise_saying.png' %}" alt="">
-          <h1 class="wise-saying">{{ movie.wise_saying }}</h1>
-        </div>
       </div>
     {% endfor %}
   </div>
