@@ -36,6 +36,7 @@ input {
 .signup {
   width: 380px;
   padding: 10px 0px;
+  padding-bottom: 20px;
   text-align: center;
   border: 2px solid rgb(146 96 58);
   border-radius: 4px;
@@ -160,10 +161,7 @@ input {
 }
 
 .submit__button {
-  margin-top: 24px;
-}
-
-.submit__button {
+  width: 250px;
   outline: none;
   border: none;
   margin-top: 24px;

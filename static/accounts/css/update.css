@@ -131,6 +131,7 @@ input {
 }
 
 .submit__button {
+  width: 250px;
   outline: none;
   border: none;
   margin-top: 24px;
