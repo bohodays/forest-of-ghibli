@@ -3,19 +3,39 @@
 {% block content %}
 
   <h1>제목: {{ movie.title }}</h1>
+
   <p> 요약: {{movie.overview}}</p>
 
   <p>{{movie.release_date}}</p>
 
   <img src=https://image.tmdb.org/t/p/w500{{movie.poster_path}} alt="">
+
   <p>{{movie.poster_path}}</p>
   <p>평점{{movie.vote_average}}</p>
 
-  
-  
   <p>{{movie.director}}</p>
-  
+
   <p>{{movie.wise_saying}}</p>
 
+  {% comment %} 댓글입력 창. 리뷰 작성기능, 평점 기능  {% endcomment %}
+  <form action="{% url 'movies:comments_create' movie.pk %}" method="POST">
+    {% csrf_token %}
+    {{comment_form}}
+    <input type="submit">
+  </form>
+  <ul>
+    {% for comment in comments  %}
+    <li>
+      <p>{{ comment.content}}</p>
+      <p>{{ comment.rate }}</p>
+
+      <form action="{% url 'movies:comments_delete' movie.pk comment.pk %}" method="POST">
+        {% csrf_token %}
+        <input type="submit" value="삭제">
+      </form>
+    </li>
+
+    {% endfor %}
+  </ul>
 
 {% endblock content %}
