@@ -12,7 +12,7 @@
 {% block background %}
   <style>
     body {
-      background: url({% static 'accounts/imgs/signup_background.jpg' %}) center/cover no-repeat;
+      background: url({% static 'accounts/imgs/login_background.jpg' %}) center/cover no-repeat;
     }
   </style>
 {% endblock  %}
@@ -29,32 +29,33 @@
             <span class="username__text">아이디</span>
           </div>
         </div>
-        <div class="form__box more">
+        <div class="form__box">
           {{ form.username }}
           <img class="error__img error__visible" src="{% static 'accounts/imgs/icon-error.svg' %}" alt="error icon">
         </div>
+      </div>
 
-        <div class="item password1">
-          <div class="password__exclamation">
-            <div class="item__label password__label">
-              <div class="label-wrap">
-                <i class="fas fa-unlock"></i>
-                <span class="password1__text">비밀번호</span>
-              </div>
+      <div class="item password1">
+        <div class="password__exclamation">
+          <div class="item__label password__label">
+            <div class="label-wrap">
+              <i class="fas fa-unlock"></i>
+              <span class="password1__text">비밀번호</span>
             </div>
           </div>
-          <div class="form__box more">
-            {{ form.password }}
-            <img class="error__img error__visible" src="{% static 'accounts/imgs/icon-error.svg' %}" alt="error icon">
-          </div>
         </div>
-        
-        {% comment %} <button type="submit" class="submit__button btn btn-primary"> {% endcomment %}
-        <button type="submit" class="submit__button btn">
-          로그인
-        </button>
+        <div class="form__box">
+          {{ form.password }}
+          <img class="error__img error__visible" src="{% static 'accounts/imgs/icon-error.svg' %}" alt="error icon">
+        </div>
+      </div>
+      
+      {% comment %} <button type="submit" class="submit__button btn btn-primary"> {% endcomment %}
+      <button type="submit" class="submit__button btn">
+        로그인
+      </button>
 
-      </form>
+    </form>
   </section>
 
 {% endblock content %}

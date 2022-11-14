@@ -24,21 +24,23 @@
   <nav id="navbar" class="row">
     <div class="col-4"></div>
     <div class="navbar__menu col-4">
-      <a class="menu__item a__logo" href="">
+      {% comment %} <a class="menu__item a__logo" href="">
         <img class="logo" src="{% static 'movies/imgs/logo.png' %}" alt="logo">
-      </a>
+      </a> {% endcomment %}
       <a class="menu__item" href="">DIRECTORS</a>
       <a class="menu__item" href="">GBTI</a>
       <a class="menu__item" href="">QUIZ</a>
       <a class="menu__item" href="">POLL</a>
-      <a href="">
-        <i class="fa-solid fa-magnifying-glass"></i>
-      </a>
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input class="search__input menu__hidden" type="text" placeholder="지브리 영화를 검색해보세요.">
+      <i class="fa-solid fa-xmark menu__hidden"></i>
+      {% comment %} <a href=""> {% endcomment %}
+      {% comment %} </a> {% endcomment %}
     </div>
     <div class="user__info col-4">
       {% if request.user.is_authenticated %}
 
-        <a class="info__item profile__container" href="#">
+        <a class="info__item profile__container" href="{% url 'accounts:update' %}">
           <div class="img__container">
             {% if user.profileImg %}
               <img class="default-profile-img" src="{{user.profileImg.url}}" alt="profile image">
@@ -46,7 +48,7 @@
               <img class="default-profile-img" src="{% static 'accounts/imgs/default_profile_img.jpg' %}" alt="defaul-profile-img">
             {% endif %}
           </div>
-          {{ user }}
+          {{ user.nickName }}
         </a>
 
         {% comment %} <a href="{% url 'accounts:update' %}">회원정보 수정</a> {% endcomment %}
@@ -57,10 +59,7 @@
           <input type="submit" value="Logout">
         </form>
         
-        {% comment %} <form action="{% url 'accounts:delete' %}" method="POST">
-          {% csrf_token %}
-          <input type="submit" value="탈퇴">
-        </form> {% endcomment %}
+        
 
       {% else %}
         <a class="info__item" href="{% url 'accounts:login' %}">Login</a>
