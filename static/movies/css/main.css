@@ -66,8 +66,14 @@ a:hover {
 }
 
 .logo {
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
+}
+
+.logo__img {
+  width: 40px;
+  height: 40px;
+  transform: translateY(5px);
 }
 
 .menu__item {
@@ -164,7 +170,6 @@ a:hover {
 /* main page */
 .main {
   width: 100%;
-  /* padding-top: 50px; */
 }
 
 @font-face {
@@ -174,12 +179,11 @@ a:hover {
   font-style: normal;
 }
 
-.movie {
+.main__wrap {
   font-family: 'LINESeedKR-Bd';
   position: relative;
   margin: auto;
   width: 100%;
-  /* height: 969px; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -187,33 +191,6 @@ a:hover {
   background: #1a1a1a;
   text-shadow: 0 0 15px rgba(255,255,255,.5), 0 0 10px rgba(255,255,255,.5);
   pointer-events: none;
-}
-
-.shadow {
-  width: 100%;
-  height: 100%;
-
-  /* 구성안2 */
-  /* background-color: rgba(0,0,0,0.4); */
-
-}
-
-.movie-wrap {
-  position: absolute;
-  border-radius: 8px;
-
-  box-shadow: 0px 0px 30px 0px rgb(212 212 212);
-  transition: all 300ms ease;
-}
-
-.movie__poster {
-  width: 300px;
-  height: 447px;
-  border-radius: 8px;
-  
-  /* width: 450px;
-  height: 450px;
-  border-radius: 50%; */
 }
 
 
@@ -245,21 +222,11 @@ a:hover {
   padding-top: 8px;
 }
 
-[data-id='1'] {
-  /* 구성안1 */
-  /* background-color: #97ec9d; */
-
-  /* 구성안2 */
-  /* background: url('../../accounts/imgs/메인페이지후보4.png') no-repeat;
-  background-size: cover;
-  background-position: top 40%; */
-}
-
 .main__title {
   position: absolute;
   color: #ffffff;
   font-size: 120px;
-  transform: translateY(-200px);
+  transform: translateY(-150px);
 }
 
 .main__img {
@@ -268,39 +235,3 @@ a:hover {
   /* object-fit: cover; */
 }
 
-/* .movie__description {
-  color: #ffffff;
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  font-size: 18px;
-  width: 100%;
-  height: 100%;
-  top: 0px;
-  background-color: black;
-  opacity: 0;
-  transition: all 300ms ease;
-  padding: 10px;
-  border-radius: 8px;
-  transform: translateY(10px);
-}
-
-.movie-wrap:hover {
-  transform: scale(1.1);
-}
-
-.movie-wrap:hover .movie__description {
-  opacity: 0.8;
-  transform: translateY(0px);
-}
-
-.movie__description > h3 {
-  border-bottom: 1px solid #ffffff;
-  margin-bottom: 12px;
-}
-
-.movie__description > p {
-  margin-bottom: 8px;
-} */

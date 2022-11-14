@@ -62,8 +62,8 @@ xMark.addEventListener('click', () => {
 
 // 메인 화면을 유저의 브라우저 크기에 맞추기
 console.log(window.innerHeight);
-const mainImg = document.querySelector('.movie')
+const mainWrap = document.querySelector('.main__wrap')
 window.addEventListener('load', () => {
-  mainImg.style.height = `${window.innerHeight}px`;
+  mainWrap.style.height = `${window.innerHeight}px`;
   // mainImg.style.width = `${window.innerWidth}px`;
 })

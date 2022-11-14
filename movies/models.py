@@ -13,3 +13,9 @@ class Movie(models.Model):
 
     def __str__(self):
         return f'{ self.title }'
+
+
+class Director(models.Model):
+    name = models.TextField()
+    profileImg = models.ImageField()
+    wise_saying = models.TextField()
