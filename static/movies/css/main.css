@@ -99,7 +99,7 @@ a:hover {
 }
 
 .fa-xmark {
-  transform: translateX(180px);
+  transform: translateX(190px);
   font-size: 24px;
   color: #ffffff;
   cursor: pointer;
@@ -163,14 +163,14 @@ a:hover {
 
 /* main page */
 .main {
-  padding-top: 50px;
+  /* padding-top: 50px; */
 }
 
 .movie {
   position: relative;
   margin: auto;
   width: 100%;
-  height: 750px;
+  height: 969px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -181,7 +181,7 @@ a:hover {
   height: 100%;
 
   /* 구성안2 */
-  background-color: rgba(0,0,0,0.2);
+  /* background-color: rgba(0,0,0,0.4); */
 
 }
 
@@ -237,19 +237,13 @@ a:hover {
   /* background-color: #97ec9d; */
 
   /* 구성안2 */
-  background: url('../../accounts/imgs/background후보13.jpg') no-repeat;
+  background: url('../../accounts/imgs/메인페이지후보4.png') no-repeat;
   background-size: cover;
-  background-position: right 35% bottom 68%;
+  background-position: center;
 }
 
-[data-id='2'] {
-  /* 구성안1 */
-  background-color: #97ec9d;
 
-  /* background: url('../../accounts/imgs/background후보2.jpg') center/cover no-repeat; */
-}
-
-.movie__description {
+/* .movie__description {
   color: #ffffff;
   position: absolute;
   display: flex;
@@ -264,7 +258,6 @@ a:hover {
   opacity: 0;
   transition: all 300ms ease;
   padding: 10px;
-  /* border-radius: 50%; */
   border-radius: 8px;
   transform: translateY(10px);
 }
@@ -285,4 +278,4 @@ a:hover {
 
 .movie__description > p {
   margin-bottom: 8px;
-}
+} */
