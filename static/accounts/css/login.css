@@ -35,6 +35,7 @@ input {
 .login {
   width: 380px;
   padding: 10px 0px;
+  padding-bottom: 20px;
   text-align: center;
   border: 2px solid rgb(130 193 237);
   border-radius: 4px;
@@ -81,6 +82,7 @@ input {
 }
 
 .submit__button {
+  width: 250px;
   outline: none;
   border: none;
   margin-top: 24px;

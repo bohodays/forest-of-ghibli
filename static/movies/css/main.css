@@ -2,6 +2,10 @@
   box-sizing: border-box;
 }
 
+/* html {
+  scroll-behavior: smooth;
+} */
+
 html, body {
   width: 100%;
   margin: 0;
@@ -9,12 +13,16 @@ html, body {
 
 body {
   font-family: 'GmarketSansMedium';
-  background-color: rgb(130 193 237);
+  /* background-color: rgb(130 193 237); */
 }
 
 a {
   text-decoration: none;
   color: #ffffff;
+}
+
+a:hover {
+  color: #77aaff;
 }
 
 .logout-form > input {
@@ -25,7 +33,7 @@ a {
 }
 
 .logout-form > input:hover {
-  color: #0d6efd;
+  color: #77aaff;
 }
 
 
@@ -64,10 +72,62 @@ a {
 
 .menu__item {
   padding: 0 16px;
+  opacity: 1;
+  transition: all 600ms ease-in;
+}
+
+.menu__item:hover {
+  transition: all 300ms ease-in;
+}
+
+.menu-invisible {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.fa-magnifying-glass {
+  color: white;
+  cursor: pointer;
+  padding-left: 4px;
+  margin-bottom: 6px;
+  transition: all 1000ms ease;
+  z-index: 3;
+}
+
+.fa-magnifying-glass:hover {
+  color: #77aaff;
+}
+
+.fa-xmark {
+  transform: translateX(190px);
+  font-size: 24px;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.fa-xmark:hover {
+  color: #77aaff;
+  transition: all 300ms ease-in;
+}
+
+.search__input {
+  border: none;
+  outline: none;
+  width: 330px;
+  background-color: transparent;
+  color: white;
+}
+
+.menu__hidden {
+  position: absolute;
+  pointer-events: none;
+  transition: all 1500ms ease;
+  opacity: 0;
 }
 
 .a__logo {
   padding-right: 6px;
+  opacity: 1;
 }
 
 .profile__container {
@@ -91,7 +151,6 @@ a {
 }
 
 .img__container {
-  /* background-color: #ffffff; */
   width: 30px; 
   height: 30px;
   margin-right: 10px;
@@ -102,53 +161,46 @@ a {
   padding: 0 12px;
 }
 
-.fa-magnifying-glass {
-  color: white;
-  /* padding-bottom: 4px; */
-  padding-left: 4px;
-}
-
-
 /* main page */
 .main {
-  padding-top: 120px;
+  /* padding-top: 50px; */
 }
 
 .movie {
+  position: relative;
   margin: auto;
-  margin-bottom: 70px;
-  max-width: 1000px;
+  width: 100%;
+  height: 969px;
   display: flex;
   justify-content: center;
   align-items: center;
-  /* border: 1px solid black; */
-  border-radius: 20px;
-  padding: 24px 0px 24px 20px;
-  box-shadow: 10px 10px 30px 0px rgb(158 158 158);
-  background-color: #ffffff;
+}
+
+.shadow {
+  width: 100%;
+  height: 100%;
+
+  /* 구성안2 */
+  /* background-color: rgba(0,0,0,0.4); */
+
+}
+
+.movie-wrap {
+  position: absolute;
+  border-radius: 8px;
+
+  box-shadow: 0px 0px 30px 0px rgb(212 212 212);
+  transition: all 300ms ease;
 }
 
 .movie__poster {
   width: 300px;
   height: 447px;
-}
-
-.wise-saying-container {
-  padding-left: 30px;
-  position: relative;
-}
-
-.wise-saying-bubble {
-  width: 600px;
-  height: 250px;
-}
-
-.wise-saying {
-  position: absolute;
-  top: 100px;
-  left: 140px;
-  max-width: 390px;
-  font-size: 16px;
+  border-radius: 8px;
+  
+  /* width: 450px;
+  height: 450px;
+  border-radius: 50%; */
 }
 
 
@@ -160,14 +212,15 @@ a {
   font-size: 40px;
   width: 60px;
   height: 60px;
-  background-color: #000000;
-  /* background-color: black; */
-  color: white;
+  /* background-color: #000000; */
+  background-color: #ffffff;
+  /* color: white; */
+  color: #000000;
   border: 0px;
   border-radius: 50%;
   opacity: 0;
   pointer-events: none;
-  transition: all var(--animation-duration) linear;
+  transition: all 300ms linear;
 }
 
 .arrow-up.visible {
@@ -178,3 +231,51 @@ a {
 .fa-arrow-up {
   padding-top: 8px;
 }
+
+[data-id='1'] {
+  /* 구성안1 */
+  /* background-color: #97ec9d; */
+
+  /* 구성안2 */
+  background: url('../../accounts/imgs/메인페이지후보4.png') no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+
+/* .movie__description {
+  color: #ffffff;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  background-color: black;
+  opacity: 0;
+  transition: all 300ms ease;
+  padding: 10px;
+  border-radius: 8px;
+  transform: translateY(10px);
+}
+
+.movie-wrap:hover {
+  transform: scale(1.1);
+}
+
+.movie-wrap:hover .movie__description {
+  opacity: 0.8;
+  transform: translateY(0px);
+}
+
+.movie__description > h3 {
+  border-bottom: 1px solid #ffffff;
+  margin-bottom: 12px;
+}
+
+.movie__description > p {
+  margin-bottom: 8px;
+} */

@@ -39,3 +39,25 @@ submitBtn.addEventListener('click', () => {
     }
   })
 })
+
+window.addEventListener('load', () => {
+  inputs.forEach((input) => {
+    if (input.value === '') {
+      // 라벨을 가리킴
+      input.parentNode.previousElementSibling.style.transform = 'translateY(0px)';
+      input.parentNode.previousElementSibling.style.color = '#000000';
+    } else {
+      input.parentNode.previousElementSibling.style.transform = 'translateY(-30px)';
+      input.parentNode.previousElementSibling.style.color = 'rgb(130 193 237)';
+    }
+  })
+})
+
+
+userNameInput.addEventListener('keyup', (event) => {
+  const styleColorCheck = userNameInput.parentNode.previousElementSibling.style.color;
+  if (styleColorCheck === 'rgb(0, 0, 0)') {
+    event.target.parentNode.previousElementSibling.style.transform = 'translateY(-30px)';
+    event.target.parentNode.previousElementSibling.style.color = 'rgb(130 193 237)';
+  }
+})
