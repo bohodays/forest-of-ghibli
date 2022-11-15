@@ -15,6 +15,7 @@ class Movie(models.Model):
     def __str__(self):
         return f'{ self.title }'
 
+<<<<<<< HEAD
 class Comment(models.Model):
     content = models.TextField(max_length=500)  # 리뷰 필드
     movie_rate = models.IntegerField()      # 영화 평점
@@ -25,3 +26,10 @@ class Comment(models.Model):
     # like_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_movies')
 
     
+=======
+
+class Director(models.Model):
+    name = models.TextField()
+    profileImg = models.ImageField()
+    wise_saying = models.TextField()
+>>>>>>> d92d3bed3ea08175cce135c9482efe4516934c9d

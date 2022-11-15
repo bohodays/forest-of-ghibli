@@ -41,7 +41,7 @@ searchMark.addEventListener('click', () => {
     itme.style.pointerEvents = 'all';
   })
   
-  searchMark.style.transform = 'translate(-370px, 2px)';
+  searchMark.style.transform = 'translate(-410px, 2px)';
   // createSearchInput();
 })
 
@@ -62,3 +62,8 @@ xMark.addEventListener('click', () => {
 
 // 메인 화면을 유저의 브라우저 크기에 맞추기
 console.log(window.innerHeight);
+const mainWrap = document.querySelector('.main__wrap')
+window.addEventListener('load', () => {
+  mainWrap.style.height = `${window.innerHeight}px`;
+  // mainImg.style.width = `${window.innerWidth}px`;
+})
