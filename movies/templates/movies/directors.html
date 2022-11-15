@@ -14,32 +14,14 @@
 
 {% block content %}
   <section>
-    <a class="director-wrap" href="">
-      <div class="director">
-        <img class="director__img1" src="{% static 'movies/imgs/미야자키_하야오.png' %}" alt="">
-        <p class="director__name">미야자키 하야오</p>
-      </div>
-    </a>
+    {% for key, value in directors.items %}
+      <a href="{% url 'movies:directors_detail' key %}" class="director-wrap">
+        <div class="director">
+          <img class="director__img" src="{% get_static_prefix %}{{ value }}" alt="">
+          <p class="director__name">{{ key }}</p>
+        </div>
+      </a>
+    {% endfor %}
 
-    <a href="" class="director-wrap">
-      <div class="director">
-        <img class="director__img2" src="{% static 'movies/imgs/고로_미야자키.png' %}" alt="">
-        <p class="director__name">미야자키 고로</p>
-      </div>
-    </a>
-
-    <a href="" class="director-wrap">
-      <div class="director">
-        <img class="director__img3" src="{% static 'movies/imgs/다카하타_이사오.png' %}" alt="">
-        <p class="director__name">타카하타 이사오</p>
-      </div>
-    </a>
-
-    <a href="" class="director-wrap">
-      <div class="director">
-        <img class="director__img4" src="{% static 'movies/imgs/모리타_히로유키.png' %}" alt="">
-        <p class="director__name">히로유키 모리타</p>
-      </div>
-    </a>
   </section>
 {% endblock content %}

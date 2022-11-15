@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_list_or_404,redirect
-from .models import Movie, Comment
+from .models import Movie, Comment, Director
 from .forms import CommentForm
 
 from django.contrib.auth.decorators import login_required
@@ -100,5 +100,18 @@ def films(request):
 
 
 def directors(request):
-    return render(request, 'movies/directors.html')
+    directors = get_list_or_404(Director)
+    tmp = []
+    for director in directors:
+        tmp.append((director.name, director.profileImg))
+    tmp = list(set(tmp))
+    directors = {}
+    for i in tmp:
+        directors[i[0]] = i[1]
+    context = {
+        'directors': directors,
+    }
+    return render(request, 'movies/directors.html', context)
 
+def directors_detail(request, name):
+    return render(request, 'movies/directors_detail.html')
