@@ -14,10 +14,32 @@
 
 {% block content %}
   <section>
-    <h1>dddddddddddddddd</h1>
-    <h1>dddddddddddddddd</h1>
-    <h1>dddddddddddddddd</h1>
-    <h1>dddddddddddddddd</h1>
-    <h1>dddddddddddddddd</h1>
+
+    <div class="director-wap">
+      <div class="director__comment-wrap">
+        <p class="director__comment">{{ selected_director.wise_saying }}</p>
+        <p class="director__name">- {{ selected_director.name }}</p>
+      </div>
+      <div class="director__img">
+        <img class="" src="{% get_static_prefix %}{{ selected_director.profileImg }}" alt="">
+        <div class="blur"></div>
+      </div>
+    </div>
+    <div class="director-films">
+    {% for movie in selected_movies %}
+      <div class="movie" data-id={{ movie.id }}>
+        <div class="shadow"></div>
+        <a class="movie-wrap" href="{% url 'movies:detail' movie.id %}">
+          <img class="movie__poster" src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}" alt="">
+          <div class="movie__description">
+            <h3>{{ movie.title }}</h3>
+            <p>{{ movie.director }}</p>
+            <p>{{ movie.release_date }}</p>
+          </div>
+        </a>
+      </div>
+    {% endfor %}
+    </div>
+
   </section>
 {% endblock content %}

@@ -6,6 +6,7 @@ from django.conf import settings
 class Director(models.Model):
     name = models.TextField()
     profileImg = models.TextField()
+    wise_saying = models.TextField()
 
 
 class Movie(models.Model):
