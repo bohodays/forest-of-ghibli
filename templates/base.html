@@ -13,21 +13,28 @@
   {# fontawesome 추가 #}
   <script src="https://kit.fontawesome.com/21a0726bae.js" crossorigin="anonymous"></script>
   {# CSS 파일 추가 #}
-  <link rel='stylesheet' href="{% static 'movies/css/main.css' %}"/>
+  {% block css %}
+  {% endblock css %}
   {# JS 파일 추가 #}
-  <script src="{% static 'movies/js/main.js' %}" defer></script>
+  {% block js %}
+  {% endblock  %}
   <title>지브리의 숲</title>
   
 </head>
 <body>
 
   <nav id="navbar" class="row">
-    <div class="col-4"></div>
+    <div class="col-4">
+      <a class="logo" href="{% url 'movies:main' %}">
+        <img class="logo__img" src="{% static 'movies/imgs/logo.png' %}" alt="logo">
+      </a>
+    </div>
     <div class="navbar__menu col-4">
       {% comment %} <a class="menu__item a__logo" href="">
         <img class="logo" src="{% static 'movies/imgs/logo.png' %}" alt="logo">
       </a> {% endcomment %}
-      <a class="menu__item" href="">DIRECTORS</a>
+      <a class="menu__item" href="{% url 'movies:films' %}">FILMS</a>
+      <a class="menu__item" href="{% url 'movies:directors' %}">DIRECTORS</a>
       <a class="menu__item" href="">GBTI</a>
       <a class="menu__item" href="">QUIZ</a>
       <a class="menu__item" href="">POLL</a>

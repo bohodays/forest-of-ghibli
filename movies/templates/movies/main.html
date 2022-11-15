@@ -2,11 +2,21 @@
 
 {% load static %}
 
+{% block css %}
+  <link rel='stylesheet' href="{% static 'movies/css/main.css' %}"/>
+{% endblock css %}
+
+{% block js %}
+  <script src="{% static 'movies/js/main.js' %}" defer></script>
+{% endblock  %}
+
 {% block content %}
   <div class="main">
-    <div class="movie" data-id='1'>
-
+    <div class="main__wrap" data-id='1'>
+      <h1 class="main__title">지브리의 숲</h1>
+      <img class="main__img" src="{% static 'movies/imgs/main_img4.jpg' %}" alt="">
     </div>
+
     {% comment %} {% for movie in movies %}
       <div class="movie" data-id={{ movie.pk }}>
         <div class="shadow"></div>
@@ -24,6 +34,7 @@
         </a>
       </div> {% endcomment %}
     {% comment %} {% endfor %} {% endcomment %}
+
   </div>
 {% endblock content %}
 
