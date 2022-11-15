@@ -1,6 +1,16 @@
 {% extends 'base.html' %}
 
+{% load static %}
 
+{% block css %}
+  
+  <link rel='stylesheet' href="{% static 'movies/css/main.css' %}"/>
+{% endblock css %}
+
+{% block js %}
+  
+  <script src="{% static 'movies/js/main.js' %}" defer></script>
+{% endblock js %}
 
 {% block content %}
 
@@ -12,7 +22,7 @@
 
   <img src=https://image.tmdb.org/t/p/w500{{movie.poster_path}} alt="">
 
-  <p>{{movie.poster_path}}</p>
+  
   <p>평점{{movie.vote_average}}</p>
 
   <p>{{movie.director}}</p>
@@ -33,19 +43,24 @@
   <ul>
     {% for comment in comments  %}
     <li>
-      <p>{{comment.user}}</p>
+      <p>{{comment.user.nickName}}</p>
       <span>{{ comment.content}}</span>
       <span>{{ comment.movie_rate }}</span>
+
       <!-- 좋아요 구현   -->
-      <form data-movie-id="{{movie.pk}}">
+      <form data-comment-id="{{movie.pk}}">
         {% csrf_token %}
         {% if request.user in movie.like_users.all %}
-          <input type="submit" value="좋아요 취소" id="like-{{article.pk}}">
+          <input type="submit" value="좋아요 취소" id="like-{{movie.pk}}">
         {% else %}
           <input type="submit" value="좋아요" id="like-{{article.pk}}">
         {% endif %}
       </form>
+
+
+      {% comment %} update delete {% endcomment %}
       {% if request.user == comment.user %}
+        <a href="{% url 'movies:comments_update' movie.pk comment.pk  %}"> 수정</a>
         <form action="{% url 'movies:comments_delete' movie.pk comment.pk %}" method="POST">
           {% csrf_token %}
           <input type="submit" value="삭제">
@@ -54,6 +69,7 @@
     </li>
     {% endfor %}
   </ul>
+
 
 {% endblock content %}
 
