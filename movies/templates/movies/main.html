@@ -1,8 +1,40 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
+{% block css %}
+  <link rel='stylesheet' href="{% static 'movies/css/main.css' %}"/>
+{% endblock css %}
+
+{% block js %}
+  <script src="{% static 'movies/js/main.js' %}" defer></script>
+{% endblock  %}
+
 {% block content %}
-  <div class="index">
-    <h1>Index</h1>
+  <div class="main">
+    <div class="main__wrap" data-id='1'>
+      <h1 class="main__title">지브리의 숲</h1>
+      <img class="main__img" src="{% static 'movies/imgs/main_img4.jpg' %}" alt="">
+    </div>
+
+    {% comment %} {% for movie in movies %}
+      <div class="movie" data-id={{ movie.pk }}>
+        <div class="shadow"></div>
+        <a class="movie-wrap" href="#">
+          <img class="movie__poster" src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}" alt="">
+          <div class="movie__description"> {% endcomment %}
+
+            {% comment %} 1.명대사만 띄우기 {% endcomment %}
+            
+            {% comment %} 2. 간략한 영화 정보 띄우기 {% endcomment %}
+            {% comment %} <h3>{{ movie.title }}</h3>
+            <p>{{ movie.director }}</p>
+            <p>{{ movie.release_date }}</p>
+          </div>
+        </a>
+      </div> {% endcomment %}
+    {% comment %} {% endfor %} {% endcomment %}
+
   </div>
 {% endblock content %}
 

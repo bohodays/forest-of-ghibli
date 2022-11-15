@@ -2,16 +2,40 @@
   box-sizing: border-box;
 }
 
+/* html {
+  scroll-behavior: smooth;
+} */
+
 html, body {
   width: 100%;
   margin: 0;
 }
 
+body {
+  font-family: 'GmarketSansMedium';
+  /* background-color: rgb(130 193 237); */
+}
 
 a {
   text-decoration: none;
   color: #ffffff;
 }
+
+a:hover {
+  color: #77aaff;
+}
+
+.logout-form > input {
+  background-color: transparent;
+  color: #ffffff;
+  border: none;
+  padding: 0px 12px;
+}
+
+.logout-form > input:hover {
+  color: #77aaff;
+}
+
 
 @font-face {
   font-family: 'GmarketSansMedium';
@@ -20,12 +44,7 @@ a {
   font-style: normal;
 }
 
-
-
-body {
-  font-family: 'GmarketSansMedium';
-}
-
+/* navbar */
 #navbar {
   position: fixed;
   z-index: 2;
@@ -33,6 +52,10 @@ body {
   width: 100%;
   background-color: #000000;
   margin: 0;
+}
+
+.blurred {
+  opacity: 0.8;
 }
 
 .navbar__menu {
@@ -43,16 +66,86 @@ body {
 }
 
 .logo {
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
+}
+
+.logo__img {
+  width: 40px;
+  height: 40px;
+  transform: translateY(5px);
 }
 
 .menu__item {
   padding: 0 16px;
+  opacity: 1;
+  transition: all 600ms ease-in;
+}
+
+.menu__item:hover {
+  transition: all 300ms ease-in;
+}
+
+.menu-invisible {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.fa-magnifying-glass {
+  color: white;
+  cursor: pointer;
+  padding-left: 4px;
+  margin-bottom: 6px;
+  transition: all 1000ms ease;
+  z-index: 3;
+}
+
+.fa-magnifying-glass:hover {
+  color: #77aaff;
+}
+
+.fa-xmark {
+  transform: translateX(230px);
+  font-size: 24px;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.fa-xmark:hover {
+  color: #77aaff;
+  transition: all 300ms ease-in;
+}
+
+.search__input {
+  border: none;
+  outline: none;
+  width: 330px;
+  background-color: transparent;
+  color: white;
+}
+
+.menu__hidden {
+  position: absolute;
+  pointer-events: none;
+  transition: all 1500ms ease;
+  opacity: 0;
 }
 
 .a__logo {
   padding-right: 6px;
+  opacity: 1;
+}
+
+.profile__container {
+  display: flex;
+  align-items: center;
+}
+
+.default-profile-img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  border-radius: 50%;
 }
 
 .user__info {
@@ -63,11 +156,95 @@ body {
   justify-content: end;
 }
 
+.img__container {
+  width: 30px; 
+  height: 30px;
+  margin-right: 10px;
+  border-radius: 50%;
+}
+
 .info__item {
   padding: 0 12px;
 }
 
-/* 임시용 */
-.index {
-  padding-top: 50px;
+/* main page */
+.main {
+  width: 100%;
+}
+
+@font-face {
+  font-family: 'LINESeedKR-Bd';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Bd.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+}
+
+.main__wrap {
+  font-family: 'LINESeedKR-Bd';
+  position: relative;
+  margin: auto;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgba(255,255,255,.3);
+  background: #1a1a1a;
+  text-shadow: 0 0 15px rgba(255,255,255,.5), 0 0 10px rgba(255,255,255,.5);
+  pointer-events: none;
+}
+
+
+/* arrow-up button */
+.arrow-up {
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  font-size: 40px;
+  width: 60px;
+  height: 60px;
+  background-color: #000000;
+  /* background-color: #ffffff; */
+  color: #ffffff;
+  /* color: #000000; */
+  border: 0px;
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 300ms linear;
+}
+
+.arrow-up.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.fa-arrow-up {
+  padding-top: 8px;
+}
+
+.main__title {
+  position: absolute;
+  color: #ffffff;
+  font-size: 120px;
+  transform: translateY(-150px);
+}
+
+.main__img {
+  width: 100%;
+  height: 100%;
+  /* object-fit: cover; */
+}
+
+/* footer */
+footer {
+  height: 40px;
+  text-align: center;
+  line-height: 40px;
+  background-color: #000000;
+  color: #ffffff;
+}
+
+.footer__comment {
+  margin: 0px;
+  font-size: 12px;
 }

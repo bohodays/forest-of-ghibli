@@ -25,21 +25,24 @@ def login(request):
 
 def logout(request):
     auth_logout(request)
-    return redirect('accounts:login')
+    return redirect('movies:main')
 
+# 회원가입
 def signup(request):
     if request.method=="POST":
-        form = CustomUserCreationForm(request.POST)
+        # 프로필 사진을 따로 받아주기위해 인자 추가
+        form = CustomUserCreationForm(request.POST,request.FILES)
+        print('request\n', request.FILES)
         if form.is_valid():
-            user =form.save()
+            user = form.save()
             auth_login(request,user)
             return redirect('movies:main')
     else:
-        form = CustomUserCreationForm()
+        form = CustomUserCreationForm(request.FILES)
     context = {
         'form' : form,
     }
-    return render(request,  'accounts/signup.html', context)
+    return render(request, 'accounts/signup.html', context)
 
 
 def delete(request):
@@ -47,14 +50,20 @@ def delete(request):
     auth_logout(request)
     return redirect('movies:main')
 
+# 회원정보 수정
 def update(request):
     if request.method =="POST":
-        pass
+        form = CustomUserChangeForm(request.POST, request.FILES,instance=request.user)
+        
+        if form.is_valid():
+            form.save()
+            return redirect('movies:main')
     else:
-        form = CustomUserChangeForm(instance=request.user)
+        form = CustomUserChangeForm(request.FILES, instance=request.user)
     context = {
         'form':form,
     }
+    # print('??????????????',form)
     return render(request, 'accounts/update.html',context)
 
 

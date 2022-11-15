@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block css %}
+  <link rel='stylesheet' href="{% static 'movies/css/main.css' %}"/>
+{% endblock css %}
+
+{% block js %}
+  <script src="{% static 'movies/js/main.js' %}" defer></script>
+{% endblock js %}
+
+{% block content %}
+<h1>1</h1>
+<h1>1</h1>
+<h1>1</h1>
+  <form action="{% url 'movies:comments_update' movie.pk comment.pk %}" method="POST"  >
+    {% csrf_token %}
+    {{ comment_form }}
+    <input type="submit" value'수정하기'>
+  </form>
+  <h1>sdfkjalkfajsdflk</h1>
+{% endblock content %}
