@@ -61,18 +61,40 @@ def comments_delete(request, movie_pk, comment_pk):
 # 댓글 수정
 @login_required
 @require_http_methods(['GET','POST'])
-def update(request,pk):
-    movie = Movie.objects.get(pk=pk)
-    if request.user == movie.user:
-        if request.method =="POST":
-            form = CommentForm(request.POST, instance = movie)
-            if form.is_valid():
-                form.save()
-                return redirect('movies:detail', movie.pk)
+def comments_update(request,movie_pk,comment_pk):
+    movie = Movie.objects.get(pk=movie_pk)
+    comment = Comment.objects.get(pk=comment_pk)
+    # print('\n\n',comment.content,'\n')
+
+    if request.user == comment.user:
+        # if request.method =='POST':
+        comment_form = CommentForm(data=request.POST, instance=comment)
+        # print('\n\n',comment_form.instance.content,'\n')
+        
+        if comment_form.is_valid():
+            comment_form.save()
+            print('\n\n',comment_form.instance.content,'\n')
+            return redirect('movies:detail',movie.pk)
         else:
-            form = CommentForm(instance = movie)
-    else:
-        return redirect('accounts:main')
+            comment_form = CommentForm(instance=comment)
+        context={
+            'movie':movie,
+            'comment_form':comment_form,
+            'comment':comment,
+        }
+    return render(request,'movies/comments_update.html', context)
+    # movie = Movie.objects.get(pk=movie_pk)
+    # comment = Comment.objects.get(pk=comment_pk)
+    # if request.user == comment.user:
+    #     if request.method =="POST":
+    #         form = CommentForm(request.POST, instance = comment)
+    #         if form.is_valid():
+    #             form.save()
+    #             return redirect('movies:detail',movie.pk, comment.pk)
+    #     else:
+    #         form = CommentForm(instance = comment)
+    # else:
+    #     return redirect('accounts:main')
             
 # 좋아요
 def likes(request, movie_pk):
