@@ -73,7 +73,7 @@ def comments_update(request,movie_pk,comment_pk):
         
         if comment_form.is_valid():
             comment_form.save()
-            print('\n\n',comment_form.instance.content,'\n')
+            # print('\n\n',comment_form.instance.content,'\n')
             return redirect('movies:detail',movie.pk)
         else:
             comment_form = CommentForm(instance=comment)
@@ -97,15 +97,17 @@ def comments_update(request,movie_pk,comment_pk):
     #     return redirect('accounts:main')
             
 # 좋아요
-def likes(request, movie_pk):
+@require_POST
+def comments_likes(request, movie_pk, comment_pk):
     if request.user.is_authenticated:
-        movie = Movie.objects.get(pk=movie_pk)
+        
+        comment = Comment.objects.get(pk=comment_pk)
 
-        if movie.like_users.filter(pk=request.user.pk).exist():
-            movie.like_users.remove(request.user)
+        if comment.like_users.filter(pk=request.user.pk).exists():
+            comment.like_users.remove(request.user)
             is_liked=False
         else:
-            movie.like_users.add(request.user)
+            comment.like_users.add(request.user)
             is_liked=True
         context = {
             'is_liked':is_liked,
