@@ -15,6 +15,7 @@ section {
 }
 
 .movie {
+  border-radius: 8px;
   margin: 20px 20px 40px 20px;
   /* display: inline-block; */
   position: relative;

@@ -135,5 +135,38 @@ def directors(request):
     }
     return render(request, 'movies/directors.html', context)
 
+
 def directors_detail(request, name):
-    return render(request, 'movies/directors_detail.html')
+    movies = get_list_or_404(Movie)
+    directors = get_list_or_404(Director)
+
+    # 클릭된 감독의 영화 데이터를 딕셔너리 형태로 저장
+    selected_movies = []
+    for movie in movies:
+        if movie.director == name:
+            tmp = {
+                'id': movie.id,
+                'title': movie.title,
+                'overview': movie.overview,
+                'release_date': movie.release_date,
+                'poster_path': movie.poster_path,
+                'vote_average': movie.vote_average,
+                'director': movie.director,
+                'wise_saying': movie.wise_saying
+            }
+            selected_movies.append(tmp)
+
+    # 클릭된 영화 감독의 정보를 딕셔너리 형태로 저장
+    for director in directors:
+        if director.name == name:
+            selected_director = {
+                'id': director.id,
+                'name': director.name,
+                'profileImg': director.profileImg,
+                'wise_saying': director.wise_saying
+            }
+    context = {
+        'selected_movies': selected_movies,
+        'selected_director': selected_director,
+    }
+    return render(request, 'movies/directors_detail.html', context)

@@ -41,7 +41,7 @@ searchMark.addEventListener('click', () => {
     itme.style.pointerEvents = 'all';
   })
   
-  searchMark.style.transform = 'translate(-410px, 2px)';
+  searchMark.style.transform = 'translate(-470px, 2px)';
   // createSearchInput();
 })
 

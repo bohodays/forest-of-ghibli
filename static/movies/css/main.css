@@ -117,9 +117,10 @@ a:hover {
 }
 
 .search__input {
+  padding-right: 8px;
   border: none;
   outline: none;
-  width: 330px;
+  width: 440px;
   background-color: transparent;
   color: white;
 }
