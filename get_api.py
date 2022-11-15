@@ -4,7 +4,7 @@ import os
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "final_pjt.settings")
 import django
 django.setup()
-from movies.models import Movie
+from movies.models import Movie, Director
 
 def get_api(query):
     params = {"api_key": "bd463403fc92a46ec88c4cc94afcc3cd",
@@ -58,6 +58,34 @@ def get_api(query):
                 if flag == True:
                     continue
                 if item['job'] == 'Director':
+                    if item['name'] == 'Hayao Miyazaki':
+                        item['name'] = '미야자키 하야오'
+                        profileImg = 'movies/imgs/미야자키_하야오.png'
+                    elif item['name'] == 'Goro Miyazaki':
+                        item['name'] = '미야자키 고로'
+                        profileImg = 'movies/imgs/고로_미야자키.png'
+                    elif item['name'] == 'Isao Takahata':
+                        item['name'] = '타카하타 이사오'
+                        profileImg = 'movies/imgs/타카하타_이사오.png'
+                    elif item['name'] == 'Hiroyuki Morita':
+                        item['name'] = '모리타 히로유키 '
+                        profileImg = 'movies/imgs/모리타_히로유키.png'
+                    elif item['name'] == 'Yoshifumi Kondō':
+                        item['name'] = '콘도 요시후미'
+                        profileImg = 'movies/imgs/콘도_요시후미.png'
+                    elif item['name'] == 'Hiromasa Yonebayashi':
+                        item['name'] = '요네바야시 히로마사'
+                        profileImg = 'movies/imgs/요네바야시_히로마사.png'
+                    elif item['name'] == 'Tomomi Mochizuki':
+                        item['name'] = '모치즈키 토모미'
+                        profileImg = 'movies/imgs/모치즈키_토모미.png'
+                    elif item['name'] == 'Michael Dudok de Wit':
+                        item['name'] = '미카엘 뒤독 더빗'
+                        profileImg = 'movies/imgs/미카엘.png'
+                    Director(
+                        name = item['name'],
+                        profileImg = profileImg
+                    ).save()
                     Movie(
                         title=title[0],
                         overview = overview[0],

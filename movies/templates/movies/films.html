@@ -17,7 +17,7 @@
     {% for movie in movies %}
       <div class="movie" data-id={{ movie.pk }}>
         <div class="shadow"></div>
-        <a class="movie-wrap" href="#">
+        <a class="movie-wrap" href="{% url 'movies:detail' movie.pk %}">
           <img class="movie__poster" src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}" alt="">
           <div class="movie__description">
             <h3>{{ movie.title }}</h3>
@@ -27,6 +27,5 @@
         </a>
       </div>
     {% endfor %}
-      <div class="movie"></div>
   </section>
 {% endblock content %}

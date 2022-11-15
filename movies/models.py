@@ -3,6 +3,11 @@ from django.conf import settings
 
 # Create your models here.
 
+class Director(models.Model):
+    name = models.TextField()
+    profileImg = models.TextField()
+
+
 class Movie(models.Model):
     title = models.CharField(max_length=100)
     overview = models.TextField()
@@ -26,10 +31,3 @@ class Comment(models.Model):
     # like_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_movies')
 
     
-
-
-class Director(models.Model):
-    name = models.TextField()
-    profileImg = models.ImageField()
-    wise_saying = models.TextField()
-
