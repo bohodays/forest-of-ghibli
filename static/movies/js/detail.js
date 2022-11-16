@@ -19,14 +19,12 @@ forms.forEach((form) => {
       headers: {'X-CSRFToken': csrftoken,},
     })
     .then((response) => {
-      console.log(response, 333333333)
-      // console.log(response.data)
       const isLiked = response.data.is_liked
       const likeBtn = document.querySelector(`#like-${commentId}`)
       if (isLiked === true) {
-        likeBtn.value = '좋아요 취소'
+        likeBtn.innerHTML = `<i class="fa-sharp fa-solid fa-heart"></i>`;
       } else {
-        likeBtn.value = '좋아요'
+        likeBtn.innerHTML = `<i class="fa-regular fa-heart"></i>`;
       }
       // likeBtn.value = isLiked ? '좋아요 취소' : '좋아요'
     })
@@ -36,7 +34,7 @@ forms.forEach((form) => {
   })
 })
 
-// // 댓글 삭제
+// // 댓글 삭제 비동기
 const deleteForms = document.querySelectorAll('.delete-forms')
 deleteForms.forEach((deleteForm) => {
   deleteForm.addEventListener('submit', (event) => {
@@ -50,8 +48,8 @@ deleteForms.forEach((deleteForm) => {
       headers: {'X-CSRFToken': csrftoken,},
     })
       .then((response) => {
-        // url 요청을 가져오는걸 성공 했을 경우 여기서 
-        const userForm = event.target.parentNode;
+        // 버튼을 누른 댓글
+        const userForm = event.target.parentNode.parentNode.parentNode.parentNode;
         userForm.remove();
       })
         .catch((error) => {
@@ -61,7 +59,7 @@ deleteForms.forEach((deleteForm) => {
 })
 
 
-
+// 댓글 작성 비동기
 
 
 
@@ -115,7 +113,7 @@ window.addEventListener('load', () => {
   } else if (title.innerText === '가구야공주 이야기') {
     iframe.setAttribute('src', 'https://www.youtube.com/embed/r6RsS4poOok');
   } else {
-    getYoutubeVideo();
+    // getYoutubeVideo();
   }
 })
 

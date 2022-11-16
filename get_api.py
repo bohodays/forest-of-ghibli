@@ -1,5 +1,6 @@
 # 지브리 애니메이션 영화들을 불러와서 Movie모델에 저장하는 api 함수
 import requests
+from bs4 import BeautifulSoup
 import os
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "final_pjt.settings")
 import django
@@ -165,6 +166,47 @@ def save_wise_saying_director():
         director.wise_saying = wise_sayings[i-1]
         director.save()
 
+    return
+
+
+def background_img():
+    background_imgs = [
+        'https://blog.kakaocdn.net/dn/YNmKl/btqInMyCIDX/kzunkFFKxFDcD3dEzKmOO1/img.jpg',
+        'https://www.themoviedb.org/t/p/original/sof3WWQkFJWYUYLekB2AQsHH8kO.jpg',
+        'https://movie-phinf.pstatic.net/20140527_61/14011807186707bxkw_JPEG/movie_image.jpg?type=m665_443_2',
+        'https://wallpaperaccess.com/full/371944.jpg',
+        'https://mblogthumb-phinf.pstatic.net/MjAyMDA2MDVfNTIg/MDAxNTkxMzQ0MTk2OTQ3.8SO4O5vt52ynZRz0bMgIUoAxk2t55gctm7FqoiyYKksg.hvzIA0AmjoCFna5bAAaydAGCC7TwjDC9T_P5O3qrHu0g.JPEG.pola0216/%EC%95%84%EC%9D%B4%ED%8F%B0%EB%B0%B0%EA%B2%BD%ED%99%94%EB%A9%B4%EC%A7%80%EB%B8%8C%EB%A6%AC01.jpg?type=w800',
+        'https://pbs.twimg.com/media/DTzh1AsVoAADfro.jpg',
+        'https://i.pinimg.com/originals/8f/40/99/8f40996e594eafa9f9a0fd27b8852789.jpg',
+        'http://aniland1.cafe24.com/studio_ghibri/download/img/ocean-waves.jpg',
+        'https://movie-phinf.pstatic.net/20111222_26/1324494911821X2uMr_JPEG/movie_image.jpg?type=m665_443_2',
+        'https://t1.daumcdn.net/tistoryfile/fs4/9_tistory_2008_03_20_11_09_47e1c751f34ee?original',
+
+        
+        # 작업해야 됨
+        'https://movie-phinf.pstatic.net/20111222_227/1324490975580VT6mm_JPEG/movie_image.jpg?type=m665_443_2',
+        'https://movie-phinf.pstatic.net/20111222_161/1324483673805cncT9_JPEG/movie_image.jpg?type=m665_443_2',
+        'https://movie-phinf.pstatic.net/20111223_180/1324647483094XPBf5_JPEG/movie_image.jpg?type=m665_443_2',
+        'https://movie-phinf.pstatic.net/20150108_83/1420706407615GKsAa_JPEG/movie_image.jpg?type=m665_443_2',
+        'https://movie-phinf.pstatic.net/20141119_192/1416356967659SuqYP_JPEG/movie_image.jpg?type=m665_443_2',
+        'https://movie-phinf.pstatic.net/20111221_127/1324474450767xFGrV_JPEG/movie_image.jpg?type=m665_443_2',
+        'https://movie-phinf.pstatic.net/20111221_52/1324455332537ItLuH_JPEG/movie_image.jpg?type=m665_443_2',
+        'https://movie-phinf.pstatic.net/20111222_5/1324534713810nmp4z_JPEG/movie_image.jpg?type=m665_443_2',
+        'https://movie-phinf.pstatic.net/20111223_118/1324621639230xCenO_JPEG/movie_image.jpg?type=m665_443_2',
+        'https://movie-phinf.pstatic.net/20111223_294/1324646972387jhaNK_JPEG/movie_image.jpg?type=m665_443_2',
+        'https://movie-phinf.pstatic.net/20140513_260/13999479042099cfCD_JPEG/movie_image.jpg?type=m665_443_2',
+        'https://movie-phinf.pstatic.net/20150304_168/1425432318297jKlPz_JPEG/movie_image.jpg?type=m665_443_2',
+        'https://movie-phinf.pstatic.net/20160513_4/1463120606278RnuKH_JPEG/movie_image.jpg?type=m665_443_2',
+        'https://movie-phinf.pstatic.net/20210429_120/1619660050576j0QoT_JPEG/movie_image.jpg?type=m665_443_2'
+    ]
+
+    for i in range(1,24):
+        movie = Movie.objects.get(pk=i)
+        movie.backgroundImg = background_imgs[i-1]
+        movie.save()
+
+    return
+
 
 if __name__ == '__main__':
     get_api('천공의 성 라퓨타')
@@ -192,6 +234,7 @@ if __name__ == '__main__':
     get_api('아야와 마녀')
     save_wise_saying()
     save_wise_saying_director()
+    background_img()
 
 
 

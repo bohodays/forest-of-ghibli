@@ -15,7 +15,11 @@
 {% block background %}
   <style>
     .background {
-      background: url({% static 'accounts/imgs/background후보1.jpg' %}) center/cover no-repeat;
+      {% comment %} background: url({% static 'accounts/imgs/background후보1.jpg' %}) center/cover no-repeat; {% endcomment %}
+      background-image: url({{ movie.backgroundImg }});
+      background-size: cover;
+      background-position: bottom 60% right 20%;
+      background-repeat: no-repeat;
     }
 
   </style>
@@ -55,6 +59,7 @@
       {% comment %} 댓글입력 창. 리뷰 작성기능, 평점 기능  {% endcomment %}
       
       <h4 class="review emphasis">리뷰</h4>
+      
       <form class="form-comment" action="{% url 'movies:comments_create' movie.pk %}" method="POST">
         {% csrf_token %}
         {{comment_form.movie_rate}}
@@ -63,7 +68,7 @@
           {{ user.nickName }}
         </div>
         {{comment_form.content}}
-        <div class="d-flex justify-content-end">
+        <div class="review-input-wrap d-flex justify-content-end">
           <input class="comment__input" type="submit" value="리뷰 남기기">
         </div>
       </form>
@@ -76,30 +81,53 @@
         <div class="user-comments">
           <div class="comment-nickname-wrap">
             <i class="fas fa-user"></i>
-            {{ user.nickName }}
+            {{ comment.user.nickName }}
           </div>
           <p class="comment__content">{{ comment.content}}</p>
-          <p>{{ comment.movie_rate }}</p>
-    
-          <!-- 좋아요 구현   -->
-          <form class="like-forms"  data-comment-id="{{comment.pk}}" data-movie-id="{{movie.pk}}" >
-            {% csrf_token %}
-            {% if request.user in comment.like_users.all %}
-              <input type="submit" value="좋아요 취소" id="like-{{comment.pk}}">
-            {% else %}
-              <input type="submit" value="좋아요" id="like-{{comment.pk}}">
-            {% endif %}
-          </form>
+
+          <div class='all-wrap d-flex flex-column'>
+            <p>{{ comment.movie_rate }}</p>
           
-          {% comment %} 삭제 비동기 {% endcomment %}
-          {% if request.user == comment.user %}
-            <form class="delete-forms"  data-delete-id="{{comment.pk}}" data-movie-id="{{movie.pk}}">
-              {% csrf_token %}
-              <input class="delete-btn" type="submit" value="삭제" id="delete-{{comment.pk}}">
-            </form>
-          {% endif %}
-      
+            <div class="like_delete_edit-wrap">
+              <!-- 좋아요 구현   -->
+              <form class="like-forms"  data-comment-id="{{comment.pk}}" data-movie-id="{{movie.pk}}" >
+                {% csrf_token %}
+                {% if request.user in comment.like_users.all %}
+                  <button class="btn-wrap like_btn" type="submit" id="like-{{comment.pk}}">
+                    <i class="fa-sharp fa-solid fa-heart"></i>
+                  </button>
+                  {% comment %} <input type="submit" value="좋아요 취소" id="like-{{comment.pk}}"> {% endcomment %}
+                {% else %}
+                  <button class="btn-wrap like_btn" type="submit" id="like-{{comment.pk}}">
+                    <i class="fa-regular fa-heart"></i>
+                  </button>
+                  {% comment %} <input type="submit" value="좋아요" id="like-{{comment.pk}}"> {% endcomment %}
+                {% endif %}
+              </form>
+            
+            
+              {% comment %} 삭제 비동기 {% endcomment %}
+              <div class="delete_edit-wrap">
+                {% if request.user == comment.user %}
+                  <form class="delete-forms"  data-delete-id="{{comment.pk}}" data-movie-id="{{movie.pk}}">
+                    {% csrf_token %}
+                    <button class="btn-wrap delete-btn" type="submit" value="삭제" id="delete-{{comment.pk}}">
+                      <i class="fa-solid fa-trash-can"></i>
+                    </button>
+                  </form>
+                  {% comment %} 수정 {% endcomment %}
+                  <a class="btn-wrap edit-btn" href="{% url 'movies:comments_update' movie.pk comment.pk  %}">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                  </a>
+                {% endif %}
+              </div>
+  
+            </div>
+
+          </div>
+
         </div>
+
         {% endfor %}
       </div>
 
