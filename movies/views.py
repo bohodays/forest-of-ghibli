@@ -51,10 +51,17 @@ def comments_create(request, pk):
 
 # 댓글 삭제
 def comments_delete(request, movie_pk, comment_pk):
+    # 삭제 여부를 확인 하기위한 is_deleted 변수 작성및 JSON 응답
     if request.user.is_authenticated:
         comment = Comment.objects.get(pk=comment_pk)
+        is_deleted = False
         if request.user == comment.user:
+            is_deleted = True
             comment.delete()
+        context={
+            'is_deleted': is_deleted,
+        }
+        return JsonResponse(context)
     return redirect('movies:detail',movie_pk)
 
 
@@ -83,19 +90,9 @@ def comments_update(request,movie_pk,comment_pk):
             'comment':comment,
         }
     return render(request,'movies/comments_update.html', context)
-    # movie = Movie.objects.get(pk=movie_pk)
-    # comment = Comment.objects.get(pk=comment_pk)
-    # if request.user == comment.user:
-    #     if request.method =="POST":
-    #         form = CommentForm(request.POST, instance = comment)
-    #         if form.is_valid():
-    #             form.save()
-    #             return redirect('movies:detail',movie.pk, comment.pk)
-    #     else:
-    #         form = CommentForm(instance = comment)
-    # else:
-    #     return redirect('accounts:main')
-            
+
+
+
 # 좋아요
 @require_POST
 def comments_likes(request, movie_pk, comment_pk):
@@ -115,6 +112,8 @@ def comments_likes(request, movie_pk, comment_pk):
         return JsonResponse(context)
     return redirect('accounts:login')
 
+
+# 영화목록
 def films(request):
     movies = get_list_or_404(Movie)
     context = {
@@ -122,7 +121,7 @@ def films(request):
     }
     return render(request, 'movies/films.html', context)
 
-
+# 감독페이지
 def directors(request):
     directors = get_list_or_404(Director)
     tmp = []
@@ -138,6 +137,7 @@ def directors(request):
     return render(request, 'movies/directors.html', context)
 
 
+# 감독 디테일 페이지
 def directors_detail(request, name):
     movies = get_list_or_404(Movie)
     directors = get_list_or_404(Director)

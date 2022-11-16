@@ -1,3 +1,5 @@
+
+// 좋아요
 const forms = document.querySelectorAll('.like-forms')
 const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
 console.log(forms)
@@ -6,34 +8,72 @@ console.log(csrftoken)
 forms.forEach((form) => {
   form.addEventListener('submit', function (event) {
     event.preventDefault()
-    console.log('111111111',event.target.dataset)
-
+    // console.log('111111111',event.target.dataset)
+    
     const movieId = event.target.dataset.movieId
     const commentId = event.target.dataset.commentId
-
+    
     axios({
       method: 'post',
       url: `http://127.0.0.1:8000/movies/${movieId}/comments/${commentId}/likes/`,
       headers: {'X-CSRFToken': csrftoken,},
     })
+    .then((response) => {
+      console.log(response, 333333333)
+      // console.log(response.data)
+      const isLiked = response.data.is_liked
+      const likeBtn = document.querySelector(`#like-${commentId}`)
+      if (isLiked === true) {
+        likeBtn.value = '좋아요 취소'
+      } else {
+        likeBtn.value = '좋아요'
+      }
+      // likeBtn.value = isLiked ? '좋아요 취소' : '좋아요'
+    })
+    .catch((error) => {
+      console.log('??',error.response)
+    })
+  })
+})
+
+// // 댓글 삭제
+const deleteForms = document.querySelector('.delete-forms')
+if (deleteForms){
+
+    deleteForms.addEventListener('submit', function (event) {
+      event.preventDefault()
+      console.log('delete eventTargetDataset',event.target.dataset)
+      
+      const movieId = event.target.dataset.movieId
+      // 이름만 delete고 지울 댓글의 아이디를 가져옴
+      const deleteId = event.target.dataset.deleteId
+    
+      axios({
+        method: 'post',
+        url: `http://127.0.0.1:8000/movies/${movieId}/comments/${deleteId}/delete/`,
+        headers: {'X-CSRFToken': csrftoken,},
+      })
       .then((response) => {
-        console.log(response, 333333333)
-        // console.log(response.data)
-        const isLiked = response.data.is_liked
-        const likeBtn = document.querySelector(`#like-${commentId}`)
-        if (isLiked === true) {
-          likeBtn.value = '좋아요 취소'
-        } else {
-          likeBtn.value = '좋아요'
-        }
+        console.log(response.data, 'delete axios then function')
+        
+        // url 요청을 가져오는걸 성공 했을 경우 여기서 
+        const isDeleted = response.data.is_deleted
+        console.log('thenthenthenthen',isDeleted);
+        
+        // return window.location.reload()
         // likeBtn.value = isLiked ? '좋아요 취소' : '좋아요'
       })
       .catch((error) => {
         console.log('??',error.response)
       })
-  })
-})
+    })
+  }
+  
 
+
+
+
+// 유튭 예고편
 const URL = 'https://www.googleapis.com/youtube/v3/search';
 const API_KEY = 'AIzaSyBzR_HnOKtGGjgBZ8XYwFI8gbA4MuDONWU';
 const title = document.querySelector('.info__title');

@@ -50,16 +50,20 @@
       </div> 
     </div>
 
-    {% comment %} 댓글입력 창. 리뷰 작성기능, 평점 기능  {% endcomment %}
-    <form action="{% url 'movies:comments_create' movie.pk %}" method="POST">
+   <div class="nickname-wrap">
+     <i class="fas fa-user"></i>
+     {{ user.nickName }}
+    </div>
+    <form class="form-comment" action="{% url 'movies:comments_create' movie.pk %}" method="POST">
       {% csrf_token %}
-      {{comment_form.content}}
-      <br>
       {{comment_form.movie_rate}}
-      <input type="submit">
-    </form>
-  
-  
+      {{comment_form.content}}
+     <div class="d-flex justify-content-end">
+       <input class="comment__input" type="submit" value="리뷰 남기기">
+     </div>
+   </form>
+
+
     {% comment %}  댓글 목록  {% endcomment %}
     <ul>
       {% for comment in comments  %}
@@ -79,6 +83,17 @@
         </form>
   
   
+        {% comment %} 삭제 비동기 {% endcomment %}
+        {% if request.user == comment.user %}
+          <form class="delete-forms"  data-delete-id="{{comment.pk}}" data-movie-id="{{movie.pk}}">
+            {% csrf_token %}
+            <input type="submit" value="삭제" id="delete-{{comment.pk}}">
+          </form>
+        {% endif %}
+
+
+
+
         {% comment %} update delete {% endcomment %}
         {% if request.user == comment.user %}
           <a href="{% url 'movies:comments_update' movie.pk comment.pk  %}"> 수정</a>
