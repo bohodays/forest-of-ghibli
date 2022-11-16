@@ -40,6 +40,7 @@ def comments_create(request, pk):
     if request.user.is_authenticated:
         movie = Movie.objects.get(pk=pk)
         comment_form = CommentForm(request.POST)
+        print(comment_form)
         if comment_form.is_valid():
             comment = comment_form.save(commit=False)
             comment.movie = movie
