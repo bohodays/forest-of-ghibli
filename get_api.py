@@ -68,7 +68,7 @@ def get_api(query):
                         item['name'] = '타카하타 이사오'
                         profileImg = 'movies/imgs/타카하타_이사오.png'
                     elif item['name'] == 'Hiroyuki Morita':
-                        item['name'] = '모리타 히로유키 '
+                        item['name'] = '모리타 히로유키'
                         profileImg = 'movies/imgs/모리타_히로유키.png'
                     elif item['name'] == 'Yoshifumi Kondō':
                         item['name'] = '콘도 요시후미'

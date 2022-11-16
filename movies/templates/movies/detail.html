@@ -3,75 +3,96 @@
 {% load static %}
 
 {% block css %}
-
-<link rel='stylesheet' href="{% static 'movies/css/main.css' %}"/>
+  <link rel='stylesheet' href="{% static 'movies/css/detail.css' %}"/>
+  <link rel='stylesheet' href="{% static 'movies/css/main.css' %}"/>
 {% endblock css %}
 
 {% block js %}
-
-<script src="{% static 'movies/js/main.js' %}" defer></script>
-<script src="{% static 'movies/js/detail.js' %}" defer></script>
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js" defer></script>
-
+  <script src="{% static 'movies/js/main.js' %}" defer></script>
+  <script src="{% static 'movies/js/detail.js' %}" defer></script>
 {% endblock js %}
+
+{% block background %}
+  <style>
+    .background {
+      background: url({% static 'accounts/imgs/background후보1.jpg' %}) center/cover no-repeat;
+    }
+
+  </style>
+{% endblock background %}
 
 {% block content %}
 
-  <h1>제목: {{ movie.title }}</h1>
+  <div class="background">
+    {% comment %} <img class="background-img" src="{% static 'accounts/imgs/background후보1.jpg' %}" alt=""> {% endcomment %}
+  </div>
+  <main>
+    <div class="movie-container">
+      <div class="movie-wrap">
+        <div class="movie-poster">
+          <img class="movie-poster__img" src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}" alt="">
+        </div>
+        <div class="movie-info">
+          <h2 class="info__title">{{ movie.title }}</h2>
+          <p>감독 : {{ movie.director }}</p>
+          <p>개봉일 : {{ movie.release_date }}</p>
+          <p>평점 : {{ movie.vote_average }}</p>
+        </div>
+      </div>
+      <div class="movie-overview">
+        <h4 class="emphasis">개요</h4>
+        <p>{{ movie.overview }}</p>
+      </div>
 
-  <p> 요약: {{movie.overview}}</p>
+      <h4 class="video__trailer emphasis">예고편</h4>
+      <div class="movie-video ratio ratio-16x9">
+        <iframe class="" src="" frameborder="0"></iframe>
+      </div> 
+    </div>
 
-  <p>{{movie.release_date}}</p>
-
-  <img src=https://image.tmdb.org/t/p/w500{{movie.poster_path}} alt="">
-
+    {% comment %} 댓글입력 창. 리뷰 작성기능, 평점 기능  {% endcomment %}
+    <form action="{% url 'movies:comments_create' movie.pk %}" method="POST">
+      {% csrf_token %}
+      {{comment_form.content}}
+      <br>
+      {{comment_form.movie_rate}}
+      <input type="submit">
+    </form>
   
-  <p>평점{{movie.vote_average}}</p>
-
-  <p>{{movie.director}}</p>
-
-  <p>{{movie.wise_saying}}</p>
-
-  {% comment %} 댓글입력 창. 리뷰 작성기능, 평점 기능  {% endcomment %}
-  <form action="{% url 'movies:comments_create' movie.pk %}" method="POST">
-    {% csrf_token %}
-    {{comment_form.content}}
-    <br>
-    {{comment_form.movie_rate}}
-    <input type="submit">
-  </form>
-
-
-  {% comment %}  댓글 목록  {% endcomment %}
-  <ul>
-    {% for comment in comments  %}
-    <li>
-      <p>{{comment.user.nickName}}</p>
-      <span>{{ comment.content}}</span>
-      <span>{{ comment.movie_rate }}</span>
-
-      <!-- 좋아요 구현   -->
-      <form class="like-forms"  data-comment-id="{{comment.pk}}" data-movie-id="{{movie.pk}}" >
-        {% csrf_token %}
-        {% if request.user in comment.like_users.all %}
-          <input type="submit" value="좋아요 취소" id="like-{{comment.pk}}">
-        {% else %}
-          <input type="submit" value="좋아요" id="like-{{comment.pk}}">
-        {% endif %}
-      </form>
-
-
-      {% comment %} update delete {% endcomment %}
-      {% if request.user == comment.user %}
-        <a href="{% url 'movies:comments_update' movie.pk comment.pk  %}"> 수정</a>
-        <form action="{% url 'movies:comments_delete' movie.pk comment.pk %}" method="POST">
+  
+    {% comment %}  댓글 목록  {% endcomment %}
+    <ul>
+      {% for comment in comments  %}
+      <li>
+        <p>{{comment.user.nickName}}</p>
+        <span>{{ comment.content}}</span>
+        <span>{{ comment.movie_rate }}</span>
+  
+        <!-- 좋아요 구현   -->
+        <form class="like-forms"  data-comment-id="{{comment.pk}}" data-movie-id="{{movie.pk}}" >
           {% csrf_token %}
-          <input type="submit" value="삭제">
+          {% if request.user in comment.like_users.all %}
+            <input type="submit" value="좋아요 취소" id="like-{{comment.pk}}">
+          {% else %}
+            <input type="submit" value="좋아요" id="like-{{comment.pk}}">
+          {% endif %}
         </form>
-      {% endif %}
-    </li>
-    {% endfor %}
-  </ul>
+  
+  
+        {% comment %} update delete {% endcomment %}
+        {% if request.user == comment.user %}
+          <a href="{% url 'movies:comments_update' movie.pk comment.pk  %}"> 수정</a>
+          <form action="{% url 'movies:comments_delete' movie.pk comment.pk %}" method="POST">
+            {% csrf_token %}
+            <input type="submit" value="삭제">
+          </form>
+        {% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+
+  </main>
+
 
 
 {% endblock content %}
