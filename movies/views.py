@@ -40,13 +40,23 @@ def comments_create(request, pk):
     if request.user.is_authenticated:
         movie = Movie.objects.get(pk=pk)
         comment_form = CommentForm(request.POST)
-        print(comment_form)
+        create_flag = False
+        print(request.POST)
         if comment_form.is_valid():
             comment = comment_form.save(commit=False)
             comment.movie = movie
             comment.user = request.user
+            create_flag = True
+            print(create_flag)
             comment.save()
-        return redirect('movies:detail',movie.pk)
+        
+        context= {
+            'create_flag': create_flag,
+            'comment_content' : comment.content,
+            
+        }
+        return JsonResponse(context)
+        # return redirect('movies:detail',movie.pk)
     return redirect('accounts:login')
 
 
