@@ -181,23 +181,19 @@ def background_img():
         'http://aniland1.cafe24.com/studio_ghibri/download/img/ocean-waves.jpg',
         'https://movie-phinf.pstatic.net/20111222_26/1324494911821X2uMr_JPEG/movie_image.jpg?type=m665_443_2',
         'https://t1.daumcdn.net/tistoryfile/fs4/9_tistory_2008_03_20_11_09_47e1c751f34ee?original',
-
-        
-        # 작업해야 됨
-        'https://movie-phinf.pstatic.net/20111222_227/1324490975580VT6mm_JPEG/movie_image.jpg?type=m665_443_2',
-        'https://movie-phinf.pstatic.net/20111222_161/1324483673805cncT9_JPEG/movie_image.jpg?type=m665_443_2',
-        'https://movie-phinf.pstatic.net/20111223_180/1324647483094XPBf5_JPEG/movie_image.jpg?type=m665_443_2',
-        'https://movie-phinf.pstatic.net/20150108_83/1420706407615GKsAa_JPEG/movie_image.jpg?type=m665_443_2',
-        'https://movie-phinf.pstatic.net/20141119_192/1416356967659SuqYP_JPEG/movie_image.jpg?type=m665_443_2',
-        'https://movie-phinf.pstatic.net/20111221_127/1324474450767xFGrV_JPEG/movie_image.jpg?type=m665_443_2',
-        'https://movie-phinf.pstatic.net/20111221_52/1324455332537ItLuH_JPEG/movie_image.jpg?type=m665_443_2',
-        'https://movie-phinf.pstatic.net/20111222_5/1324534713810nmp4z_JPEG/movie_image.jpg?type=m665_443_2',
-        'https://movie-phinf.pstatic.net/20111223_118/1324621639230xCenO_JPEG/movie_image.jpg?type=m665_443_2',
-        'https://movie-phinf.pstatic.net/20111223_294/1324646972387jhaNK_JPEG/movie_image.jpg?type=m665_443_2',
-        'https://movie-phinf.pstatic.net/20140513_260/13999479042099cfCD_JPEG/movie_image.jpg?type=m665_443_2',
-        'https://movie-phinf.pstatic.net/20150304_168/1425432318297jKlPz_JPEG/movie_image.jpg?type=m665_443_2',
-        'https://movie-phinf.pstatic.net/20160513_4/1463120606278RnuKH_JPEG/movie_image.jpg?type=m665_443_2',
-        'https://movie-phinf.pstatic.net/20210429_120/1619660050576j0QoT_JPEG/movie_image.jpg?type=m665_443_2'
+        'https://blog.kakaocdn.net/dn/cZOtQt/btrk18LJy49/kUUMN3eiSmbrKDhhBlavDk/img.png',
+        'https://image.cine21.com/resize/cine21/still/2006/0518/M0020054_still3[S750,750].jpg',
+        'https://mblogthumb-phinf.pstatic.net/MjAxNzA3MDdfMjAy/MDAxNDk5NDE2Mzg4Mjc5.8TdiNJtU6l2ma0hpDyRNLbTLoqe8zeYy8688Spq8ryYg.q-synK2mKIbEnrPjsoe3N6cewhdc6D1BFOcDBaMJ_BEg.PNG.heedyy/%EC%84%BC%EA%B3%BC_%EC%B9%98%ED%9E%88%EB%A1%9C%EC%9D%98_%ED%96%89%EB%B0%A9%EB%B6%88%EB%AA%85_%285%29_1920x1080.png?type=w800',
+        'https://img.insight.co.kr/static/2020/10/20/700/img_20201020113407_usd4k5l9.webp',
+        'https://m.media-amazon.com/images/M/MV5BMTMzMDkyODg0MF5BMl5BanBnXkFtZTcwMTQ4ODAyNw@@._V1_.jpg',
+        'http://todonavi.com/wp-content/uploads/2020/10/e94d54c7c5fc529b1fc03a0e86d70c31.jpg',
+        'https://mblogthumb-phinf.pstatic.net/MjAyMDEyMTBfMTEg/MDAxNjA3NTgxNjEzMDY0.B6Pg57afNyzJJwtCrDJlsHZ423W01lmaS-vQ9PBHexYg.KlCtmlh1UuaOQZqA9yF-357We3k6NLmUtnU3U7Tw4Y8g.JPEG.htae_/ponyo040.jpg?type=w800',
+        'https://mblogthumb-phinf.pstatic.net/MjAxODA3MDRfODUg/MDAxNTMwNjQ1MjU3MTcw.XrnZV7SbpKMWdgX3pN-sFNYXZCzoRytfcL63azy5Q6Qg.g5NfQ2eLizL41LXcfBbwTlwVutQ_yiJa90Utrw1k88og.JPEG.dbghk78/xs5lPjHSjWdKIAx1TRn1H5I9zeo.jpg?type=w800',
+        'https://i.ytimg.com/vi/SACP7brT-mA/maxresdefault.jpg',
+        'https://p4.wallpaperbetter.com/wallpaper/750/1/160/animated-movies-kaguya-princess-the-tale-of-princess-kaguya-wallpaper-preview.jpg',
+        'https://www.ghibli.jp/gallery/marnie016.jpg',
+        'https://p4.wallpaperbetter.com/wallpaper/72/62/418/the-red-turtle-4k-pc-hd-wallpaper-preview.jpg',
+        'https://www.nextflicks.tv/wp-content/uploads/2022/01/Earwig-and-the-Witch.jpg'
     ]
 
     for i in range(1,24):
