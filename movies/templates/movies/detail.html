@@ -55,16 +55,15 @@
       {% comment %} 댓글입력 창. 리뷰 작성기능, 평점 기능  {% endcomment %}
       
       <h4 class="review emphasis">리뷰</h4>
-        <form class="form-comment" data-movie-id="{{ movie.pk }}" >
+
+        <form class="form-comment" data-movie-id="{{ movie.pk }}" id='comment-form' >
           {% csrf_token %}
-          <span data-content-id="{{ movie.pk }}">
-            {{comment_form.movie_rate}}
-          </span>
+          {{comment_form.movie_rate}}
           <div class="nickname-wrap">
             <i class="fas fa-user"></i>
             {{ user.nickName }}
           </div>
-          <span>{{comment_form.content}}</span>
+          {{comment_form.content}}
           <div class="d-flex justify-content-end">
             <input class="comment__input" type="submit" value="리뷰 남기기">
           </div>

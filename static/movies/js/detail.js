@@ -48,7 +48,7 @@ if (deleteForms){
       const movieId = event.target.dataset.movieId
       // 이름만 delete고 지울 댓글의 아이디를 가져옴
       const deleteId = event.target.dataset.deleteId
-      
+       
       axios({
         method: 'post',
         url: `http://127.0.0.1:8000/movies/${movieId}/comments/${deleteId}/delete/`,
@@ -72,28 +72,41 @@ if (deleteForms){
   
   
   // 댓글 생성
-const createForm = document.querySelector('.form-comment')
-createForm.addEventListener('submit',event =>{
-  event.preventDefault()
-  console.log('event 확인');
-  // 해당 영화의 pk 값 저장
-  const movieId = event.target.dataset.movieId
-  
-  console.log('이건 아니지')
-  console.log(movieId)
-  
-  
-  axios({
-    method: 'post',
-    url: `http://127.0.0.1:8000/movies/${movieId}/comments/`,
-    headers: {'X-CSRFToken': csrftoken,},
-  }).then((response)=>{
-    console.log('then',response.data.create_flag);
-    response.data.comment_content
-  }).catch(error=>{
-    console.log('??',error);
-  })
+  const createForms = document.querySelectorAll('.form-comment')
+  createForms.forEach((createForm)=>{
 
+    createForm.addEventListener('submit',event =>{
+      event.preventDefault()
+    
+      // 해당 영화의 pk 값 저장
+      const movieId = event.target.dataset.movieId
+    // 보내줄 데이터 가져오기
+    const content = document.getElementsByName('content')[0].value
+    const movieRate = document.getElementsByName('movie_rate')[0].value
+    console.log(content)
+    console.log(movieRate)
+    
+    let data = new FormData()
+    data.append("content", content)
+    data.append("movie_rate",movieRate)
+    console.log(data.getAll)
+    
+    
+    axios({
+      method: 'post',
+      url: `http://127.0.0.1:8000/movies/${movieId}/comments/`,
+      headers: {'X-CSRFToken': csrftoken,},
+      data: data,
+    }).then((response)=>{
+      console.log(response.data.comment_content);
+      console.log(response.data.comment_movie_rate);
+      
+
+    }).catch(error=>{
+      console.log('??',error);
+    })
+    
+  })
 })
   
   // 유튭 예고편

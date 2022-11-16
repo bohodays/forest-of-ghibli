@@ -8,6 +8,8 @@ from django.views.decorators.http import require_http_methods
 
 from django.http import JsonResponse
 
+import json
+
 # Create your views here.
 def main(request):
     movies = get_list_or_404(Movie)
@@ -41,20 +43,21 @@ def comments_create(request, pk):
         movie = Movie.objects.get(pk=pk)
         comment_form = CommentForm(request.POST)
         create_flag = False
-        print(request.POST)
+        
         if comment_form.is_valid():
             comment = comment_form.save(commit=False)
             comment.movie = movie
             comment.user = request.user
+            print('??????',comment.content)
             create_flag = True
-            print(create_flag)
+            # comment_wrote= json.dumps(comment)
             comment.save()
         
         context= {
             'create_flag': create_flag,
-            'comment_content' : comment.content,
-            
-        }
+            'comment_content':comment.content,
+            'comment_movie_rate':comment.movie_rate,
+            }
         return JsonResponse(context)
         # return redirect('movies:detail',movie.pk)
     return redirect('accounts:login')
