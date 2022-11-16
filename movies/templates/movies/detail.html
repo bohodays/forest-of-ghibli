@@ -95,18 +95,10 @@
           {% if request.user == comment.user %}
             <form class="delete-forms"  data-delete-id="{{comment.pk}}" data-movie-id="{{movie.pk}}">
               {% csrf_token %}
-              <input type="submit" value="삭제" id="delete-{{comment.pk}}">
+              <input class="delete-btn" type="submit" value="삭제" id="delete-{{comment.pk}}">
             </form>
           {% endif %}
       
-          {% comment %} update delete {% endcomment %}
-          {% if request.user == comment.user %}
-            <a href="{% url 'movies:comments_update' movie.pk comment.pk  %}"> 수정</a>
-            <form action="{% url 'movies:comments_delete' movie.pk comment.pk %}" method="POST">
-              {% csrf_token %}
-              <input type="submit" value="삭제">
-            </form>
-          {% endif %}
         </div>
         {% endfor %}
       </div>

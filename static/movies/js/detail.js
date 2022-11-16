@@ -37,38 +37,31 @@ forms.forEach((form) => {
 })
 
 // // 댓글 삭제
-const deleteForms = document.querySelector('.delete-forms')
-if (deleteForms){
+const deleteForms = document.querySelectorAll('.delete-forms')
+deleteForms.forEach((deleteForm) => {
+  deleteForm.addEventListener('submit', (event) => {
+    event.preventDefault()
+    const movieId = event.target.dataset.movieId
+    const deleteId = event.target.dataset.deleteId
 
-    deleteForms.addEventListener('submit', function (event) {
-      event.preventDefault()
-      console.log('delete eventTargetDataset',event.target.dataset)
-      
-      const movieId = event.target.dataset.movieId
-      // 이름만 delete고 지울 댓글의 아이디를 가져옴
-      const deleteId = event.target.dataset.deleteId
-    
-      axios({
-        method: 'post',
-        url: `http://127.0.0.1:8000/movies/${movieId}/comments/${deleteId}/delete/`,
-        headers: {'X-CSRFToken': csrftoken,},
-      })
-      .then((response) => {
-        console.log(response.data, 'delete axios then function')
-        
-        // url 요청을 가져오는걸 성공 했을 경우 여기서 
-        const isDeleted = response.data.is_deleted
-        console.log('thenthenthenthen',isDeleted);
-        
-        // return window.location.reload()
-        // likeBtn.value = isLiked ? '좋아요 취소' : '좋아요'
-      })
-      .catch((error) => {
-        console.log('??',error.response)
-      })
+    axios({
+      method: 'post',
+      url: `http://127.0.0.1:8000/movies/${movieId}/comments/${deleteId}/delete/`,
+      headers: {'X-CSRFToken': csrftoken,},
     })
-  }
-  
+      .then((response) => {
+        // url 요청을 가져오는걸 성공 했을 경우 여기서 
+        const userForm = event.target.parentNode;
+        userForm.remove();
+      })
+        .catch((error) => {
+          console.log('??',error.response)
+        })
+  })
+})
+
+
+
 
 
 
@@ -125,3 +118,4 @@ window.addEventListener('load', () => {
     getYoutubeVideo();
   }
 })
+
