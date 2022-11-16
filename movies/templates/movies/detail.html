@@ -90,8 +90,15 @@
               <input type="submit" value="좋아요" id="like-{{comment.pk}}">
             {% endif %}
           </form>
-    
-    
+          
+          {% comment %} 삭제 비동기 {% endcomment %}
+          {% if request.user == comment.user %}
+            <form class="delete-forms"  data-delete-id="{{comment.pk}}" data-movie-id="{{movie.pk}}">
+              {% csrf_token %}
+              <input type="submit" value="삭제" id="delete-{{comment.pk}}">
+            </form>
+          {% endif %}
+      
           {% comment %} update delete {% endcomment %}
           {% if request.user == comment.user %}
             <a href="{% url 'movies:comments_update' movie.pk comment.pk  %}"> 수정</a>
