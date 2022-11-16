@@ -60,7 +60,7 @@ const getYoutubeVideo = () => {
 
 window.addEventListener('load', () => {
   if (title.innerText === '바람계곡의 나우시카') {
-    iframe.setAttribute('src', 'https://www.youtube.com/embed/OCerTWOyVZg');
+    iframe.setAttribute('src', 'https://www.youtube.com/embed/6zhLBe319KE');
   }  else if (title.innerText === '반딧불이의 묘') {
     iframe.setAttribute('src', 'https://www.youtube.com/embed/_wlptzigQn0');
   } else if (title.innerText === '추억은 방울방울') {
