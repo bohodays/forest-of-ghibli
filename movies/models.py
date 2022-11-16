@@ -29,6 +29,6 @@ class Comment(models.Model):
     movie = models.ForeignKey(Movie,on_delete=models.CASCADE,related_name='comments')
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     # 댓글 마다 좋아요를 달기 위해 like 추가 Comment, User M:N 관계 라서 변수명 뒤에 s 붙임
-    like_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_comments')
+    like_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_comments',blank= True)
 
     
