@@ -1,5 +1,6 @@
 # 지브리 애니메이션 영화들을 불러와서 Movie모델에 저장하는 api 함수
 import requests
+from bs4 import BeautifulSoup
 import os
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "final_pjt.settings")
 import django
@@ -165,6 +166,43 @@ def save_wise_saying_director():
         director.wise_saying = wise_sayings[i-1]
         director.save()
 
+    return
+
+
+def background_img():
+    background_imgs = [
+        'https://blog.kakaocdn.net/dn/YNmKl/btqInMyCIDX/kzunkFFKxFDcD3dEzKmOO1/img.jpg',
+        'https://www.themoviedb.org/t/p/original/sof3WWQkFJWYUYLekB2AQsHH8kO.jpg',
+        'https://movie-phinf.pstatic.net/20140527_61/14011807186707bxkw_JPEG/movie_image.jpg?type=m665_443_2',
+        'https://wallpaperaccess.com/full/371944.jpg',
+        'https://mblogthumb-phinf.pstatic.net/MjAyMDA2MDVfNTIg/MDAxNTkxMzQ0MTk2OTQ3.8SO4O5vt52ynZRz0bMgIUoAxk2t55gctm7FqoiyYKksg.hvzIA0AmjoCFna5bAAaydAGCC7TwjDC9T_P5O3qrHu0g.JPEG.pola0216/%EC%95%84%EC%9D%B4%ED%8F%B0%EB%B0%B0%EA%B2%BD%ED%99%94%EB%A9%B4%EC%A7%80%EB%B8%8C%EB%A6%AC01.jpg?type=w800',
+        'https://pbs.twimg.com/media/DTzh1AsVoAADfro.jpg',
+        'https://i.pinimg.com/originals/8f/40/99/8f40996e594eafa9f9a0fd27b8852789.jpg',
+        'http://aniland1.cafe24.com/studio_ghibri/download/img/ocean-waves.jpg',
+        'https://movie-phinf.pstatic.net/20111222_26/1324494911821X2uMr_JPEG/movie_image.jpg?type=m665_443_2',
+        'https://t1.daumcdn.net/tistoryfile/fs4/9_tistory_2008_03_20_11_09_47e1c751f34ee?original',
+        'https://blog.kakaocdn.net/dn/cZOtQt/btrk18LJy49/kUUMN3eiSmbrKDhhBlavDk/img.png',
+        'https://image.cine21.com/resize/cine21/still/2006/0518/M0020054_still3[S750,750].jpg',
+        'https://mblogthumb-phinf.pstatic.net/MjAxNzA3MDdfMjAy/MDAxNDk5NDE2Mzg4Mjc5.8TdiNJtU6l2ma0hpDyRNLbTLoqe8zeYy8688Spq8ryYg.q-synK2mKIbEnrPjsoe3N6cewhdc6D1BFOcDBaMJ_BEg.PNG.heedyy/%EC%84%BC%EA%B3%BC_%EC%B9%98%ED%9E%88%EB%A1%9C%EC%9D%98_%ED%96%89%EB%B0%A9%EB%B6%88%EB%AA%85_%285%29_1920x1080.png?type=w800',
+        'https://img.insight.co.kr/static/2020/10/20/700/img_20201020113407_usd4k5l9.webp',
+        'https://m.media-amazon.com/images/M/MV5BMTMzMDkyODg0MF5BMl5BanBnXkFtZTcwMTQ4ODAyNw@@._V1_.jpg',
+        'http://todonavi.com/wp-content/uploads/2020/10/e94d54c7c5fc529b1fc03a0e86d70c31.jpg',
+        'https://mblogthumb-phinf.pstatic.net/MjAyMDEyMTBfMTEg/MDAxNjA3NTgxNjEzMDY0.B6Pg57afNyzJJwtCrDJlsHZ423W01lmaS-vQ9PBHexYg.KlCtmlh1UuaOQZqA9yF-357We3k6NLmUtnU3U7Tw4Y8g.JPEG.htae_/ponyo040.jpg?type=w800',
+        'https://mblogthumb-phinf.pstatic.net/MjAxODA3MDRfODUg/MDAxNTMwNjQ1MjU3MTcw.XrnZV7SbpKMWdgX3pN-sFNYXZCzoRytfcL63azy5Q6Qg.g5NfQ2eLizL41LXcfBbwTlwVutQ_yiJa90Utrw1k88og.JPEG.dbghk78/xs5lPjHSjWdKIAx1TRn1H5I9zeo.jpg?type=w800',
+        'https://i.ytimg.com/vi/SACP7brT-mA/maxresdefault.jpg',
+        'https://p4.wallpaperbetter.com/wallpaper/750/1/160/animated-movies-kaguya-princess-the-tale-of-princess-kaguya-wallpaper-preview.jpg',
+        'https://www.ghibli.jp/gallery/marnie016.jpg',
+        'https://p4.wallpaperbetter.com/wallpaper/72/62/418/the-red-turtle-4k-pc-hd-wallpaper-preview.jpg',
+        'https://www.nextflicks.tv/wp-content/uploads/2022/01/Earwig-and-the-Witch.jpg'
+    ]
+
+    for i in range(1,24):
+        movie = Movie.objects.get(pk=i)
+        movie.backgroundImg = background_imgs[i-1]
+        movie.save()
+
+    return
+
 
 if __name__ == '__main__':
     get_api('천공의 성 라퓨타')
@@ -192,6 +230,7 @@ if __name__ == '__main__':
     get_api('아야와 마녀')
     save_wise_saying()
     save_wise_saying_director()
+    background_img()
 
 
 

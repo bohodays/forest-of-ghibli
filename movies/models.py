@@ -16,6 +16,7 @@ class Movie(models.Model):
     poster_path = models.TextField()
     vote_average = models.TextField()
     director = models.TextField()
+    backgroundImg = models.TextField()
     wise_saying = models.TextField()
 
     def __str__(self):
