@@ -65,9 +65,6 @@ axios({
   })
 })
   
-  
-
-  
   // 유튭 예고편
 const URL = 'https://www.googleapis.com/youtube/v3/search';
 const API_KEY = 'AIzaSyBzR_HnOKtGGjgBZ8XYwFI8gbA4MuDONWU';

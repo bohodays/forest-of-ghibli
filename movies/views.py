@@ -48,7 +48,6 @@ def comments_create(request, pk):
             comment.movie = movie
             comment.user = request.user
             comment.save()
-            print(movie.id)
         return redirect('movies:detail',movie.pk)
     return redirect('accounts:login')
 
