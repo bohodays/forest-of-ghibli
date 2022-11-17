@@ -37,11 +37,10 @@
       {% comment %} <a class="menu__item a__logo" href="">
         <img class="logo" src="{% static 'movies/imgs/logo.png' %}" alt="logo">
       </a> {% endcomment %}
-      <a class="menu__item" href="{% url 'movies:films' %}">FILMS</a>
-      <a class="menu__item" href="{% url 'movies:directors' %}">DIRECTORS</a>
-      <a class="menu__item" href="">GBTI</a>
-      <a class="menu__item" href="">QUIZ</a>
-      <a class="menu__item" href="">POLL</a>
+      <a class="menu__item menu-films" href="{% url 'movies:films' %}">FILMS</a>
+      <a class="menu__item menu-directors" href="{% url 'movies:directors' %}">DIRECTORS</a>
+      <a class="menu__item menu-gbti" href="">GBTI</a>
+      <a class="menu__item menu-quiz" href="">QUIZ</a>
       <i class="fa-solid fa-magnifying-glass"></i>
       <input class="search__input menu__hidden" type="text" placeholder="지브리 영화를 검색해보세요.">
       <div class="recommend-search-wrap">

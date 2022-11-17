@@ -66,6 +66,18 @@ a:hover {
   justify-content: center;
 }
 
+@keyframes shakeIt{
+  0%, 50%{
+    transform: rotate(0deg) translateY(5px);
+  }
+  5%, 15%, 25%, 35%, 45% {
+    transform: rotate(4deg) translateY(5px);
+  }
+  10%, 20%, 30%, 40% {
+    transform: rotate(-4deg) translateY(5px);
+  }
+}
+
 .logo {
   width: 40px;
   height: 40px;
@@ -75,6 +87,11 @@ a:hover {
   width: 40px;
   height: 40px;
   transform: translateY(5px);
+}
+
+.logo__img:hover {
+  animation-name: shakeIt;
+  animation-duration: 3000ms;
 }
 
 .menu__item {

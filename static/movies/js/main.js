@@ -43,7 +43,7 @@ searchMark.addEventListener('click', () => {
     itme.style.pointerEvents = 'all';
   })
   
-  searchMark.style.transform = 'translate(-470px, 2px)';
+  searchMark.style.transform = 'translate(-430px, 2px)';
   // createSearchInput();
 
   recommendWrap.style.display = 'block';
@@ -144,6 +144,14 @@ searchInput.addEventListener('keyup', (event) => {
       <p class="recommend-search">${item}</p>
       `;
       recommendWrap.style.padding = '4px 6px';
+
+      const recommendSearch = document.querySelectorAll('.recommend-search');
+      recommendSearch.forEach((item) => {
+        item.addEventListener('click', (event) => {
+          console.log(event.target);
+          window.location.href = `${deployURL}movies/${movieCode.indexOf(event.target.innerText) + 1}/`
+        })
+      })
     })
   // 추천 검색어가 비어있다면 기존의 요소 제거
   } else {

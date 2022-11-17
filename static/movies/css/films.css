@@ -77,3 +77,7 @@ section {
 .movie__description > p {
   margin-bottom: 8px;
 }
+
+.menu-films {
+  color: #77aaff;
+}

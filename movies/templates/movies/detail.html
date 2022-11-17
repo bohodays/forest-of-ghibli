@@ -84,12 +84,12 @@
             {{ comment.user.nickName }}
           </div>
           <div class="comment-wrap">
+            <p>{{ comment.movie_rate }}</p>
             <p class="comment_full hidden">{{ comment.content }}</p>
             <p class="comment__content summary">{{ comment.content|truncatechars:100 }}</p>
           </div>
 
           <div class='all-wrap d-flex flex-column'>
-            <p>{{ comment.movie_rate }}</p>
 
             <div class="like_delete_edit-wrap">
               <!-- 좋아요 구현   -->
@@ -107,7 +107,7 @@
                 {% comment %} <input type="submit" value="좋아요" id="like-{{comment.pk}}"> {% endcomment %}
                 {% endif %}
               </form>
-              <span id = "like_{{ comment.pk }}">{{ comment.like_users.all|length}}</span>
+              <p class="likes__count" id="like_{{ comment.pk }}">{{ comment.like_users.all|length}}</p>
             
             
               {% comment %} 삭제 비동기 {% endcomment %}
