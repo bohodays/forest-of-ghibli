@@ -63,7 +63,6 @@ deleteForms.forEach((deleteForm) => {
 
 
 
-
 // 유튭 예고편
 const URL = 'https://www.googleapis.com/youtube/v3/search';
 const API_KEY = 'AIzaSyBzR_HnOKtGGjgBZ8XYwFI8gbA4MuDONWU';
@@ -142,3 +141,20 @@ window.addEventListener('load', () => {
   }
 })
 
+
+// 요약화되어 있는 리뷰를 클릭시 전문화 시키는 함수
+const commentContent = document.querySelectorAll('.summary');
+const commentFullContent = document.querySelectorAll('.hidden');
+commentContent.forEach((content) => {
+  content.addEventListener('click', (event) => {
+    event.target.style.display = 'none';
+    event.target.previousElementSibling.style.display = 'block';
+  })
+})
+
+commentFullContent.forEach((content) => {
+  content.addEventListener('click', (event) => {
+    event.target.style.display = 'none';
+    event.target.nextElementSibling.style.display = 'block';
+  })
+})

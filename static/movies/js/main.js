@@ -68,3 +68,22 @@ window.addEventListener('load', () => {
   mainWrap.style.height = `${window.innerHeight}px`;
   // mainImg.style.width = `${window.innerWidth}px`;
 })
+
+
+// 영화 검색 기능 구현
+const searchInput = document.querySelector('.search__input');
+searchInput.addEventListener('keyup', (event) => {
+  console.log(event.code === 'Enter');
+  console.log(searchInput.value);
+
+  const movieId = {
+    1: '천공의 성 라퓨타',
+  }
+
+  console.log(movieId['1']);
+  // axios({
+  //   method: 'get',
+  //   url: `http://127.0.0.1:8000/movies/${movieId}/`,
+  //   headers: {'X-CSRFToken': csrftoken,},
+  // })
+})

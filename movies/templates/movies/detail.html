@@ -83,7 +83,10 @@
             <i class="fas fa-user"></i>
             {{ comment.user.nickName }}
           </div>
-          <p class="comment__content">{{ comment.content}}</p>
+          <div class="comment-wrap">
+            <p class="comment_full hidden">{{ comment.content }}</p>
+            <p class="comment__content summary">{{ comment.content|truncatechars:100 }}</p>
+          </div>
 
           <div class='all-wrap d-flex flex-column'>
             <p>{{ comment.movie_rate }}</p>
