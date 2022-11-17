@@ -8,7 +8,7 @@ from movies.models import Movie
 
 
 def img_crawling():
-    req = requests.get('https://movie.naver.com/movie/bi/mi/photoView.naver?code=39640')
+    req = requests.get('https://movie.naver.com/movie/bi/mi/photoView.naver?code=30270')
     html = req.text
     soup = BeautifulSoup(html, 'html.parser')
     imgs = soup.select_one(

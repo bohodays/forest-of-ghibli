@@ -15,10 +15,14 @@
   {# CSS 파일 추가 #}
   {% block css %}
   {% endblock css %}
+  {# axios 파일 추가 #}
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js" defer></script>
   {# JS 파일 추가 #}
   {% block js %}
   {% endblock  %}
   <title>지브리의 숲</title>
+  {% block background %}
+  {% endblock background %}
   
 </head>
 <body>
@@ -40,6 +44,9 @@
       <a class="menu__item" href="">POLL</a>
       <i class="fa-solid fa-magnifying-glass"></i>
       <input class="search__input menu__hidden" type="text" placeholder="지브리 영화를 검색해보세요.">
+      <div class="recommend-search-wrap">
+        {% comment %} <p class="recommend-search">하울의 움직이는 성</p> {% endcomment %}
+      </div>
       <i class="fa-solid fa-xmark menu__hidden"></i>
       {% comment %} <a href=""> {% endcomment %}
       {% comment %} </a> {% endcomment %}
@@ -77,7 +84,7 @@
 
   {% block content %}
   {% endblock content %}
-
+  
   {% comment %} 맨 위로 가는 버튼 {% endcomment %}
   <button class="arrow-up">
     <i class="fas fa-arrow-up"></i>
@@ -87,6 +94,38 @@
   <footer>
     <p class="footer__comment">COPYRIGHT© 지브리의 숲 ALL RIGHT RESERVED.</p>
   </footer>
+
+
+
+  {% comment %} 모달 {% endcomment %}
+
+  <!-- Button trigger modal -->
+  <button type="button" class="cc btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    hidden modal
+  </button>
+
+
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">검색 실패</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" onclick="location.href='{% url 'movies:films' %}'">지브리 영화 모음</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% block script %}
+  {% endblock script %}
+  
 </body>
 
 </html>

@@ -87,6 +87,9 @@
           {{ form.password2 }}
           <img class="error__img error__visible" src="{% static 'accounts/imgs/icon-error.svg' %}" alt="error icon">
         </div>
+        <p class="form__info password__same">
+          {% comment %} 비밀번호가 일치하지 않습니다. {% endcomment %}
+        </p>
       </div>
       <div class="item profile-img">
         <div class="item__label profile-img__label">
