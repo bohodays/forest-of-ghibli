@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block css %}
+  <link rel='stylesheet' href="{% static 'movies/css/directors_detail.css' %}"/>
+  <link rel='stylesheet' href="{% static 'movies/css/main.css' %}"/>
+{% endblock css %}
+
+{% block js %}
+  <script src="{% static 'movies/js/directors_detail.js' %}" defer></script>
+  <script src="{% static 'movies/js/main.js' %}" defer></script>
+{% endblock js %}
+
+{% block content %}
+  <section>
+
+    <div class="director-wap">
+      <div class="director__comment-wrap">
+        <p class="director__comment">{{ selected_director.wise_saying }}</p>
+        <p class="director__name">- {{ selected_director.name }}</p>
+      </div>
+      {% if selected_director.name == '미카엘 뒤독 더빗' %}
+        <div class="director__img s1">
+          <img class="" src="{% get_static_prefix %}{{ selected_director.profileImg }}" alt="">
+          <div class="blur"></div>
+        </div>
+      {% elif  selected_director.name == '요네바야시 히로마사' %}
+        <div class="director__img s2">
+          <img class="" src="{% get_static_prefix %}{{ selected_director.profileImg }}" alt="">
+          <div class="blur"></div>
+        </div>
+      {% elif  selected_director.name == '콘도 요시후미' %}
+        <div class="director__img">
+          <img class="" src="{% get_static_prefix %}{{ selected_director.profileImg }}" alt="">
+          <div class="blur s3"></div>
+        </div>
+      {% elif  selected_director.name == '타카하타 이사오' %}
+        <div class="director__img s4">
+          <img class="" src="{% get_static_prefix %}{{ selected_director.profileImg }}" alt="">
+          <div class="blur"></div>
+        </div>
+      {% elif  selected_director.name == '모리타 히로유키' %}
+        <div class="director__img s5">
+          <img class="" src="{% get_static_prefix %}{{ selected_director.profileImg }}" alt="">
+          <div class="blur"></div>
+        </div>
+      
+        
+      {% else %}
+        <div class="director__img">
+          <img class="" src="{% get_static_prefix %}{{ selected_director.profileImg }}" alt="">
+          <div class="blur"></div>
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="director-films">
+    {% for movie in selected_movies %}
+      <div class="movie" data-id={{ movie.id }}>
+        <div class="shadow"></div>
+        <a class="movie-wrap" href="{% url 'movies:detail' movie.id %}">
+          <img class="movie__poster" src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}" alt="">
+          <div class="movie__description">
+            <h3>{{ movie.title }}</h3>
+            <p>{{ movie.director }}</p>
+            <p>{{ movie.release_date }}</p>
+          </div>
+        </a>
+      </div>
+    {% endfor %}
+    </div>
+
+  </section>
+{% endblock content %}
