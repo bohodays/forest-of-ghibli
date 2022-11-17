@@ -20,6 +20,11 @@ forms.forEach((form) => {
       headers: {'X-CSRFToken': csrftoken,},
     })
     .then((response) => {
+      console.log(response.data.like_count);
+      // response 값을 html의 태그 하나 가져와서 그 값에 넣어 줘야함.
+      const likeCount = document.querySelector(`#like_${commentId}`)
+      likeCount.innerHTML=response.data.like_count      
+      console.log(likeCount);
       const isLiked = response.data.is_liked
       const likeBtn = document.querySelector(`#like-${commentId}`)
       if (isLiked === true) {
@@ -60,53 +65,8 @@ axios({
   })
 })
   
-  
-  // 댓글 생성
-// const createForms = document.querySelectorAll('.form-comment')
-//   createForms.forEach((createForm)=>{
-//     createForm.addEventListener('submit',event =>{
-//       event.preventDefault()
-    
-//       // 해당 영화의 pk 값 저장
-//       const movieId = event.target.dataset.movieId
-//     // 보내줄 데이터 가져오기
-//     const content = document.getElementsByName('content')[0].value
-//     const movieRate = document.getElementsByName('movie_rate')[0].value
-//     const userNickName = document.getEle
-//     console.log(content)
-//     console.log(movieRate)
-    
-//     let data = new FormData()
-//     data.append("content", content)
-//     data.append("movie_rate",movieRate)
-//     console.log(data.getAll)
-    
-    
-//     axios({
-//       method: 'post',
-//       url: `http://127.0.0.1:8000/movies/${movieId}/comments/`,
-//       headers: {'X-CSRFToken': csrftoken,},
-//       data: data,
-//     }).then((response)=>{
-//       console.log(response.data.comment_content);
-//       console.log(response.data.comment_movie_rate);
-//       const responseContent = response.data.comment_content
-//       const responseRate = response.data.comment_movie_rate
-//       const reviewContent = document.createElement('p')
-//       reviewContent.innerText=responseContent
-//       const contentForm = document.querySelector('.user-comments__wrap')
-//       contentForm.appendChild(reviewContent)
-
-
-//     }).catch(error=>{
-//       console.log('??',error);
-//     })
-    
-//   })
-// })
-  
   // 유튭 예고편
-  const URL = 'https://www.googleapis.com/youtube/v3/search';
+const URL = 'https://www.googleapis.com/youtube/v3/search';
 const API_KEY = 'AIzaSyBzR_HnOKtGGjgBZ8XYwFI8gbA4MuDONWU';
 // 서브키
 // AIzaSyCN4Qzq5muVRcWFdtszQlpJOKVytuYOumI

@@ -7,8 +7,8 @@ class CommentForm(forms.ModelForm):
     #         'cols': 80,
     #         })
     # )
-
-
+   
+    
     class Meta:
         model= Comment
         fields= ('content','movie_rate','like_users')
