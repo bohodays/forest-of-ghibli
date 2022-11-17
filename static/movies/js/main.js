@@ -62,6 +62,7 @@ xMark.addEventListener('click', () => {
   })
 
   searchMark.style.transform = 'translate(0px, 0px)';
+  recommendWrap.style.display = 'none';
 })
 
 // 메인 화면을 유저의 브라우저 크기에 맞추기
