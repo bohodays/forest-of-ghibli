@@ -1,0 +1,284 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block css %}
+  <link rel='stylesheet' href="{% static 'movies/css/main.css' %}"/>
+  <link rel='stylesheet' href="{% static 'movies/css/GBTI.css' %}"/>
+{% endblock css %}
+
+{% block js %}
+  <script src="{% static 'movies/js/main.js' %}" defer></script>
+  <script src="{% static 'movies/js/GBTI.js' %}" defer></script>
+{% endblock js %}
+
+{% block content %}
+  <section>
+    <div class="check-wrap">
+      <div class="description">
+        <p class="description__content">
+          1. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut neque, officiis aliquam eius amet ratione non mollitia nam molestiae quod ab rerum ducimus hic laborum reprehenderit. Voluptatem natus neque ut.
+        </p>
+      </div>
+      <div class="numbers1">
+        <p class="agree__content">동의</p>
+        <button class="number numbers1__number agree big" data-value="1"></button>
+        <button class="number numbers1__number agree small" data-value="2"></button>
+        <button class="number numbers1__number disagree small" data-value="3"></button>
+        <button class="number numbers1__number disagree big" data-value="4"></button>
+        <p class="disagree__content">비동의</p>
+      </div>
+
+      <hr>
+      
+      <div class="description">
+        <p class="description__content">
+          2. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut neque, officiis aliquam eius amet ratione non mollitia nam molestiae quod ab rerum ducimus hic laborum reprehenderit. Voluptatem natus neque ut.
+        </p>
+      </div>
+      <div class="numbers">
+        <p class="agree__content">동의</p>
+        <button class="number agree big" data-value="1"></button>
+        <button class="number agree small" data-value="2"></button>
+        <button class="number disagree small" data-value="3"></button>
+        <button class="number disagree big" data-value="4"></button>
+        <p class="disagree__content">비동의</p>
+      </div>
+
+      <hr>
+
+      <div class="description">
+        <p class="description__content">
+          3. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut neque, officiis aliquam eius amet ratione non mollitia nam molestiae quod ab rerum ducimus hic laborum reprehenderit. Voluptatem natus neque ut.
+        </p>
+      </div>
+      <div class="numbers">
+        <p class="agree__content">동의</p>
+        <button class="number agree big" data-value="1"></button>
+        <button class="number agree small" data-value="2"></button>
+        <button class="number disagree small" data-value="3"></button>
+        <button class="number disagree big" data-value="4"></button>
+        <p class="disagree__content">비동의</p>
+      </div>
+
+      <hr>
+
+      <div class="description">
+        <p class="description__content">
+          4. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut neque, officiis aliquam eius amet ratione non mollitia nam molestiae quod ab rerum ducimus hic laborum reprehenderit. Voluptatem natus neque ut.
+        </p>
+      </div>
+      <div class="numbers">
+        <p class="agree__content">동의</p>
+        <button class="number agree big" data-value="1"></button>
+        <button class="number agree small" data-value="2"></button>
+        <button class="number disagree small" data-value="3"></button>
+        <button class="number disagree big" data-value="4"></button>
+        <p class="disagree__content">비동의</p>
+      </div>
+
+      <hr>
+
+      <div class="description">
+        <p class="description__content">
+          5. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut neque, officiis aliquam eius amet ratione non mollitia nam molestiae quod ab rerum ducimus hic laborum reprehenderit. Voluptatem natus neque ut.
+        </p>
+      </div>
+      <div class="numbers">
+        <p class="agree__content">동의</p>
+        <button class="number agree big" data-value="1"></button>
+        <button class="number agree small" data-value="2"></button>
+        <button class="number disagree small" data-value="3"></button>
+        <button class="number disagree big" data-value="4"></button>
+        <p class="disagree__content">비동의</p>
+      </div>
+
+      <hr>
+
+      <div class="description">
+        <p class="description__content">
+          6. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut neque, officiis aliquam eius amet ratione non mollitia nam molestiae quod ab rerum ducimus hic laborum reprehenderit. Voluptatem natus neque ut.
+        </p>
+      </div>
+      <div class="numbers">
+        <p class="agree__content">동의</p>
+        <button class="number agree big" data-value="1"></button>
+        <button class="number agree small" data-value="2"></button>
+        <button class="number disagree small" data-value="3"></button>
+        <button class="number disagree big" data-value="4"></button>
+        <p class="disagree__content">비동의</p>
+      </div>
+
+      <hr>
+
+      <div class="description">
+        <p class="description__content">
+          7. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut neque, officiis aliquam eius amet ratione non mollitia nam molestiae quod ab rerum ducimus hic laborum reprehenderit. Voluptatem natus neque ut.
+        </p>
+      </div>
+      <div class="numbers">
+        <p class="agree__content">동의</p>
+        <button class="number agree big" data-value="1"></button>
+        <button class="number agree small" data-value="2"></button>
+        <button class="number disagree small" data-value="3"></button>
+        <button class="number disagree big" data-value="4"></button>
+        <p class="disagree__content">비동의</p>
+      </div>
+
+      <hr>
+
+      <div class="description">
+        <p class="description__content">
+          8. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut neque, officiis aliquam eius amet ratione non mollitia nam molestiae quod ab rerum ducimus hic laborum reprehenderit. Voluptatem natus neque ut.
+        </p>
+      </div>
+      <div class="numbers">
+        <p class="agree__content">동의</p>
+        <button class="number agree big" data-value="1"></button>
+        <button class="number agree small" data-value="2"></button>
+        <button class="number disagree small" data-value="3"></button>
+        <button class="number disagree big" data-value="4"></button>
+        <p class="disagree__content">비동의</p>
+      </div>
+
+      <hr>
+
+      <div class="description">
+        <p class="description__content">
+          9. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut neque, officiis aliquam eius amet ratione non mollitia nam molestiae quod ab rerum ducimus hic laborum reprehenderit. Voluptatem natus neque ut.
+        </p>
+      </div>
+      <div class="numbers">
+        <p class="agree__content">동의</p>
+        <button class="number agree big" data-value="1"></button>
+        <button class="number agree small" data-value="2"></button>
+        <button class="number disagree small" data-value="3"></button>
+        <button class="number disagree big" data-value="4"></button>
+        <p class="disagree__content">비동의</p>
+      </div>
+
+      <hr>
+
+      <div class="description">
+        <p class="description__content">
+          10. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut neque, officiis aliquam eius amet ratione non mollitia nam molestiae quod ab rerum ducimus hic laborum reprehenderit. Voluptatem natus neque ut.
+        </p>
+      </div>
+      <div class="numbers">
+        <p class="agree__content">동의</p>
+        <button class="number agree big" data-value="1"></button>
+        <button class="number agree small" data-value="2"></button>
+        <button class="number disagree small" data-value="3"></button>
+        <button class="number disagree big" data-value="4"></button>
+        <p class="disagree__content">비동의</p>
+      </div>
+
+      <hr>
+
+      <div class="description">
+        <p class="description__content">
+          11. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut neque, officiis aliquam eius amet ratione non mollitia nam molestiae quod ab rerum ducimus hic laborum reprehenderit. Voluptatem natus neque ut.
+        </p>
+      </div>
+      <div class="numbers">
+        <p class="agree__content">동의</p>
+        <button class="number agree big" data-value="1"></button>
+        <button class="number agree small" data-value="2"></button>
+        <button class="number disagree small" data-value="3"></button>
+        <button class="number disagree big" data-value="4"></button>
+        <p class="disagree__content">비동의</p>
+      </div>
+
+      <hr>
+
+      <div class="description">
+        <p class="description__content">
+          12. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut neque, officiis aliquam eius amet ratione non mollitia nam molestiae quod ab rerum ducimus hic laborum reprehenderit. Voluptatem natus neque ut.
+        </p>
+      </div>
+      <div class="numbers">
+        <p class="agree__content">동의</p>
+        <button class="number agree big" data-value="1"></button>
+        <button class="number agree small" data-value="2"></button>
+        <button class="number disagree small" data-value="3"></button>
+        <button class="number disagree big" data-value="4"></button>
+        <p class="disagree__content">비동의</p>
+      </div>
+
+      <hr>
+
+      <div class="description">
+        <p class="description__content">
+          13. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut neque, officiis aliquam eius amet ratione non mollitia nam molestiae quod ab rerum ducimus hic laborum reprehenderit. Voluptatem natus neque ut.
+        </p>
+      </div>
+      <div class="numbers">
+        <p class="agree__content">동의</p>
+        <button class="number agree big" data-value="1"></button>
+        <button class="number agree small" data-value="2"></button>
+        <button class="number disagree small" data-value="3"></button>
+        <button class="number disagree big" data-value="4"></button>
+        <p class="disagree__content">비동의</p>
+      </div>
+
+      <hr>
+
+      <div class="description">
+        <p class="description__content">
+          14. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut neque, officiis aliquam eius amet ratione non mollitia nam molestiae quod ab rerum ducimus hic laborum reprehenderit. Voluptatem natus neque ut.
+        </p>
+      </div>
+      <div class="numbers">
+        <p class="agree__content">동의</p>
+        <button class="number agree big" data-value="1"></button>
+        <button class="number agree small" data-value="2"></button>
+        <button class="number disagree small" data-value="3"></button>
+        <button class="number disagree big" data-value="4"></button>
+        <p class="disagree__content">비동의</p>
+      </div>
+
+      <hr>
+
+      <div class="description">
+        <p class="description__content">
+          15. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut neque, officiis aliquam eius amet ratione non mollitia nam molestiae quod ab rerum ducimus hic laborum reprehenderit. Voluptatem natus neque ut.
+        </p>
+      </div>
+      <div class="numbers">
+        <p class="agree__content">동의</p>
+        <button class="number agree big" data-value="1"></button>
+        <button class="number agree small" data-value="2"></button>
+        <button class="number disagree small" data-value="3"></button>
+        <button class="number disagree big" data-value="4"></button>
+        <p class="disagree__content">비동의</p>
+      </div>
+
+      <hr>
+
+      <div class="description">
+        <p class="description__content">
+          16. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut neque, officiis aliquam eius amet ratione non mollitia nam molestiae quod ab rerum ducimus hic laborum reprehenderit. Voluptatem natus neque ut.
+        </p>
+      </div>
+      <div class="numbers">
+        <p class="agree__content">동의</p>
+        <button class="number agree big" data-value="1"></button>
+        <button class="number agree small" data-value="2"></button>
+        <button class="number disagree small" data-value="3"></button>
+        <button class="number disagree big" data-value="4"></button>
+        <p class="disagree__content">비동의</p>
+      </div>
+
+
+      
+
+      <div class="btn-wrap">
+        <button class="submit">
+          S U B M I T
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+{% endblock content %}

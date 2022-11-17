@@ -54,12 +54,15 @@
       </div> 
 
     </div>
+
+    
+    <p></p>
     
     <div class="comment-wrap">
       {% comment %} 댓글입력 창. 리뷰 작성기능, 평점 기능  {% endcomment %}
       
       <h4 class="review emphasis">리뷰</h4>
-        <form class="form-comment" data-movie-id="{{ movie.pk }}" id='comment-form' >
+        <form class="form-comment" action="{% url 'movies:comments_create' movie.pk %}" method="POST">
           {% csrf_token %}
           {{comment_form.movie_rate}}
           <div class="nickname-wrap">
@@ -67,6 +70,7 @@
             {{ user.nickName }}
           </div>
           {{comment_form.content}}
+          <p class="content__count">/ 500</p>
           <div class="d-flex justify-content-end">
             <input class="comment__input" type="submit" value="리뷰 남기기">
           </div>
@@ -83,34 +87,38 @@
             {{ comment.user.nickName }}
           </div>
           <div class="comment-wrap">
+            <p>{{ comment.movie_rate }}</p>
             <p class="comment_full hidden">{{ comment.content }}</p>
             <p class="comment__content summary">{{ comment.content|truncatechars:100 }}</p>
           </div>
 
           <div class='all-wrap d-flex flex-column'>
-            <p>{{ comment.movie_rate }}</p>
 
             <div class="like_delete_edit-wrap">
               <!-- 좋아요 구현   -->
               <form class="like-forms"  data-comment-id="{{comment.pk}}" data-movie-id="{{movie.pk}}" >
                 {% csrf_token %}
                 {% if request.user in comment.like_users.all %}
-                  <button class="btn-wrap like_btn" type="submit" id="like-{{comment.pk}}">
-                    <i class="fa-sharp fa-solid fa-heart"></i>
-                  </button>
-                  {% comment %} <input type="submit" value="좋아요 취소" id="like-{{comment.pk}}"> {% endcomment %}
+                <button class="btn-wrap like_btn" type="submit" id="like-{{comment.pk}}">
+                  <i class="fa-sharp fa-solid fa-heart"></i>
+                </button>
+                {% comment %} <input type="submit" value="좋아요 취소" id="like-{{comment.pk}}"> {% endcomment %}
                 {% else %}
-                  <button class="btn-wrap like_btn" type="submit" id="like-{{comment.pk}}">
-                    <i class="fa-regular fa-heart"></i>
-                  </button>
-                  {% comment %} <input type="submit" value="좋아요" id="like-{{comment.pk}}"> {% endcomment %}
+                <button class="btn-wrap like_btn" type="submit" id="like-{{comment.pk}}">
+                  <i class="fa-regular fa-heart"></i>
+                </button>
+                {% comment %} <input type="submit" value="좋아요" id="like-{{comment.pk}}"> {% endcomment %}
                 {% endif %}
               </form>
+              <p class="likes__count" id="like_{{ comment.pk }}">{{ comment.like_users.all|length}}</p>
             
             
               {% comment %} 삭제 비동기 {% endcomment %}
               <div class="delete_edit-wrap">
                 {% if request.user == comment.user %}
+                  <a class="btn-wrap edit-btn" href="{% url 'movies:comments_update' movie.pk comment.pk  %}">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                  </a>
                   <form class="delete-forms"  data-delete-id="{{comment.pk}}" data-movie-id="{{movie.pk}}">
                     {% csrf_token %}
                     <button class="btn-wrap delete-btn" type="submit" value="삭제" id="delete-{{comment.pk}}">
@@ -118,9 +126,7 @@
                     </button>
                   </form>
                   {% comment %} 수정 {% endcomment %}
-                  <a class="btn-wrap edit-btn" href="{% url 'movies:comments_update' movie.pk comment.pk  %}">
-                    <i class="fa-solid fa-pen-to-square"></i>
-                  </a>
+                  
                 {% endif %}
               </div>
   

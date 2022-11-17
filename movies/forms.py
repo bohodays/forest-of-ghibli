@@ -11,7 +11,7 @@ class CommentForm(forms.ModelForm):
 
     class Meta:
         model= Comment
-        fields= ('content','movie_rate','like_users')
+        fields= ('content','movie_rate',)
 
 
 

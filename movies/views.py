@@ -42,24 +42,14 @@ def comments_create(request, pk):
     if request.user.is_authenticated:
         movie = Movie.objects.get(pk=pk)
         comment_form = CommentForm(request.POST)
-        create_flag = False
         
         if comment_form.is_valid():
             comment = comment_form.save(commit=False)
             comment.movie = movie
             comment.user = request.user
-            print('??????',comment.content)
-            create_flag = True
-            # comment_wrote= json.dumps(comment)
             comment.save()
         
-        context= {
-            'create_flag': create_flag,
-            'comment_content':comment.content,
-            'comment_movie_rate':comment.movie_rate,
-            }
-        return JsonResponse(context)
-        # return redirect('movies:detail',movie.pk)
+        return redirect('movies:detail',movie.pk)
     return redirect('accounts:login')
 
 
@@ -106,12 +96,11 @@ def comments_update(request,movie_pk,comment_pk):
     return render(request,'movies/comments_update.html', context)
 
 
-
 # 좋아요
 @require_POST
 def comments_likes(request, movie_pk, comment_pk):
     if request.user.is_authenticated:
-        
+
         comment = Comment.objects.get(pk=comment_pk)
 
         if comment.like_users.filter(pk=request.user.pk).exists():
@@ -120,8 +109,11 @@ def comments_likes(request, movie_pk, comment_pk):
         else:
             comment.like_users.add(request.user)
             is_liked=True
+        print(comment.like_users.count())
+        print(is_liked)
         context = {
             'is_liked':is_liked,
+            'like_count':comment.like_users.count(),
         }
         return JsonResponse(context)
     return redirect('accounts:login')
@@ -186,3 +178,7 @@ def directors_detail(request, name):
         'selected_director': selected_director,
     }
     return render(request, 'movies/directors_detail.html', context)
+
+
+def GBTI(request):
+    return render(request, 'movies/GBTI.html')
