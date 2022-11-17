@@ -48,18 +48,9 @@ def comments_create(request, pk):
             comment = comment_form.save(commit=False)
             comment.movie = movie
             comment.user = request.user
-            print('??????',comment.content)
-            create_flag = True
-            # comment_wrote= json.dumps(comment)
             comment.save()
         
-        context= {
-            'create_flag': create_flag,
-            'comment_content':comment.content,
-            'comment_movie_rate':comment.movie_rate,
-            }
-        return JsonResponse(context)
-        # return redirect('movies:detail',movie.pk)
+        return redirect('movies:detail',movie.pk)
     return redirect('accounts:login')
 
 
@@ -186,3 +177,4 @@ def directors_detail(request, name):
         'selected_director': selected_director,
     }
     return render(request, 'movies/directors_detail.html', context)
+

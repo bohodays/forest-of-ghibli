@@ -59,7 +59,7 @@
       {% comment %} 댓글입력 창. 리뷰 작성기능, 평점 기능  {% endcomment %}
       
       <h4 class="review emphasis">리뷰</h4>
-        <form class="form-comment" data-movie-id="{{ movie.pk }}" id='comment-form' >
+        <form form class="form-comment" action="{% url 'movies:comments_create' movie.pk %}" method="POST">
           {% csrf_token %}
           {{comment_form.movie_rate}}
           <div class="nickname-wrap">
@@ -67,6 +67,7 @@
             {{ user.nickName }}
           </div>
           {{comment_form.content}}
+          <p class="content__count">/ 500</p>
           <div class="d-flex justify-content-end">
             <input class="comment__input" type="submit" value="리뷰 남기기">
           </div>

@@ -62,52 +62,48 @@ axios({
   
   
   // 댓글 생성
-const createForms = document.querySelectorAll('.form-comment')
-  createForms.forEach((createForm)=>{
-    createForm.addEventListener('submit',event =>{
-      event.preventDefault()
+// const createForms = document.querySelectorAll('.form-comment')
+//   createForms.forEach((createForm)=>{
+//     createForm.addEventListener('submit',event =>{
+//       event.preventDefault()
     
-      // 해당 영화의 pk 값 저장
-      const movieId = event.target.dataset.movieId
-    // 보내줄 데이터 가져오기
-    const content = document.getElementsByName('content')[0].value
-    const movieRate = document.getElementsByName('movie_rate')[0].value
-    console.log(content)
-    console.log(movieRate)
+//       // 해당 영화의 pk 값 저장
+//       const movieId = event.target.dataset.movieId
+//     // 보내줄 데이터 가져오기
+//     const content = document.getElementsByName('content')[0].value
+//     const movieRate = document.getElementsByName('movie_rate')[0].value
+//     const userNickName = document.getEle
+//     console.log(content)
+//     console.log(movieRate)
     
-    let data = new FormData()
-    data.append("content", content)
-    data.append("movie_rate",movieRate)
-    console.log(data.getAll)
+//     let data = new FormData()
+//     data.append("content", content)
+//     data.append("movie_rate",movieRate)
+//     console.log(data.getAll)
     
     
-    axios({
-      method: 'post',
-      url: `http://127.0.0.1:8000/movies/${movieId}/comments/`,
-      headers: {'X-CSRFToken': csrftoken,},
-      data: data,
-    }).then((response)=>{
-      console.log(response.data.comment_content);
-      console.log(response.data.comment_movie_rate);
-      const responseContent = response.data.comment_content
-      const responseRate = response.data.comment_movie_rate
-      const reviewContent = document.createElement('p')
-      reviewContent.innerText=responseContent
-      const contentForm = document.querySelector('.user-comments__wrap')
-      contentForm.appendChild(reviewContent)
-      // const reviewContent = document.getElementsByName('content')[0]
-      // const reviewRate = document.getElementsByName('movie_rate')[0]
-      // reviewContent.innerText = responseContent
-      // reviewRate.innerText = responseRate
-      // console.log('review content', reviewContent);
-      // console.log('review rate', reviewRate);
+//     axios({
+//       method: 'post',
+//       url: `http://127.0.0.1:8000/movies/${movieId}/comments/`,
+//       headers: {'X-CSRFToken': csrftoken,},
+//       data: data,
+//     }).then((response)=>{
+//       console.log(response.data.comment_content);
+//       console.log(response.data.comment_movie_rate);
+//       const responseContent = response.data.comment_content
+//       const responseRate = response.data.comment_movie_rate
+//       const reviewContent = document.createElement('p')
+//       reviewContent.innerText=responseContent
+//       const contentForm = document.querySelector('.user-comments__wrap')
+//       contentForm.appendChild(reviewContent)
 
-    }).catch(error=>{
-      console.log('??',error);
-    })
+
+//     }).catch(error=>{
+//       console.log('??',error);
+//     })
     
-  })
-})
+//   })
+// })
   
   // 유튭 예고편
   const URL = 'https://www.googleapis.com/youtube/v3/search';
@@ -203,4 +199,13 @@ commentFullContent.forEach((content) => {
     event.target.style.display = 'none';
     event.target.nextElementSibling.style.display = 'block';
   })
+})
+
+
+// 유저가 입력한 글자수를 보여주는 함수
+const commentTextarea = document.querySelector('#id_content');
+const contentCount = document.querySelector('.content__count');
+commentTextarea.addEventListener('keyup', () => {
+  contentCount.innerText = `${commentTextarea.value.length} / 500`
+  
 })
