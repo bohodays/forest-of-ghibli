@@ -19,14 +19,12 @@ forms.forEach((form) => {
       headers: {'X-CSRFToken': csrftoken,},
     })
     .then((response) => {
-      console.log(response, 333333333)
-      // console.log(response.data)
       const isLiked = response.data.is_liked
       const likeBtn = document.querySelector(`#like-${commentId}`)
       if (isLiked === true) {
-        likeBtn.value = '좋아요 취소'
+        likeBtn.innerHTML = `<i class="fa-sharp fa-solid fa-heart"></i>`;
       } else {
-        likeBtn.value = '좋아요'
+        likeBtn.innerHTML = `<i class="fa-regular fa-heart"></i>`;
       }
       // likeBtn.value = isLiked ? '좋아요 취소' : '좋아요'
     })
@@ -36,7 +34,7 @@ forms.forEach((form) => {
   })
 })
 
-// // 댓글 삭제
+// // 댓글 삭제 비동기
 const deleteForms = document.querySelectorAll('.delete-forms')
 deleteForms.forEach((deleteForm) => {
   deleteForm.addEventListener('submit', (event) => {
@@ -50,8 +48,8 @@ deleteForms.forEach((deleteForm) => {
       headers: {'X-CSRFToken': csrftoken,},
     })
       .then((response) => {
-        // url 요청을 가져오는걸 성공 했을 경우 여기서 
-        const userForm = event.target.parentNode;
+        // 버튼을 누른 댓글
+        const userForm = event.target.parentNode.parentNode.parentNode.parentNode;
         userForm.remove();
       })
         .catch((error) => {
@@ -61,7 +59,7 @@ deleteForms.forEach((deleteForm) => {
 })
 
 
-
+// 댓글 작성 비동기
 
 
 
@@ -69,6 +67,8 @@ deleteForms.forEach((deleteForm) => {
 // 유튭 예고편
 const URL = 'https://www.googleapis.com/youtube/v3/search';
 const API_KEY = 'AIzaSyBzR_HnOKtGGjgBZ8XYwFI8gbA4MuDONWU';
+// 서브키
+// AIzaSyCN4Qzq5muVRcWFdtszQlpJOKVytuYOumI
 const title = document.querySelector('.info__title');
 const iframe = document.querySelector('iframe');
 
@@ -87,15 +87,38 @@ const getYoutubeVideo = () => {
       iframe.setAttribute('src', vedioSrc)
     })
     .catch((error) => {
+      if (title.innerText === '이웃집 토토로') {
+        iframe.setAttribute('src', 'https://www.youtube.com/embed/8LLmvVSnYiw');
+      } else if (title.innerText === '마녀 배달부 키키') {
+        iframe.setAttribute('src', 'https://www.youtube.com/embed/zbvx7pqw5Gg');
+      } else if (title.innerText === '모노노케 히메') {
+        iframe.setAttribute('src', 'https://www.youtube.com/embed/4OiMOHRDs14');
+      } else if (title.innerText === '이웃집 야마다군') {
+        iframe.setAttribute('src', 'https://www.youtube.com/embed/1C9ujuCPlnY');
+      } else if (title.innerText === '센과 치히로의 행방불명') {
+        iframe.setAttribute('src', 'https://www.youtube.com/embed/lwrG3HQXTFw');
+      } else if (title.innerText === '고양이의 보은') {
+        iframe.setAttribute('src', 'https://www.youtube.com/embed/Gp-H_YOcYTM');
+      } else if (title.innerText === '벼랑 위의 포뇨') {
+        iframe.setAttribute('src', 'https://www.youtube.com/embed/lSYGyrlFoeA');
+      } else if (title.innerText === '추억의 마니') {
+        iframe.setAttribute('src', 'https://www.youtube.com/embed/7F3LdDJmEgM');
+      } else if (title.innerText === '붉은 거북') {
+        iframe.setAttribute('src', 'https://www.youtube.com/embed/lGGrlUiVTpY');
+      } else if (title.innerText === '아야와 마녀') {
+        iframe.setAttribute('src', 'https://www.youtube.com/embed/fe3r-hOOxAE');
+      } 
       console.log(error);
     })
 }
 
 window.addEventListener('load', () => {
-  if (title.innerText === '바람계곡의 나우시카') {
+  if (title.innerText === '천공의 성 라퓨타') {
+    iframe.setAttribute('src', 'https://www.youtube.com/embed/8ykEy-yPBFc');
+  } else if (title.innerText === '바람계곡의 나우시카') {
     iframe.setAttribute('src', 'https://www.youtube.com/embed/6zhLBe319KE');
   }  else if (title.innerText === '반딧불이의 묘') {
-    iframe.setAttribute('src', 'https://www.youtube.com/embed/_wlptzigQn0');
+    iframe.setAttribute('src', 'https://www.youtube.com/embed/4vPeTSRd580');
   } else if (title.innerText === '추억은 방울방울') {
     iframe.setAttribute('src', 'https://www.youtube.com/embed/qu7Dw4NJmY4');
   } else if (title.innerText === '붉은 돼지') {

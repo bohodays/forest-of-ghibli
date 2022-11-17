@@ -132,11 +132,68 @@ main {
 
 .user-comments {
   margin-bottom: 20px;
-  background-color: yellow;
+  /* background-color: yellow; */
   padding: 10px;
+  border-radius: 4px;
+  box-shadow: 0px 0px 30px 0px rgb(212 212 212);
 }
 
 .comment__content {
   max-width: 1000px;
   margin-bottom: 10px;
+  word-wrap: break-word;
+}
+
+.like_delete_edit-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* padding-top: 30px; */
+}
+
+.delete_edit-wrap {
+  display: flex;
+}
+
+.like_btn {
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
+
+.fa-heart {
+  font-size: 20px;
+  color: #dc3545;
+}
+
+.delete-btn {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  transform: translateY(2px);
+}
+
+.fa-trash-can {
+  font-size: 20px;
+}
+
+.edit-btn {
+  color: #000000;
+  font-size: 20px;
+}
+
+.edit-btn:hover {
+  color: #000000;
+}
+
+.btn-wrap {
+  padding: 5px 8px;
+}
+
+.all-wrap {
+  margin-top: 30px;
+}
+
+.review-input-wrap {
+  margin-top: 10px;
 }
