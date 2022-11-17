@@ -29,6 +29,7 @@ def detail(request, pk):
     comment_form = CommentForm()
     # 댓글 목록
     comments = movie.comments.all()
+    
     context = {
         'movie': movie,
         'comment_form': comment_form,
@@ -48,15 +49,18 @@ def comments_create(request, pk):
             comment = comment_form.save(commit=False)
             comment.movie = movie
             comment.user = request.user
-            print('??????',comment.content)
+            
             create_flag = True
             # comment_wrote= json.dumps(comment)
             comment.save()
+            print(movie.id)
         
         context= {
             'create_flag': create_flag,
+            'comment_id' : comment.id,
             'comment_content':comment.content,
             'comment_movie_rate':comment.movie_rate,
+            'movie_id' : movie.id,
             }
         return JsonResponse(context)
         # return redirect('movies:detail',movie.pk)
@@ -120,8 +124,11 @@ def comments_likes(request, movie_pk, comment_pk):
         else:
             comment.like_users.add(request.user)
             is_liked=True
+        print(comment.like_users.count())
+        print(is_liked)
         context = {
             'is_liked':is_liked,
+            'like_count':comment.like_users.count(),
         }
         return JsonResponse(context)
     return redirect('accounts:login')

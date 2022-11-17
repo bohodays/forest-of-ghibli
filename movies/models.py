@@ -24,10 +24,19 @@ class Movie(models.Model):
 
 
 class Comment(models.Model):
+    RATES = [
+        ('★','★'),
+        ('★★','★★'),
+        ('★★★','★★★'),
+        ('★★★★','★★★★'),
+        ('★★★★★','★★★★★'),
+        ]
     content = models.TextField(max_length=500)  # 리뷰 필드
-    movie_rate = models.IntegerField(
-        default=1,
-        validators=[MaxValueValidator(5), MinValueValidator(1)]
+            
+    movie_rate = models.CharField(
+        max_length=5,
+        choices= RATES,
+        default = '★'
     )      # 영화 평점
     # 참조할 영화. 영화 1 : 댓글 N 관계
     movie = models.ForeignKey(Movie,on_delete=models.CASCADE,related_name='comments')

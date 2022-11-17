@@ -20,6 +20,11 @@ forms.forEach((form) => {
       headers: {'X-CSRFToken': csrftoken,},
     })
     .then((response) => {
+      console.log(response.data.like_count);
+      // response 값을 html의 태그 하나 가져와서 그 값에 넣어 줘야함.
+      const likeCount = document.querySelector(`#like_${commentId}`)
+      likeCount.innerHTML=response.data.like_count      
+      console.log(likeCount);
       const isLiked = response.data.is_liked
       const likeBtn = document.querySelector(`#like-${commentId}`)
       if (isLiked === true) {
@@ -61,53 +66,99 @@ axios({
 })
   
   
-  // 댓글 생성
+ // 댓글 생성
 const createForms = document.querySelectorAll('.form-comment')
-  createForms.forEach((createForm)=>{
-    createForm.addEventListener('submit',event =>{
-      event.preventDefault()
-    
-      // 해당 영화의 pk 값 저장
-      const movieId = event.target.dataset.movieId
-    // 보내줄 데이터 가져오기
-    const content = document.getElementsByName('content')[0].value
-    const movieRate = document.getElementsByName('movie_rate')[0].value
-    console.log(content)
-    console.log(movieRate)
-    
-    let data = new FormData()
-    data.append("content", content)
-    data.append("movie_rate",movieRate)
-    console.log(data.getAll)
-    
-    
-    axios({
-      method: 'post',
-      url: `http://127.0.0.1:8000/movies/${movieId}/comments/`,
-      headers: {'X-CSRFToken': csrftoken,},
-      data: data,
-    }).then((response)=>{
-      console.log(response.data.comment_content);
-      console.log(response.data.comment_movie_rate);
-      const responseContent = response.data.comment_content
-      const responseRate = response.data.comment_movie_rate
-      const reviewContent = document.createElement('p')
-      reviewContent.innerText=responseContent
-      const contentForm = document.querySelector('.user-comments__wrap')
-      contentForm.appendChild(reviewContent)
-      // const reviewContent = document.getElementsByName('content')[0]
-      // const reviewRate = document.getElementsByName('movie_rate')[0]
-      // reviewContent.innerText = responseContent
-      // reviewRate.innerText = responseRate
-      // console.log('review content', reviewContent);
-      // console.log('review rate', reviewRate);
+createForms.forEach((createForm)=>{
+  createForm.addEventListener('submit',event =>{
+    event.preventDefault()
+    // 해당 영화의 pk 값 저장
+    const movieId = event.target.dataset.movieId
+  // 보내줄 데이터 가져오기
+  const content = document.getElementsByName('content')[0].value
+  const movieRate = document.getElementsByName('movie_rate')[0].value
+  const user = document.querySelector('.nickname-wrap');
+  const userNickName = user.innerText
 
+  let data = new FormData()
+  data.append("content", content)
+  data.append("movie_rate",movieRate)
+
+  axios({
+    method: 'post',
+    url: `http://127.0.0.1:8000/movies/${movieId}/comments/`,
+    headers: {'X-CSRFToken': csrftoken,},
+    data: data,
+    }).then((response)=>{
+    // 댓글 id
+    const responseCommentId = response.data.comment_id
+    // 댓글 내용
+    const responseContent = response.data.comment_content
+    // 댓글 평점
+    const responseRate = response.data.comment_movie_rate
+    // 영화 id
+    const responseMovieId = response.data.movie_id
+
+    const reviewContent = document.createElement('p')
+    reviewContent.innerText=responseContent
+    const commentList = document.querySelector('.user-comments__wrap')
+    commentList.innerHTML += `
+      <div class="user-comments">
+        <div class="comment-nickname-wrap">
+          <i class="fas fa-user"></i>
+          ${userNickName}
+        </div>
+        <div class="comment-wrap">
+          <p class="comment_full hidden">${responseContent}</p>
+          <p class="comment__content summary">${responseContent}</p>
+        </div>
+
+        <div class='all-wrap d-flex flex-column'>
+          <p>평점 ${responseRate}</p>
+          
+            <div class="delete_edit-wrap">
+                <form class="async-delete-forms"  data-delete-id="${responseCommentId}" data-movie-id="${responseMovieId}">
+                  
+                  <button class="btn-wrap delete-btn" type="submit" value="삭제" id="delete-${responseCommentId}">
+                    <i class="fa-solid fa-trash-can"></i>
+                  </button>
+                </form>
+                <a class="btn-wrap edit-btn" href="{% url 'movies:comments_update' %}">
+                  <i class="fa-solid fa-pen-to-square"></i>
+                </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+      const asyncDeleteComments = document.querySelectorAll('.async-delete-forms')
+      // console.log(asyncDeleteComments);
+      asyncDeleteComments.forEach(asyncDeleteComment =>{
+        asyncDeleteComment.addEventListener('submit',event =>{
+          event.preventDefault()
+          
+          axios({
+            method: 'post',
+            url: `http://127.0.0.1:8000/movies/${responseMovieId}/comments/${responseCommentId}/delete/`,
+            headers: {'X-CSRFToken': csrftoken,},
+          })
+            .then((response) => {
+            // 버튼을 누른 댓글
+            const userForm = event.target.parentNode.parentNode.parentNode;
+            console.log(userForm);
+            userForm.remove();
+          })
+          .catch((error) => {
+            console.log('삭제 오류',error.response)
+          })
+        })
+      })
     }).catch(error=>{
       console.log('??',error);
-    })
-    
+      })
   })
 })
+
+// {{ comment.content|truncatechars:100 }}
   
   // 유튭 예고편
   const URL = 'https://www.googleapis.com/youtube/v3/search';
