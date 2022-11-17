@@ -92,6 +92,7 @@ main {
 
 .form-comment {
   transform: translate(0px -10px);
+  position: relative;
   /* text-align: left; */
 }
 
@@ -142,6 +143,15 @@ main {
   max-width: 1000px;
   margin-bottom: 10px;
   word-wrap: break-word;
+  cursor: pointer;
+}
+
+.hidden {
+  max-width: 1000px;
+  margin-bottom: 10px;
+  word-wrap: break-word;
+  display: none;
+  cursor: pointer;
 }
 
 .like_delete_edit-wrap {
@@ -196,4 +206,10 @@ main {
 
 .review-input-wrap {
   margin-top: 10px;
+}
+
+.content__count {
+  position: absolute;
+  bottom: 50px;
+  right: 20px;
 }

@@ -66,102 +66,10 @@ axios({
 })
   
   
- // 댓글 생성
-const createForms = document.querySelectorAll('.form-comment')
-createForms.forEach((createForm)=>{
-  createForm.addEventListener('submit',event =>{
-    event.preventDefault()
-    // 해당 영화의 pk 값 저장
-    const movieId = event.target.dataset.movieId
-  // 보내줄 데이터 가져오기
-  const content = document.getElementsByName('content')[0].value
-  const movieRate = document.getElementsByName('movie_rate')[0].value
-  const user = document.querySelector('.nickname-wrap');
-  const userNickName = user.innerText
 
-  let data = new FormData()
-  data.append("content", content)
-  data.append("movie_rate",movieRate)
-
-  axios({
-    method: 'post',
-    url: `http://127.0.0.1:8000/movies/${movieId}/comments/`,
-    headers: {'X-CSRFToken': csrftoken,},
-    data: data,
-    }).then((response)=>{
-    // 댓글 id
-    const responseCommentId = response.data.comment_id
-    // 댓글 내용
-    const responseContent = response.data.comment_content
-    // 댓글 평점
-    const responseRate = response.data.comment_movie_rate
-    // 영화 id
-    const responseMovieId = response.data.movie_id
-
-    const reviewContent = document.createElement('p')
-    reviewContent.innerText=responseContent
-    const commentList = document.querySelector('.user-comments__wrap')
-    commentList.innerHTML += `
-      <div class="user-comments">
-        <div class="comment-nickname-wrap">
-          <i class="fas fa-user"></i>
-          ${userNickName}
-        </div>
-        <div class="comment-wrap">
-          <p class="comment_full hidden">${responseContent}</p>
-          <p class="comment__content summary">${responseContent}</p>
-        </div>
-
-        <div class='all-wrap d-flex flex-column'>
-          <p>평점 ${responseRate}</p>
-          
-            <div class="delete_edit-wrap">
-                <form class="async-delete-forms"  data-delete-id="${responseCommentId}" data-movie-id="${responseMovieId}">
-                  
-                  <button class="btn-wrap delete-btn" type="submit" value="삭제" id="delete-${responseCommentId}">
-                    <i class="fa-solid fa-trash-can"></i>
-                  </button>
-                </form>
-                <a class="btn-wrap edit-btn" href="{% url 'movies:comments_update' %}">
-                  <i class="fa-solid fa-pen-to-square"></i>
-                </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    `;
-      const asyncDeleteComments = document.querySelectorAll('.async-delete-forms')
-      // console.log(asyncDeleteComments);
-      asyncDeleteComments.forEach(asyncDeleteComment =>{
-        asyncDeleteComment.addEventListener('submit',event =>{
-          event.preventDefault()
-          
-          axios({
-            method: 'post',
-            url: `http://127.0.0.1:8000/movies/${responseMovieId}/comments/${responseCommentId}/delete/`,
-            headers: {'X-CSRFToken': csrftoken,},
-          })
-            .then((response) => {
-            // 버튼을 누른 댓글
-            const userForm = event.target.parentNode.parentNode.parentNode;
-            console.log(userForm);
-            userForm.remove();
-          })
-          .catch((error) => {
-            console.log('삭제 오류',error.response)
-          })
-        })
-      })
-    }).catch(error=>{
-      console.log('??',error);
-      })
-  })
-})
-
-// {{ comment.content|truncatechars:100 }}
   
   // 유튭 예고편
-  const URL = 'https://www.googleapis.com/youtube/v3/search';
+const URL = 'https://www.googleapis.com/youtube/v3/search';
 const API_KEY = 'AIzaSyBzR_HnOKtGGjgBZ8XYwFI8gbA4MuDONWU';
 // 서브키
 // AIzaSyCN4Qzq5muVRcWFdtszQlpJOKVytuYOumI
@@ -238,3 +146,29 @@ window.addEventListener('load', () => {
   }
 })
 
+
+// 요약화되어 있는 리뷰를 클릭시 전문화 시키는 함수
+const commentContent = document.querySelectorAll('.summary');
+const commentFullContent = document.querySelectorAll('.hidden');
+commentContent.forEach((content) => {
+  content.addEventListener('click', (event) => {
+    event.target.style.display = 'none';
+    event.target.previousElementSibling.style.display = 'block';
+  })
+})
+
+commentFullContent.forEach((content) => {
+  content.addEventListener('click', (event) => {
+    event.target.style.display = 'none';
+    event.target.nextElementSibling.style.display = 'block';
+  })
+})
+
+
+// 유저가 입력한 글자수를 보여주는 함수
+const commentTextarea = document.querySelector('#id_content');
+const contentCount = document.querySelector('.content__count');
+commentTextarea.addEventListener('keyup', () => {
+  contentCount.innerText = `${commentTextarea.value.length} / 500`
+  
+})
