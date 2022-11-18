@@ -268,13 +268,19 @@
         <button class="number numbers16__number disagree big" data-value="4"></button>
         <p class="disagree__content">비동의</p>
       </div>
-
-      <div class="btn-wrap">
-        <button class="submit">
-          S U B M I T
-        </button>
-      </div>
       
+      <form action="{% url 'movies:GBTI_create' person.pk %}" method="POST">
+        {% csrf_token %}
+        {{ GBTI_form }}
+        <div class="btn-wrap">
+          <button class="submit" type="submit">
+              S U B M I T
+          </button>
+        </div>
+      </form>
+      
+
+
     </div>
   </section>
 
