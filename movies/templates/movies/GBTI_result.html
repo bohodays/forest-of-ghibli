@@ -14,11 +14,12 @@
 
 {% block content %}
   <section>
-    <h1>test</h1>
-    <h1>test</h1>
-    <h1>test</h1>
-    <h1>test</h1>
-    <h1>test</h1>
-    <h1>test</h1>
+    <h1>{{ character.MBTI }}</h1>
+    <h1>{{ person.nickName }} 님과 같은 MBTI를 가진 캐릭터는</h1>
+    <h1>{{ character.name }} 입니다.</h1>
+    <h1>{{ character.info }}</h1>
+    <img class="" src="{% get_static_prefix %}{{ character.image }}" alt="">
+    <img class="movie__poster" src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}" alt="">
+
   </section>
 {% endblock content %}

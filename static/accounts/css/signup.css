@@ -11,7 +11,7 @@
 
 html {
   /* 수정필요할지 확인해야 함 */
-  height: 1000px;
+  height: 1200px;
 }
 
 body {
@@ -44,6 +44,12 @@ input {
   -webkit-box-shadow: 10px 10px 5px 3000px rgba(0,0,0,0.7);
   -moz-box-shadow: 10px 10px 5px 3000px rgba(0,0,0,0.7);
   box-shadow: 10px 10px 5px 3000px rgba(0,0,0,0.7);
+}
+
+.move-to-main {
+  width: 70px;
+  height: 70px;
+  margin-top: 20px;
 }
 
 .signup__title {
