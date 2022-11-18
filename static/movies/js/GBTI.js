@@ -1,4 +1,63 @@
-const selectItem = (item, select) => {
+// 전체 질문 길이 ( 추후에 질문 개수 변화가 생길 수도 있어서)
+const qLength = 17
+const ENERGY = 5  //(E,I)
+const PERCEPTION = 9 //(N,S)
+const DECISION = 13  // (F,T)
+const LIFESTYLE = 17 //(P,J)
+
+// 길이가 16인 배열 만들기 
+let answerList = [0]
+
+// MBTI 결과를 저장하는 함수
+const getMBTI = () => {
+  let energy=0
+  let perception = 0
+  let decision = 0
+  let lifestyle = 0
+
+  for (let j = 1; j <qLength; j++){
+    if ( j>0 && j < ENERGY){
+      energy +=  answerList[j]
+    }else if( j>= ENERGY && j < PERCEPTION){
+      perception += answerList[j]
+    }else if( j>= PERCEPTION && j < DECISION){
+      decision += answerList[j]
+    }else if( j>= DECISION){
+      lifestyle += answerList[j]
+    }
+  }
+  let gbti = ''
+  if (energy <= 10){
+    gbti += 'E'
+  }else{
+    gbti += 'I'
+  }
+
+  if (perception <= 10){
+    gbti += 'N'
+  }else{
+    gbti += 'S'
+  }
+
+  if (decision <= 10){
+    gbti += 'F'
+  }else{
+    gbti += 'T'
+  }
+
+  if (lifestyle <= 10){
+    gbti += 'J'
+  }else{
+    gbti += 'P'
+  }
+
+  console.log(gbti);
+
+  const formInput = document.querySelector('#id_GBTI');
+  formInput.innerText = `${gbti}`
+}
+
+const selectItem = (item, select,i) => {
   item.addEventListener('click', (event) => {
     const target = event.target;
     // 선택된 버튼의 개수 확인
@@ -14,7 +73,7 @@ const selectItem = (item, select) => {
       target.classList.add(select);
       if (target.classList.contains('agree')) {
         target.style.backgroundColor = '#94bbe9';
-      } else if (target.classList.contains('disagree')) {
+      } else if (target.classList.contains('disagree')) { 
         target.style.backgroundColor = '#eeaeca';
       }
       // 선택된 버튼이 없다면
@@ -27,8 +86,40 @@ const selectItem = (item, select) => {
         target.style.backgroundColor = '#eeaeca';
       }
     }
+    let ansBtn = document.getElementsByClassName(select)
+    // 클릭한 버튼의 value 저장하기
+    let ans = ansBtn[0].dataset.value
+    console.log(ans);
+    // 선택한 버튼의 인덱스에 값 넣기
+    answerList[i] = parseInt(ans)
+    console.log('list:', answerList);
+    
+    const submitBtn = document.querySelector('.submit');
+    const cautionMessage = document.querySelector('.caution-message');
+    for (let i = 1; i < 17; i++) {
+      if (answerList[i] === undefined) {
+        submitBtn.classList.add('block')
+        submitBtn.style.backgroundColor = '#ced4da';
+        cautionMessage.innerText = '모든 질문에 응답해주시기 바랍니다.'
+        cautionMessage.style.color = '#dc3545';
+        
+        console.log(11);
+        break
+      } else {
+        console.log(22);
+        submitBtn.classList.remove('block');
+        submitBtn.style.backgroundColor = '#212529';
+        cautionMessage.innerText = '결과를 확인해보세요.';
+        cautionMessage.style.color = '#198754';
+      }
+    }
+    if(answerList.length === 17){
+      getMBTI();
+    } 
 })
 }
+
+
 
 
 const hoverBackground = (item, select) => {
@@ -48,12 +139,11 @@ const hoverBackground = (item, select) => {
   })
 }
 
-
-for (let i = 1; i < 17; i++) {
+for (let i = 1; i < qLength; i++) {
   let number = document.querySelectorAll(`.numbers${i}__number`)
-
   number.forEach((item) => {
-    selectItem(item, `select${i}`)
+    selectItem(item, `select${i}`,i)
+    
   })
 
   number.forEach((item) => {
@@ -61,7 +151,9 @@ for (let i = 1; i < 17; i++) {
   })
 }
 
-
-
-
-
+window.addEventListener('load', () => {
+  const submitBtn = document.querySelector('.submit');
+  const cautionMessage = document.querySelector('.caution-message');
+  cautionMessage.style.opacity = '1';
+  submitBtn.classList.add('block')
+})

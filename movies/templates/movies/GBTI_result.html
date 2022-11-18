@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block css %}
+  <link rel='stylesheet' href="{% static 'movies/css/main.css' %}"/>
+  <link rel='stylesheet' href="{% static 'movies/css/GBTI_result.css' %}"/>
+{% endblock css %}
+
+{% block js %}
+  <script src="{% static 'movies/js/main.js' %}" defer></script>
+  <script src="{% static 'movies/js/GBTI_result.js' %}" defer></script>
+{% endblock js %}
+
+{% block content %}
+  <section>
+    <h1>{{ character.MBTI }}</h1>
+    <h1>{{ person.nickName }} 님과 같은 MBTI를 가진 캐릭터는</h1>
+    <h1>{{ character.name }} 입니다.</h1>
+    <h1>{{ character.info }}</h1>
+    <img class="" src="{% get_static_prefix %}{{ character.image }}" alt="">
+    <img class="movie__poster" src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}" alt="">
+
+  </section>
+{% endblock content %}

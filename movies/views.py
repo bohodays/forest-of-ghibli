@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_list_or_404,redirect
-from .models import Movie, Comment, Director
-from .forms import CommentForm
+from django.contrib.auth import get_user_model
+from .models import Movie, Comment, Director, Character
+from .forms import CommentForm, GBTIForm
 
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
@@ -180,5 +181,39 @@ def directors_detail(request, name):
     return render(request, 'movies/directors_detail.html', context)
 
 
-def GBTI(request):
-    return render(request, 'movies/GBTI.html')
+def GBTI(request, user_pk):
+    User = get_user_model()
+    person = User.objects.get(pk=user_pk)
+    GBTI_form = GBTIForm(instance=person)
+    context = {
+        'GBTI_form': GBTI_form,
+        'person': person,
+    }
+    return render(request, 'movies/GBTI.html', context)
+
+
+def GBTI_create(request, user_pk):
+    if request.user.is_authenticated:
+        User = get_user_model()
+        person = User.objects.get(pk=user_pk)
+        GBTI_form = GBTIForm(data=request.POST, instance=person)
+        if GBTI_form.is_valid():
+            GBTI_form.save()
+            return redirect('movies:GBTI_result', person.pk)
+
+    return redirect('movies:GBTI_result')
+
+
+def GBTI_result(request, user_pk):
+    if request.user.is_authenticated:
+        User = get_user_model()
+        person = User.objects.get(pk=user_pk)
+        character = Character.objects.get(MBTI=person.GBTI)
+        movie = Movie.objects.get(title=character.movie)
+
+        context = {
+            'person': person,
+            'character': character,
+            'movie': movie,
+        }
+    return render(request, 'movies/GBTI_result.html', context)

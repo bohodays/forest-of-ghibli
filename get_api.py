@@ -5,7 +5,7 @@ import os
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "final_pjt.settings")
 import django
 django.setup()
-from movies.models import Movie, Director
+from movies.models import Movie, Director, Character
 
 def get_api(query):
     params = {"api_key": "bd463403fc92a46ec88c4cc94afcc3cd",
@@ -204,6 +204,111 @@ def background_img():
     return
 
 
+def character_info_save():
+    name_list = [
+        '소피',
+        '하쿠',
+        '쉬타',
+        '세이타',
+        '산',
+        '하울',
+        '아시타카',
+        '톰보',
+        '치히로',
+        '포뇨',
+        '지지',
+        '돌라',
+        '에보시',
+        '키키',
+        '사츠키',
+        '메이'
+    ]
+
+    MBTI_list = [
+        'ISFJ',
+        'INFJ',
+        'INTJ',
+        'ISTJ',
+        'ISTP',
+        'ISFP',
+        'INFP',
+        'INTP',
+        'ENFP',
+        'ESFP',
+        'ENTP',
+        'ESTP',
+        'ESTJ',
+        'ENFJ',
+        'ENTJ',
+        'ESFJ'
+    ]
+
+    info_list = [
+        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut neque, officiis aliquam eius amet ratione non mollitia nam molestiae quod ab rerum ducimus hic laborum reprehenderit. Voluptatem natus neque ut.',
+        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut neque, officiis aliquam eius amet ratione non mollitia nam molestiae quod ab rerum ducimus hic laborum reprehenderit. Voluptatem natus neque ut.',
+        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut neque, officiis aliquam eius amet ratione non mollitia nam molestiae quod ab rerum ducimus hic laborum reprehenderit. Voluptatem natus neque ut.',
+        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut neque, officiis aliquam eius amet ratione non mollitia nam molestiae quod ab rerum ducimus hic laborum reprehenderit. Voluptatem natus neque ut.',
+        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut neque, officiis aliquam eius amet ratione non mollitia nam molestiae quod ab rerum ducimus hic laborum reprehenderit. Voluptatem natus neque ut.',
+        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut neque, officiis aliquam eius amet ratione non mollitia nam molestiae quod ab rerum ducimus hic laborum reprehenderit. Voluptatem natus neque ut.',
+        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut neque, officiis aliquam eius amet ratione non mollitia nam molestiae quod ab rerum ducimus hic laborum reprehenderit. Voluptatem natus neque ut.',
+        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut neque, officiis aliquam eius amet ratione non mollitia nam molestiae quod ab rerum ducimus hic laborum reprehenderit. Voluptatem natus neque ut.',
+        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut neque, officiis aliquam eius amet ratione non mollitia nam molestiae quod ab rerum ducimus hic laborum reprehenderit. Voluptatem natus neque ut.',
+        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut neque, officiis aliquam eius amet ratione non mollitia nam molestiae quod ab rerum ducimus hic laborum reprehenderit. Voluptatem natus neque ut.',
+        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut neque, officiis aliquam eius amet ratione non mollitia nam molestiae quod ab rerum ducimus hic laborum reprehenderit. Voluptatem natus neque ut.',
+        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut neque, officiis aliquam eius amet ratione non mollitia nam molestiae quod ab rerum ducimus hic laborum reprehenderit. Voluptatem natus neque ut.',
+        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut neque, officiis aliquam eius amet ratione non mollitia nam molestiae quod ab rerum ducimus hic laborum reprehenderit. Voluptatem natus neque ut.',
+        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut neque, officiis aliquam eius amet ratione non mollitia nam molestiae quod ab rerum ducimus hic laborum reprehenderit. Voluptatem natus neque ut.',
+        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut neque, officiis aliquam eius amet ratione non mollitia nam molestiae quod ab rerum ducimus hic laborum reprehenderit. Voluptatem natus neque ut.',
+        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut neque, officiis aliquam eius amet ratione non mollitia nam molestiae quod ab rerum ducimus hic laborum reprehenderit. Voluptatem natus neque ut.'
+    ]
+
+    movie_list = [
+        '하울의 움직이는 성',
+        '센과 치히로의 행방불명',
+        '천공의 성 라퓨타',
+        '반딧불이의 묘',
+        '모노노케 히메',
+        '하울의 움직이는 성',
+        '모노노케 히메',
+        '마녀 배달부 키키',
+        '센과 치히로의 행방불명',
+        '벼랑 위의 포뇨',
+        '마녀 배달부 키키',
+        '천공의 성 라퓨타',
+        '모노노케 히메',
+        '마녀 배달부 키키',
+        '이웃집 토토로',
+        '이웃집 토토로'
+    ]
+
+    image_list = [
+        'accounts/imgs/default_profile_img.jpg',
+        'accounts/imgs/default_profile_img.jpg',
+        'accounts/imgs/default_profile_img.jpg',
+        'accounts/imgs/default_profile_img.jpg',
+        'accounts/imgs/default_profile_img.jpg',
+        'accounts/imgs/default_profile_img.jpg',
+        'accounts/imgs/default_profile_img.jpg',
+        'accounts/imgs/default_profile_img.jpg',
+        'accounts/imgs/default_profile_img.jpg',
+        'accounts/imgs/default_profile_img.jpg',
+        'accounts/imgs/default_profile_img.jpg',
+        'accounts/imgs/default_profile_img.jpg',
+        'accounts/imgs/default_profile_img.jpg',
+        'accounts/imgs/default_profile_img.jpg',
+        'accounts/imgs/default_profile_img.jpg',
+        'accounts/imgs/default_profile_img.jpg'
+    ]
+
+    for item in zip(name_list, MBTI_list, info_list, movie_list, image_list):
+        Character(
+            name = item[0],
+            MBTI = item[1],
+            info = item[2],
+            movie = item[3],
+            image = item[4]
+        ).save()
+
 if __name__ == '__main__':
     get_api('천공의 성 라퓨타')
     get_api('바람계곡의 나우시카')
@@ -231,7 +336,7 @@ if __name__ == '__main__':
     save_wise_saying()
     save_wise_saying_director()
     background_img()
-
+    character_info_save()
 
 
 
