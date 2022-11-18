@@ -1,4 +1,14 @@
-const selectItem = (item, select) => {
+// 전체 질문 길이 ( 추후에 질문 개수 변화가 생길 수도 있어서)
+const qLength = 17
+const ENERGY = 5  //(I,E)
+const PERCEPTION = 9 //(S,N)
+const DECISION = 13  // (T,F)
+const LIFESTYLE = 17 //(J,P)
+
+// 길이가 16인 배열 만들기 
+let answerList = []
+
+const selectItem = (item, select,i) => {
   item.addEventListener('click', (event) => {
     const target = event.target;
     // 선택된 버튼의 개수 확인
@@ -14,7 +24,7 @@ const selectItem = (item, select) => {
       target.classList.add(select);
       if (target.classList.contains('agree')) {
         target.style.backgroundColor = '#94bbe9';
-      } else if (target.classList.contains('disagree')) {
+      } else if (target.classList.contains('disagree')) { 
         target.style.backgroundColor = '#eeaeca';
       }
       // 선택된 버튼이 없다면
@@ -26,6 +36,65 @@ const selectItem = (item, select) => {
       } else if (target.classList.contains('disagree')) {
         target.style.backgroundColor = '#eeaeca';
       }
+    }
+    let ansBtn = document.getElementsByClassName(select)
+    // 클릭한 버튼의 value 저장하기
+    let ans = ansBtn[0].dataset.value
+    console.log(ans);
+    // 선택한 버튼의 인덱스에 값 넣기
+    answerList[i] = parseInt(ans)
+    console.log('list:', answerList);
+
+
+    if( answerList.length === 17){
+      
+      let energy=0
+      let perception = 0
+      let decision = 0
+      let lifestyle = 0
+
+      for (let j = 1; j <qLength; j++){
+        
+        // const ENERGY = 5  //(I,E)
+        // const PERCEPTION = 9 //(S,N)
+        // const DECISION = 13  // (T,F)
+        // const LIFESTYLE = 17 //(J,P)
+        
+        if ( j>0 && j < ENERGY){
+          energy +=  answerList[j]
+        }else if( j>= ENERGY && j < PERCEPTION){
+          perception += answerList[j]
+        }else if( j>= PERCEPTION && j < DECISION){
+          decision += answerList[j]
+        }else if( j>= DECISION){
+          lifestyle += answerList[j]
+        }
+      }
+      let gbti = ''
+      if (energy <= 10){
+        gbti += 'I'
+      }else{
+        gbti += 'E'
+      }
+
+      if (perception <= 10){
+        gbti += 'S'
+      }else{
+        gbti += 'N'
+      }
+
+      if (decision <= 10){
+        gbti += 'T'
+      }else{
+        gbti += 'F'
+      }
+
+      if (lifestyle <= 10){
+        gbti += 'P'
+      }else{
+        gbti += 'J'
+      }
+      console.log(gbti);
     }
 })
 }
@@ -48,12 +117,11 @@ const hoverBackground = (item, select) => {
   })
 }
 
-
-for (let i = 1; i < 17; i++) {
+for (let i = 1; i < qLength; i++) {
   let number = document.querySelectorAll(`.numbers${i}__number`)
-
   number.forEach((item) => {
-    selectItem(item, `select${i}`)
+    selectItem(item, `select${i}`,i)
+    
   })
 
   number.forEach((item) => {
