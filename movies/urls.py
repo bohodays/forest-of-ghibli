@@ -14,8 +14,8 @@ urlpatterns = [
     path('films/', views.films, name='films'),
     path('directors/', views.directors, name='directors'),
     path('directors/<str:name>/', views.directors_detail, name='directors_detail'),
-    path('GBTI/', views.GBTI, name='GBTI'),
-    
-
+    path('GBTI/<int:user_pk>/', views.GBTI, name='GBTI'),
+    path('GBTI/<int:user_pk>/create', views.GBTI_create, name='GBTI_create'),
+    path('GBTI_result/', views.GBTI_result, name="GBTI_result"),
 
 ]

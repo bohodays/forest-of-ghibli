@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_list_or_404,redirect
+from django.contrib.auth import get_user_model
 from .models import Movie, Comment, Director
-from .forms import CommentForm
+from .forms import CommentForm, GBTIForm
 
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
@@ -180,5 +181,63 @@ def directors_detail(request, name):
     return render(request, 'movies/directors_detail.html', context)
 
 
-def GBTI(request):
-    return render(request, 'movies/GBTI.html')
+def GBTI(request, user_pk):
+    User = get_user_model()
+    person = User.objects.get(pk=user_pk)
+    GBTI_form = GBTIForm(instance=person)
+    context = {
+        'GBTI_form': GBTI_form,
+        'person': person,
+    }
+    return render(request, 'movies/GBTI.html', context)
+
+
+def GBTI_create(request, user_pk):
+    if request.user.is_authenticated:
+        User = get_user_model()
+        person = User.objects.get(pk=user_pk)
+        print(person.GBTI)
+        GBTI_form = GBTIForm(data=request.POST, instance=person)
+        if GBTI_form.is_valid():
+            print(person.GBTI)
+            GBTI_form.save()
+            return redirect('movies:GBTI_result')
+
+    return redirect('movies:GBTI_result')
+        
+
+# # 댓글 생성하는 함수
+# @require_POST
+# def comments_create(request, pk):
+#     if request.user.is_authenticated:
+#         movie = Movie.objects.get(pk=pk)
+#         comment_form = CommentForm(request.POST)
+        
+#         if comment_form.is_valid():
+#             comment = comment_form.save(commit=False)
+#             comment.movie = movie
+#             comment.user = request.user
+#             comment.save()
+        
+#         return redirect('movies:detail',movie.pk)
+#     return redirect('accounts:login')
+
+# @require_POST
+# def follow(request, user_pk):
+#     if request.user.is_authenticated:
+#         User = get_user_model()
+#         me = request.user
+#         you = User.objects.get(pk=user_pk)
+#         if me != you:
+#         # 내가(request.user) 그 사람의 팔로워 목록에 있다면
+#             # if you.followers.filter(pk=me.pk).exist():
+#             if me in you.followers.all():
+#                 you.followers.remove(me)
+#             else:
+#                 you.followers.add(me)
+#         return redirect('accounts:profile', you.username)
+#     return redirect('accounts:login')
+
+
+def GBTI_result(reqeust):
+    return render(reqeust, 'movies/GBTI_result.html')

@@ -88,10 +88,7 @@ hr {
   background-color: #212529;
   border: none;
   outline: none;
-  padding: 10px;
   border-radius: 4px;
+  padding: 10px;
 }
 
-/* .select {
-  opacity: 1;
-} */
