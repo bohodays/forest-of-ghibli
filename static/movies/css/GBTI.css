@@ -66,9 +66,6 @@ hr {
   pointer-events: none;
 }
 
-.agree {
-}
-
 .agree:hover {
   background-color: #94bbe9;
   opacity: 0.4;
@@ -95,6 +92,6 @@ hr {
   border-radius: 4px;
 }
 
-.select {
+/* .select {
   opacity: 1;
-}
+} */
