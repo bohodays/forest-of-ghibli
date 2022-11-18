@@ -6,7 +6,56 @@ const DECISION = 13  // (T,F)
 const LIFESTYLE = 17 //(J,P)
 
 // 길이가 16인 배열 만들기 
-let answerList = []
+let answerList = [0]
+
+// MBTI 결과를 저장하는 함수
+const getMBTI = () => {
+  let energy=0
+  let perception = 0
+  let decision = 0
+  let lifestyle = 0
+
+  for (let j = 1; j <qLength; j++){
+    if ( j>0 && j < ENERGY){
+      energy +=  answerList[j]
+    }else if( j>= ENERGY && j < PERCEPTION){
+      perception += answerList[j]
+    }else if( j>= PERCEPTION && j < DECISION){
+      decision += answerList[j]
+    }else if( j>= DECISION){
+      lifestyle += answerList[j]
+    }
+  }
+  let gbti = ''
+  if (energy <= 10){
+    gbti += 'I'
+  }else{
+    gbti += 'E'
+  }
+
+  if (perception <= 10){
+    gbti += 'S'
+  }else{
+    gbti += 'N'
+  }
+
+  if (decision <= 10){
+    gbti += 'T'
+  }else{
+    gbti += 'F'
+  }
+
+  if (lifestyle <= 10){
+    gbti += 'P'
+  }else{
+    gbti += 'J'
+  }
+
+  console.log(gbti);
+
+  const formInput = document.querySelector('#id_GBTI');
+  formInput.innerText = `${gbti}`
+}
 
 const selectItem = (item, select,i) => {
   item.addEventListener('click', (event) => {
@@ -44,60 +93,33 @@ const selectItem = (item, select,i) => {
     // 선택한 버튼의 인덱스에 값 넣기
     answerList[i] = parseInt(ans)
     console.log('list:', answerList);
-
-
-    if( answerList.length === 17){
-      
-      let energy=0
-      let perception = 0
-      let decision = 0
-      let lifestyle = 0
-
-      for (let j = 1; j <qLength; j++){
+    
+    const submitBtn = document.querySelector('.submit');
+    const cautionMessage = document.querySelector('.caution-message');
+    for (let i = 1; i < 17; i++) {
+      if (answerList[i] === undefined) {
+        submitBtn.classList.add('block')
+        submitBtn.style.backgroundColor = '#ced4da';
+        cautionMessage.innerText = '모든 질문에 응답해주시기 바랍니다.'
+        cautionMessage.style.color = '#dc3545';
         
-        // const ENERGY = 5  //(I,E)
-        // const PERCEPTION = 9 //(S,N)
-        // const DECISION = 13  // (T,F)
-        // const LIFESTYLE = 17 //(J,P)
-        
-        if ( j>0 && j < ENERGY){
-          energy +=  answerList[j]
-        }else if( j>= ENERGY && j < PERCEPTION){
-          perception += answerList[j]
-        }else if( j>= PERCEPTION && j < DECISION){
-          decision += answerList[j]
-        }else if( j>= DECISION){
-          lifestyle += answerList[j]
-        }
+        console.log(11);
+        break
+      } else {
+        console.log(22);
+        submitBtn.classList.remove('block');
+        submitBtn.style.backgroundColor = '#212529';
+        cautionMessage.innerText = '결과를 확인해보세요.';
+        cautionMessage.style.color = '#198754';
       }
-      let gbti = ''
-      if (energy <= 10){
-        gbti += 'I'
-      }else{
-        gbti += 'E'
-      }
-
-      if (perception <= 10){
-        gbti += 'S'
-      }else{
-        gbti += 'N'
-      }
-
-      if (decision <= 10){
-        gbti += 'T'
-      }else{
-        gbti += 'F'
-      }
-
-      if (lifestyle <= 10){
-        gbti += 'P'
-      }else{
-        gbti += 'J'
-      }
-      console.log(gbti);
     }
+    if(answerList.length === 17){
+      getMBTI();
+    } 
 })
 }
+
+
 
 
 const hoverBackground = (item, select) => {
@@ -129,4 +151,9 @@ for (let i = 1; i < qLength; i++) {
   })
 }
 
-
+window.addEventListener('load', () => {
+  const submitBtn = document.querySelector('.submit');
+  const cautionMessage = document.querySelector('.caution-message');
+  cautionMessage.style.opacity = '1';
+  submitBtn.classList.add('block')
+})

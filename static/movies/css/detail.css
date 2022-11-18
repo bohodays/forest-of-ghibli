@@ -159,6 +159,7 @@ main {
 }
 
 .like_delete_edit-wrap {
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -224,7 +225,9 @@ main {
 }
 
 .likes__count {
-  transform: translateX(-430px);
+  position: absolute;
+  top: 5px;
+  left: 40px;
 }
 
 #id_movie_rate {

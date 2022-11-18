@@ -19,6 +19,9 @@
 
 {% block content %}
   <section class="login">
+    <a href="{% url 'movies:main' %}">
+      <img class="move-to-main" src="{% static 'movies/imgs/logo.png' %}" alt="">
+    </a>
     <h1 class='login__title'>로그인</h1>
     <form action="" method="POST">
       {% csrf_token %}

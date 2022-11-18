@@ -76,3 +76,15 @@ oldPasswordInput.addEventListener('keyup', (event) => {
     event.target.parentNode.previousElementSibling.style.color = '#3566b8';
   }
 })
+
+// 비밀번호 확인이 비밀번호와 일치하지 않으면 메세지 보여주는 함수
+const passwordSameMessage = document.querySelector('.password__same');
+newPassword2Input.addEventListener('keyup', () => {
+  if (newPassword2Input.value !== '') {
+    if (newPasswordInput.value !== newPassword2Input.value) {
+      passwordSameMessage.innerText = '비밀번호가 일치하지 않습니다.';
+    } else {
+      passwordSameMessage.innerText = '';
+    }
+  }
+})
