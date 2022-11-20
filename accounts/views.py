@@ -2,10 +2,12 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST, require_http_methods
 from .forms import CustomUserCreationForm, CustomUserChangeForm
+from movies.models import Character
 
 # Create your views here.
 def login(request):
@@ -63,7 +65,6 @@ def update(request):
     context = {
         'form':form,
     }
-    # print('??????????????',form)
     return render(request, 'accounts/update.html',context)
 
 
@@ -79,3 +80,25 @@ def change_password(request):
         'form':form,
     }
     return render(request, 'accounts/change_password.html',context)
+
+
+# 프로필 페이지
+def profile(request, username):
+    User = get_user_model()
+    person = User.objects.get(username=username)
+    if person.GBTI:
+        character = Character.objects.get(MBTI=person.GBTI)
+        context = {
+            'person': person,
+            'character': character,
+        }
+        return render(request, 'accounts/profile.html', context)
+    else:
+        context = {
+            'person': person,
+        }
+        return render(request, 'accounts/profile.html', context)
+
+
+    
+

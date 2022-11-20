@@ -17,5 +17,7 @@ urlpatterns = [
     path('GBTI/<int:user_pk>/', views.GBTI, name='GBTI'),
     path('GBTI/<int:user_pk>/create', views.GBTI_create, name='GBTI_create'),
     path('GBTI_result/<int:user_pk>/', views.GBTI_result, name="GBTI_result"),
-
+    path('quiz/<int:user_pk>/', views.quiz, name='quiz'),
+    path('quiz/<int:user_pk>/create', views.quiz_create, name='quiz_create'),
+    path('quiz_result/<int:user_pk>/', views.quiz_result, name='quiz_result'),
 ]

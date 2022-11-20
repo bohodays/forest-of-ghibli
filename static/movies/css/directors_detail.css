@@ -21,7 +21,7 @@ section {
 }
 
 .director__comment-wrap {
-  padding-left: 170px;
+  padding-left: 120px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -36,6 +36,7 @@ section {
 }
 
 .director__comment {
+  max-width: 580px;
   font-family: 'NanumSquareNeo-Variable';
   margin-bottom: 0px;
   font-size: 18px;
@@ -51,7 +52,7 @@ section {
   position: absolute;
   text-align: center;
   top: -66px;
-  right: 165px;
+  right: 128px;
 }
 
 .blur {
@@ -161,4 +162,8 @@ section {
 
 .s5 {
   top: -80px;
+}
+
+.menu-directors {
+  color: #77aaff;
 }

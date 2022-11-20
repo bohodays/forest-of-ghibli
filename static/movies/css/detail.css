@@ -1,7 +1,3 @@
-p {
-  macontentrgin: 0px;
-}
-
 ul {
   list-style: none;
   padding-left: 20px;
@@ -246,4 +242,8 @@ main {
 
 .recommend-search:hover {
   color: #77aaff;;
+}
+
+.menu-films {
+  color: #77aaff;
 }
