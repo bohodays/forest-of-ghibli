@@ -41,6 +41,20 @@
           <p>감독 : {{ movie.director }}</p>
           <p>개봉일 : {{ movie.release_date }}</p>
           <p>평점 : {{ movie.vote_average }}</p>
+          
+          <form class="bookmark-forms"  data-user-id="{{ request.user.pk }}" data-movie-id= "{{ movie.pk }}">
+            {% csrf_token %}
+            {% if request.user in movie.bookmark.all %}
+            <button type="submit" class="btn-wrap like_btn" id="bookmark_{{request.user.pk}}">
+              <i class="fa-solid fa-bookmark"></i>
+            </button>
+            {% else %}
+            <button type="submit" class="btn-wrap like_btn" id="bookmark_{{request.user.pk}}">
+              <i class="fa-regular fa-bookmark"></i>
+            </button>
+            {% endif %}
+          </form>
+          
         </div>
       </div>
       <div class="movie-overview">
