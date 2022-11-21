@@ -3,7 +3,7 @@ const qLength = 17
 const ENERGY = 5  //(E,I)
 const PERCEPTION = 9 //(N,S)
 const DECISION = 13  // (F,T)
-const LIFESTYLE = 17 //(P,J)
+const LIFESTYLE = 17 //(J,p)
 
 // 길이가 16인 배열 만들기 
 let answerList = [0]
