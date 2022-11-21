@@ -38,20 +38,50 @@ def detail(request, pk):
     return render(request,'movies/detail.html',context)
 
 # 댓글 생성하는 함수
+
+# def comments_create(request, pk):
+#     if request.user.is_authenticated:
+#         movie = Movie.objects.get(pk=pk)
+#         comment_form = CommentForm(request.POST)
+        
+#         if comment_form.is_valid():
+#             comment = comment_form.save(commit=False)
+#             comment.movie = movie
+#             comment.user = request.user
+#             comment.save()
+        
+#         return redirect('movies:detail',movie.pk)
+#     return redirect('accounts:login')
+# 댓글 생성하는 함수
 @require_POST
 def comments_create(request, pk):
     if request.user.is_authenticated:
         movie = Movie.objects.get(pk=pk)
         comment_form = CommentForm(request.POST)
+        create_flag = False
         
         if comment_form.is_valid():
             comment = comment_form.save(commit=False)
             comment.movie = movie
             comment.user = request.user
+            
+            create_flag = True
+            # comment_wrote= json.dumps(comment)
             comment.save()
+            print(comment.content)
         
-        return redirect('movies:detail',movie.pk)
+        context= {
+            'create_flag': create_flag,
+            'comment_id' : comment.id,
+            'comment_content':comment.content,
+            'comment_movie_rate':comment.movie_rate,
+            'movie_id' : movie.id,
+            }
+        return JsonResponse(context)
+        # return redirect('movies:detail',movie.pk)
     return redirect('accounts:login')
+
+
 
 
 # 댓글 삭제
