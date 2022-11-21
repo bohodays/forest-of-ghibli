@@ -1,9 +1,9 @@
 // 전체 질문 길이 ( 추후에 질문 개수 변화가 생길 수도 있어서)
 const qLength = 17
-const ENERGY = 5  //(I,E)
-const PERCEPTION = 9 //(S,N)
-const DECISION = 13  // (T,F)
-const LIFESTYLE = 17 //(J,P)
+const ENERGY = 5  //(E,I)
+const PERCEPTION = 9 //(N,S)
+const DECISION = 13  // (F,T)
+const LIFESTYLE = 17 //(P,J)
 
 // 길이가 16인 배열 만들기 
 let answerList = [0]
@@ -28,27 +28,27 @@ const getMBTI = () => {
   }
   let gbti = ''
   if (energy <= 10){
-    gbti += 'I'
-  }else{
     gbti += 'E'
+  }else{
+    gbti += 'I'
   }
 
   if (perception <= 10){
-    gbti += 'S'
-  }else{
     gbti += 'N'
+  }else{
+    gbti += 'S'
   }
 
   if (decision <= 10){
-    gbti += 'T'
-  }else{
     gbti += 'F'
+  }else{
+    gbti += 'T'
   }
 
   if (lifestyle <= 10){
-    gbti += 'P'
-  }else{
     gbti += 'J'
+  }else{
+    gbti += 'P'
   }
 
   console.log(gbti);

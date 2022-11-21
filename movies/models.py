@@ -18,6 +18,7 @@ class Movie(models.Model):
     director = models.TextField()
     backgroundImg = models.TextField()
     wise_saying = models.TextField()
+    bookmark = models.ManyToManyField(settings.AUTH_USER_MODEL, blank = True, related_name='bookmark_movie')
 
     def __str__(self):
         return f'{ self.title }'

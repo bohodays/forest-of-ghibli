@@ -103,7 +103,7 @@ def comments_likes(request, movie_pk, comment_pk):
     if request.user.is_authenticated:
 
         comment = Comment.objects.get(pk=comment_pk)
-
+        # print(comment.like_users)
         if comment.like_users.filter(pk=request.user.pk).exists():
             comment.like_users.remove(request.user)
             is_liked=False
@@ -217,3 +217,29 @@ def GBTI_result(request, user_pk):
             'movie': movie,
         }
     return render(request, 'movies/GBTI_result.html', context)
+
+
+# 북마크
+# bookmark 테이블에 있는 영화 id와 일치하는 영화의 제목과 포스터를 불러오면됨.
+def bookmark(request,movie_pk,user_pk):
+    if request.user.is_authenticated:
+            
+        user =  get_user_model()
+        movie = Movie.objects.get(pk=movie_pk)
+
+
+        if movie.bookmark.filter(pk=request.user.pk).exists():
+            movie.bookmark.remove(request.user)
+            bookmarked = False
+            # 북마크 제거 사용자 데이터에서 해당 영화 제목 , 포스터 지우기
+            # user.movie_title.remove()
+        else:
+            movie.bookmark.add(request.user)
+            bookmarked = True
+            # 북마크 추가 사용자 데이터에서 해당 영화 제목 , 포스터 추가
+        context = {
+            'bookmarked': bookmarked,
+        }
+        return JsonResponse(context)
+    return redirect('movies:main')
+

@@ -1,0 +1,37 @@
+{% extends 'accounts_base.html' %}
+
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href=" {% static 'accounts/css/profile.css' %}">
+{% endblock css %}
+
+{% block js %}
+  <script src="{% static 'accounts/js/profile.js' %}" defer></script>
+{% endblock js %}
+
+
+{% block background %}
+  <style>
+    
+  </style>
+{% endblock  %}
+
+
+{% block content %}
+    <p>닉네임:  {{ request.user.nickName}}</p>
+    <p>GBTI: {{ request.user.GBTI}}</p>
+    <p>quiz: </p>
+    {% for movie in bookmark_movie  %}
+        {{movie.title}}
+        <img class="movie-poster__img" src="https://image.tmdb.org/t/p/w500{{movie.poster}}" alt="">
+        
+    {% endfor %}
+    
+    <p></p>
+    
+    
+    
+    
+{% endblock content %}
+

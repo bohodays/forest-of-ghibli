@@ -12,14 +12,14 @@ forms.forEach((form) => {
 
     const movieId = event.target.dataset.movieId
     const commentId = event.target.dataset.commentId
-
+    console.log(9999999999999,commentId);
     axios({
       method: 'post',
       url: `http://127.0.0.1:8000/movies/${movieId}/comments/${commentId}/likes/`,
       headers: {'X-CSRFToken': csrftoken,},
     })
     .then((response) => {
-      console.log(response.data.like_count);
+      // console.log(response.data.like_count);
       // response 값을 html의 태그 하나 가져와서 그 값에 넣어 줘야함.
       const likeCount = document.querySelector(`#like_${commentId}`)
       likeCount.innerHTML = response.data.like_count
@@ -64,9 +64,52 @@ axios({
   })
 })
   
-  
-  // 유튭 예고편
-  const URL = 'https://www.googleapis.com/youtube/v3/search';
+
+// 북마크하기
+const bookmarkForms = document.querySelectorAll('.bookmark-forms')
+bookmarkForms.forEach((b_form) => {
+  console.log(11111111111111);
+  b_form.addEventListener('submit', function (event) {
+    event.preventDefault()
+    
+    const movieId = event.target.dataset.movieId
+    const userId = event.target.dataset.userId
+    console.log(movieId);
+
+    const bookmarkTitle = document.getElementsByClassName('info__title')[0].innerHTML
+    const bookmarkPoster = document.getElementsByClassName('movie-poster__img')[0].src
+    // console.log(bookmarkPoster);
+    let data = new FormData()
+    data.append('movie_title',bookmarkTitle)
+    data.append('movie_poster',bookmarkPoster)
+    // console.log(data);
+    axios({
+      method: 'post',
+      url: `http://127.0.0.1:8000/movies/${movieId}/bookmark/${userId}/`,
+      headers: {'X-CSRFToken': csrftoken,},
+      data : data,
+    })
+    .then((response) => {
+      const isbookmarked = response.data.bookmarked
+      
+      const bookmarkBtn = document.querySelector(`#bookmark_${userId}`)
+      if (isbookmarked === true) {
+        bookmarkBtn.innerHTML='<i class="fa-solid fa-bookmark"></i>'
+      } else {
+        bookmarkBtn.innerHTML='<i class="fa-regular fa-bookmark"></i>'
+      }
+    })
+    .catch((error) => {
+      console.log('??',error.response)
+    })
+
+  })
+})
+
+
+
+// 유튭 예고편
+const URL = 'https://www.googleapis.com/youtube/v3/search';
 const API_KEY = 'AIzaSyBzR_HnOKtGGjgBZ8XYwFI8gbA4MuDONWU';
 // 서브키
 // AIzaSyCN4Qzq5muVRcWFdtszQlpJOKVytuYOumI
