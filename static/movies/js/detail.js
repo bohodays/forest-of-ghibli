@@ -68,21 +68,12 @@ axios({
 // 북마크하기
 const bookmarkForms = document.querySelectorAll('.bookmark-forms')
 bookmarkForms.forEach((b_form) => {
-  console.log(11111111111111);
   b_form.addEventListener('submit', function (event) {
     event.preventDefault()
     
     const movieId = event.target.dataset.movieId
     const userId = event.target.dataset.userId
-    console.log(movieId);
 
-    const bookmarkTitle = document.getElementsByClassName('info__title')[0].innerHTML
-    const bookmarkPoster = document.getElementsByClassName('movie-poster__img')[0].src
-    // console.log(bookmarkPoster);
-    let data = new FormData()
-    data.append('movie_title',bookmarkTitle)
-    data.append('movie_poster',bookmarkPoster)
-    // console.log(data);
     axios({
       method: 'post',
       url: `http://127.0.0.1:8000/movies/${movieId}/bookmark/${userId}/`,

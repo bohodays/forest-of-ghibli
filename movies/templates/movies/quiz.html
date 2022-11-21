@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block css %}
+  <link rel='stylesheet' href="{% static 'movies/css/main.css' %}"/>
+  <link rel='stylesheet' href="{% static 'movies/css/quiz.css' %}"/>
+{% endblock css %}
+
+{% block js %}
+  <script src="{% static 'movies/js/main.js' %}" defer></script>
+  <script src="{% static 'movies/js/quiz.js' %}" defer></script>
+{% endblock js %}
+
+{% block content %}
+  <section>
+    <div class="quiz-wrap">
+      {% comment %} 인트로 {% endcomment %}
+      <div class="intro">
+        <h1 class="quiz-intro-title">지브리 퀴즈</h1>
+        <div class="d-flex justify-content-center align-items-center quiz__description">
+          <p>지브리 퀴즈는 총 8단계로 구성되어있습니다. 정답 유무에 상관없이 8단계까지 진행 가능하며, 8단계 문제에서
+            결과보기를 클릭하면 결과를 확인하실 수 있습니다. 퀴즈를 풀 준비가 되었다면 아래의 퀴즈 풀기 버튼을 눌러 {{ person.nickName }} 님의 지브리력을 보여주시길 바랍니다.
+          </p>
+        </div>
+        <p class="caution-message"></p>
+        <button class="next move-to-1">
+          퀴즈 풀기
+        </button>
+      </div>
+
+    
+      {% comment %} 마지막 8단계 문제 {% endcomment %}
+      <div class="no8">
+        <h4 class="quiz__title no8__title">
+          8. <센과 치히로의 행방불명>에서 '하쿠'의 진짜 이름은 무엇일까요?
+        </h4>
+        <img class="quiz__img no8__img" src="http://2.bp.blogspot.com/-Y29JDvKWr3U/Ufeu0iQZgUI/AAAAAAAAAu8/9ww3jCQigGs/s1600/13354403741.jpg" alt="">
+        <div class="numbers">
+          <div class="number-wrap d-flex">
+            <button class="number last" data-value="1">
+              1
+            </button>
+            <p> 나츠하야미 코하쿠 </p>
+          </div>
+          <div class="number-wrap d-flex">
+            <button class="number last" data-value="2">
+              2
+            </button>
+            <p> 나츠하야미 큐하쿠 </p>
+          </div>
+          <div class="number-wrap d-flex">
+            <button class="number last" data-value="3">
+              3
+            </button>
+            <p> 니기하야미 쿠하쿠누시 </p>
+          </div>
+          <div class="number-wrap d-flex">
+            <button class="number last" data-value="4">
+              4
+            </button>
+            <p> 니기하야미 코하쿠누시 </p>
+          </div>
+          <div class="number-wrap d-flex">
+            <button class="number last" data-value="5">
+              5
+            </button>
+            <p> 니기하야미 큐하쿠노시 </p>
+          </div>
+        </div>
+
+        <form class="quiz_form" action="{% url 'movies:quiz_create' person.pk %}" method="POST">
+          {% csrf_token %}
+          {{ quiz_form }}
+          <div class="btn-wrap">
+            <p class="caution-message"></p>
+            <button class="submit" type="submit">
+                결과 보기
+            </button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+
+
+
+  </section>
+{% endblock content %}

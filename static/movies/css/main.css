@@ -159,8 +159,16 @@ a:hover {
 }
 
 .profile__container {
+  position: relative;
+  color: #ffffff;
   display: flex;
   align-items: center;
+  cursor: pointer;
+  transition: all 300ms ease;
+}
+
+.profile__container:hover {
+  color: #77aaff;
 }
 
 .default-profile-img {
@@ -171,11 +179,26 @@ a:hover {
 }
 
 .user__info {
+  position: relative;
   padding: 0;
   padding-right: 8px;
   display: flex;
   align-items: center;
   justify-content: end;
+}
+
+.profile-info-wrap {
+  width: 120px;
+  position: absolute;
+  top: 44px;
+  left: 27px;
+  display: flex;
+  flex-direction: column;
+  background-color: #3b3a3a;
+  font-size: 14px;
+  padding: 10px;
+  border-radius: 4px;
+  transition: all 300ms ease;
 }
 
 .img__container {
@@ -202,6 +225,12 @@ a:hover {
 
 .recommend-search {
   margin-bottom: 0px;
+  cursor: pointer;
+  transition: all 300ms ease;
+}
+
+.recommend-search:hover {
+  color: #77aaff;;
 }
 
 /* main page */

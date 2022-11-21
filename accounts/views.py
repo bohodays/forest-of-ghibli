@@ -3,14 +3,22 @@ from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth import get_user_model
+<<<<<<< HEAD
+=======
 
+>>>>>>> 393215e34583449c3f219875f8de46a38224f706
 from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST, require_http_methods
 from .forms import CustomUserCreationForm, CustomUserChangeForm
+<<<<<<< HEAD
+from movies.models import Character
+
+=======
 from django.http.response import JsonResponse
 from movies.models import Movie
 import json
+>>>>>>> 393215e34583449c3f219875f8de46a38224f706
 # Create your views here.
 def login(request):
     if request.user.is_authenticated:
@@ -67,7 +75,6 @@ def update(request):
     context = {
         'form':form,
     }
-    # print('??????????????',form)
     return render(request, 'accounts/update.html',context)
 
 
@@ -85,6 +92,28 @@ def change_password(request):
     return render(request, 'accounts/change_password.html',context)
 
 
+<<<<<<< HEAD
+# 프로필 페이지
+def profile(request, username):
+    User = get_user_model()
+    person = User.objects.get(username=username)
+    if person.GBTI:
+        character = Character.objects.get(MBTI=person.GBTI)
+        context = {
+            'person': person,
+            'character': character,
+        }
+        return render(request, 'accounts/profile.html', context)
+    else:
+        context = {
+            'person': person,
+        }
+        return render(request, 'accounts/profile.html', context)
+
+
+    
+
+=======
 def profile(request):
     
     movies = Movie.objects.all()
@@ -105,3 +134,4 @@ def profile(request):
     'bookmark_movie':bookmark_movie
     }
     return render(request, 'accounts/profile.html',context)
+>>>>>>> 393215e34583449c3f219875f8de46a38224f706

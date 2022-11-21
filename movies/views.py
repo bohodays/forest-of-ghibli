@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_list_or_404,redirect
 from django.contrib.auth import get_user_model
 from .models import Movie, Comment, Director, Character
-from .forms import CommentForm, GBTIForm
+from .forms import CommentForm, GBTIForm, quizForm
 
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
@@ -219,6 +219,39 @@ def GBTI_result(request, user_pk):
     return render(request, 'movies/GBTI_result.html', context)
 
 
+<<<<<<< HEAD
+def quiz(request, user_pk):
+    User = get_user_model()
+    person = User.objects.get(pk=user_pk)
+    quiz_form = quizForm(instance=person)
+    context = {
+        'quiz_form': quiz_form,
+        'person': person,
+    }
+    return render(request, 'movies/quiz.html', context)
+
+
+def quiz_create(request, user_pk):
+    if request.user.is_authenticated:
+        User = get_user_model()
+        person = User.objects.get(pk=user_pk)
+        quiz_form = quizForm(data=request.POST, instance=person)
+        if quiz_form.is_valid():
+            quiz_form.save()
+            return redirect('movies:quiz_result', person.pk)
+    return redirect('movies:main')
+
+
+def quiz_result(request, user_pk):
+    if request.user.is_authenticated:
+        User = get_user_model()
+        person = User.objects.get(pk=user_pk)
+        context = {
+            'person': person,
+        }
+        return render(request, 'movies/quiz_result.html', context)
+
+=======
 # 북마크
 # bookmark 테이블에 있는 영화 id와 일치하는 영화의 제목과 포스터를 불러오면됨.
 def bookmark(request,movie_pk,user_pk):
@@ -243,3 +276,4 @@ def bookmark(request,movie_pk,user_pk):
         return JsonResponse(context)
     return redirect('movies:main')
 
+>>>>>>> 393215e34583449c3f219875f8de46a38224f706

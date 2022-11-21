@@ -44,9 +44,13 @@
       {% else %}
         <a class="menu__item menu-gbti" href="{% url 'accounts:login' %}">GBTI</a>
       {% endif %}
-      <a class="menu__item menu-quiz" href="">QUIZ</a>
+      {% if request.user.is_authenticated %}
+        <a class="menu__item menu-quiz" href="{% url 'movies:quiz' user.pk %}">QUIZ</a>
+      {% else %}
+        <a class="menu__item menu-quiz" href="{% url 'accounts:login' %}">QUIZ</a>
+      {% endif %}
       <i class="fa-solid fa-magnifying-glass"></i>
-      <input class="search__input menu__hidden" type="text" placeholder="지브리 영화를 검색해보세요.">
+      <input class="search__input menu__hidden" type="text" placeholder="지브리 영화를 검색해보세요." spellcheck="false">
       <div class="recommend-search-wrap">
         {% comment %} <p class="recommend-search">하울의 움직이는 성</p> {% endcomment %}
       </div>
@@ -57,7 +61,7 @@
     <div class="user__info col-4">
       {% if request.user.is_authenticated %}
 
-        <a class="info__item profile__container" href="{% url 'accounts:update' %}">
+        <div class="info__item profile__container">
           <div class="img__container">
             {% if user.profileImg %}
               <img class="default-profile-img" src="{{user.profileImg.url}}" alt="profile image">
@@ -66,9 +70,11 @@
             {% endif %}
           </div>
           {{ user.nickName }}
-        </a>
-
-        {% comment %} <a href="{% url 'accounts:update' %}">회원정보 수정</a> {% endcomment %}
+          <div class="profile-info-wrap invisible">
+            <a href="{% url 'accounts:profile' user %}">내 정보 보기</a>
+            <a href="{% url 'accounts:update' %}">프로필 변경하기</a>
+          </div>
+        </div>
 
         
         <form class="logout-form" action="{% url 'accounts:logout' %}" method="POST">

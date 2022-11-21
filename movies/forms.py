@@ -15,3 +15,10 @@ class GBTIForm(forms.ModelForm):
         model = get_user_model()
         fields = ('GBTI',)
         # fields = '__all__'
+
+
+class quizForm(forms.ModelForm):
+
+    class Meta:
+        model = get_user_model()
+        fields = ('quiz_rank',)
