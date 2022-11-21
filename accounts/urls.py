@@ -10,5 +10,9 @@ urlpatterns = [
     path('delete/',views.delete, name='delete'),
     path('update/',views.update, name='update'),
     path('password/',views.change_password, name='change_password'),
+<<<<<<< HEAD
     path('profile/<str:username>/', views.profile, name='profile'),
+=======
+    path('profile/',views.profile, name='profile'),
+>>>>>>> 393215e34583449c3f219875f8de46a38224f706
 ]

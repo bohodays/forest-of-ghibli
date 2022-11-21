@@ -3,12 +3,22 @@ from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth import get_user_model
+<<<<<<< HEAD
+=======
+
+>>>>>>> 393215e34583449c3f219875f8de46a38224f706
 from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST, require_http_methods
 from .forms import CustomUserCreationForm, CustomUserChangeForm
+<<<<<<< HEAD
 from movies.models import Character
 
+=======
+from django.http.response import JsonResponse
+from movies.models import Movie
+import json
+>>>>>>> 393215e34583449c3f219875f8de46a38224f706
 # Create your views here.
 def login(request):
     if request.user.is_authenticated:
@@ -82,6 +92,7 @@ def change_password(request):
     return render(request, 'accounts/change_password.html',context)
 
 
+<<<<<<< HEAD
 # 프로필 페이지
 def profile(request, username):
     User = get_user_model()
@@ -102,3 +113,25 @@ def profile(request, username):
 
     
 
+=======
+def profile(request):
+    
+    movies = Movie.objects.all()
+    # print(type(movies))
+    bookmark_movie = []
+    index = 0
+    for movie in movies:
+        index += 1
+        if movie.bookmark.filter(bookmark_movie= movie.pk).exists() and movie.bookmark.filter(id = request.user.pk).exists():
+            # print(type(movie.title))
+            movie_dic = {
+                'title' : movie.title,
+                'poster': movie.poster_path,
+                 }
+            # print(json.dumps(movie_dic))
+            bookmark_movie.append(movie_dic)
+    context = {
+    'bookmark_movie':bookmark_movie
+    }
+    return render(request, 'accounts/profile.html',context)
+>>>>>>> 393215e34583449c3f219875f8de46a38224f706
