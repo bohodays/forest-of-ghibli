@@ -33,6 +33,10 @@ input {
   background-color: transparent;
 }
 
+ul {
+  list-style: none;
+}
+
 .signup {
   width: 380px;
   padding: 10px 0px;
