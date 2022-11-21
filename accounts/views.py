@@ -94,10 +94,11 @@ def profile(request, username):
     for movie in movies:
         if movie.bookmark.filter(bookmark_movie= movie.pk).exists() and movie.bookmark.filter(id = request.user.pk).exists():
             movie_dic = {
+                'pk': movie.pk,
                 'title' : movie.title,
                 'overview': movie.overview,
                 'release_date': movie.release_date,
-                'poster': movie.poster_path,
+                'poster_path': movie.poster_path,
                 'vote_average': movie.vote_average,
                 'director': movie.director,
                 'backgroundImg': movie.backgroundImg,

@@ -84,9 +84,9 @@ bookmarkForms.forEach((b_form) => {
       
       const bookmarkBtn = document.querySelector(`#bookmark_${userId}`)
       if (isbookmarked === true) {
-        bookmarkBtn.innerHTML='<i class="fa-solid fa-bookmark"></i>'
+        bookmarkBtn.innerHTML='<i class="fa-solid fa-bookmark bookmark full-bookmark"></i>'
       } else {
-        bookmarkBtn.innerHTML='<i class="fa-regular fa-bookmark"></i>'
+        bookmarkBtn.innerHTML='<i class="fa-regular fa-bookmark bookmark empty-bookmark"></i>'
       }
     })
     .catch((error) => {

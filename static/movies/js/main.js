@@ -110,12 +110,22 @@ searchInput.addEventListener('keyup', (event) => {
     // 유저가 입력한 영화 제목의 지브리 영화가 있다면 그 영화의 디테일 페이지로 이동
     if (movieCode.includes(searchInput.value)) {
       window.location.href = `${deployURL}movies/${movieCode.indexOf(searchInput.value) + 1}/`
-    // 유저가 입력한 영화 제목의 지브리 영화가 없다면 모달 실행
+      // 유저가 입력한 영화 제목의 지브리 영화가 없다면 모달 실행
     } else {
-      const cc = document.querySelector('.cc');
-      const modalContent = document.querySelector('.modal-body');
-      modalContent.innerText = `"${searchInput.value}" 은/는 지브리 영화가 아닙니다. 확인 부탁드립니다.`;
-      cc.click();
+      let flag = false;
+      for (let i = 0; i < movieCode.length; i++) {
+        if (movieCode[i].includes(searchInput.value)) {
+          window.location.href = `${deployURL}movies/${movieCode.indexOf(movieCode[i]) + 1}/`
+          flag = true;
+          break;
+        }
+      }
+      if (!flag) {
+        const cc = document.querySelector('.cc');
+        const modalContent = document.querySelector('.modal-body');
+        modalContent.innerText = `"${searchInput.value}" 은/는 지브리 영화가 아닙니다. 확인 부탁드립니다.`;
+        cc.click();
+      }
     }
 
   // 백스페이스 키를 눌렀을 경우 추천 검색어를 위한 배열 초기화
@@ -127,11 +137,8 @@ searchInput.addEventListener('keyup', (event) => {
     if (!recommendWrap.firstElementChild) {
       // 유저가 2글자 이상 입력한 순간부터 지브리 영화를 순회하면서 유저가 입력한 지브리 영화가 있는지 확인
       movieCode.forEach((movie) => {
-        for (let i=2; i<20; i++) {
-          // 유저가 입력한 지브리 영화가 있다면 추천 검색어를 위한 집합에 추가
-          if (movie.slice(0,i) === searchInput.value) {
-            searchItems.add(movie)
-          }
+        if (searchInput.value.length >= 2 && movie.includes(searchInput.value)) {
+          searchItems.add(movie)
         }
       })
     }
@@ -149,7 +156,6 @@ searchInput.addEventListener('keyup', (event) => {
       const recommendSearch = document.querySelectorAll('.recommend-search');
       recommendSearch.forEach((item) => {
         item.addEventListener('click', (event) => {
-          console.log(event.target);
           window.location.href = `${deployURL}movies/${movieCode.indexOf(event.target.innerText) + 1}/`
         })
       })
@@ -159,7 +165,6 @@ searchInput.addEventListener('keyup', (event) => {
     recommendWrap.style.padding = '0px';
     recommendWrap.innerHTML = '';
   }
-
 })
 
 
