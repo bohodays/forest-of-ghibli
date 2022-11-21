@@ -78,7 +78,6 @@ bookmarkForms.forEach((b_form) => {
       method: 'post',
       url: `http://127.0.0.1:8000/movies/${movieId}/bookmark/${userId}/`,
       headers: {'X-CSRFToken': csrftoken,},
-      data : data,
     })
     .then((response) => {
       const isbookmarked = response.data.bookmarked

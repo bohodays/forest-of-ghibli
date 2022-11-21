@@ -49,6 +49,11 @@
       </div>
       <div class="bookmark">
         <h1>북마크</h1>
+        {% for movie in bookmark_movies %}
+          <div>
+            {{ movie.title }}
+          </div>
+        {% endfor %}
       </div>
     </div>
     <div>

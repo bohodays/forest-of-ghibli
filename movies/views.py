@@ -219,7 +219,6 @@ def GBTI_result(request, user_pk):
     return render(request, 'movies/GBTI_result.html', context)
 
 
-<<<<<<< HEAD
 def quiz(request, user_pk):
     User = get_user_model()
     person = User.objects.get(pk=user_pk)
@@ -251,7 +250,6 @@ def quiz_result(request, user_pk):
         }
         return render(request, 'movies/quiz_result.html', context)
 
-=======
 # 북마크
 # bookmark 테이블에 있는 영화 id와 일치하는 영화의 제목과 포스터를 불러오면됨.
 def bookmark(request,movie_pk,user_pk):
@@ -276,4 +274,3 @@ def bookmark(request,movie_pk,user_pk):
         return JsonResponse(context)
     return redirect('movies:main')
 
->>>>>>> 393215e34583449c3f219875f8de46a38224f706
