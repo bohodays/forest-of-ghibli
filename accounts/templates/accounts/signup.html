@@ -41,11 +41,15 @@
           사이트 이용시 사용될 닉네임을 입력해주세요.
         </p>
         {% if form.nickName.errors %}
-          <ul>
+          <div>
             {% for error in form.nickName.errors %}
-              <li>{{ error }}</li>
+              <p class="nickname__error">{{ error }}</p>
             {% endfor %}
-          </ul>
+          </div>
+        {% else %}
+          <div>
+            <p class="nickname__error"></p>
+          </div>
         {% endif %}
       </div>
       <div class="item username">
@@ -63,11 +67,11 @@
           로그인 시 사용할 아이디를 입력해주세요.
         </p>
         {% if form.username.errors %}
-          <ul>
+          <div>
             {% for error in form.username.errors %}
-              <li>{{ error }}</li>
+              <p class="username__error">{{ error }}</p>
             {% endfor %}
-          </ul>
+          </div>
         {% endif %}
       </div>
       <div class="item password1">
@@ -92,6 +96,17 @@
             <li class="exclamation__coment">숫자로만 이루어진 비밀번호는 사용할 수 없습니다.</li>
           </ul>
         </p>
+        {% if form.password1.errors %}
+          <div>
+            {% for error in form.password1.errors %}
+              <p class="password1__error">{{ error }}</p>
+            {% endfor %}
+          </div>
+        {% else %}
+          <div>
+            <p class="password1__error"></p>
+          </div>
+        {% endif %}
       </div>
       <div class="item password2">
         <div class="item__label password2__label">
@@ -107,6 +122,17 @@
         <p class="form__info password__same">
           {% comment %} 비밀번호가 일치하지 않습니다. {% endcomment %}
         </p>
+        {% if form.password2.errors %}
+          <div>
+            {% for error in form.password2.errors %}
+              <p class="password2__error">{{ error }}</p>
+            {% endfor %}
+          </div>
+        {% else %}
+          <div>
+            <p class="password2__error"></p>
+          </div>
+        {% endif %}
       </div>
       <div class="item profile-img">
         <div class="item__label profile-img__label">

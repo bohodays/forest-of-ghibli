@@ -2,6 +2,10 @@
   box-sizing: border-box;
 }
 
+/* p {
+  margin: 0px;
+} */
+
 @font-face {
   font-family: 'GmarketSansMedium';
   src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
@@ -188,4 +192,44 @@ ul {
 .btn-check:checked+.btn, .btn:active, .btn.show, .btn:first-child:active, :not(.btn-check)+.btn:active {
   background-color: rgb(146 96 58);
   
+}
+
+.nickname__error {
+  display: none;
+  font-size: 12px;
+  text-align: center;
+  transform: translateX(-73px);
+  margin-top: 4px;
+  color: #dc3545;;
+}
+
+.username__error {
+  display: none;
+  font-size: 12px;
+  text-align: center;
+  transform: translateX(-73px);
+  margin-top: 4px;
+  color: #dc3545;;
+}
+
+.password1__error {
+  display: none;
+  font-size: 12px;
+  text-align: center;
+  transform: translateX(-73px);
+  margin-top: 4px;
+  color: #dc3545;;
+}
+
+.password2__error {
+  display: none;
+  font-size: 12px;
+  text-align: center;
+  transform: translateX(-73px);
+  margin-top: 4px;
+  color: #dc3545;;
+}
+
+.exclamation__comments + p {
+  display: none;
 }
