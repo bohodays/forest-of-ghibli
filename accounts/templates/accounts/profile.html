@@ -49,14 +49,26 @@
       </div>
       <div class="bookmark">
         <h1>북마크</h1>
-        {% for movie in bookmark_movies %}
-          <div>
-            {{ movie.title }}
-          </div>
-        {% endfor %}
+        <div class="bookmark-container">
+          {% for movie in bookmark_movies %}
+            <div class="movie" data-id={{ movie.pk }}>
+              <div class="shadow"></div>
+              <a class="movie-wrap" href="{% url 'movies:detail' movie.pk %}">
+                <img class="movie__poster" src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}" alt="">
+                <div class="movie__description">
+                  <h3 class="movie__title">{{ movie.title }}</h3>
+                  <p>{{ movie.director }}</p>
+                  <p>{{ movie.release_date }}</p>
+                </div>
+              </a>
+            </div>
+          {% endfor %}
+        </div>
       </div>
     </div>
     <div>
     </div>
   </section>
 {% endblock content %}
+
+

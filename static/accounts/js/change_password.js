@@ -88,3 +88,16 @@ newPassword2Input.addEventListener('keyup', () => {
     }
   }
 })
+
+const exclamationImg = document.querySelector('.exclamation__img');
+const exclamationComments = document.querySelector('.comments__visible');
+
+
+exclamationImg.addEventListener('mouseenter', () => {
+  exclamationComments.classList.remove('comments__visible');
+})
+
+
+exclamationImg.addEventListener('mouseout', () => {
+  exclamationComments.classList.add('comments__visible');
+})

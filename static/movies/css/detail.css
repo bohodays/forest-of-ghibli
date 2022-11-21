@@ -247,3 +247,11 @@ main {
 .menu-films {
   color: #77aaff;
 }
+
+.bookmark {
+  font-size: 22px;
+}
+
+.full-bookmark {
+  color: #77aaff;
+}
