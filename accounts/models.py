@@ -7,7 +7,7 @@ def accounts_image_path(instance, filename):
     return f'accounts/{filename}'
 # Create your models here.
 class User(AbstractUser):
-    nickName = models.CharField(max_length =20, unique = True, blank=False)
+    nickName = models.CharField(max_length =10, unique = True, blank=False)
     profileImg = models.ImageField(blank=True, upload_to=accounts_image_path)
     GBTI = models.TextField(blank=True)
     quiz_rank = models.TextField(blank=True)

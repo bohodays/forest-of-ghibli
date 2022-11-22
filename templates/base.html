@@ -23,7 +23,7 @@
   <title>지브리의 숲</title>
   {% block background %}
   {% endblock background %}
-   
+
 </head>
 <body>
 
@@ -55,11 +55,8 @@
       <i class="fa-solid fa-magnifying-glass"></i>
       <input class="search__input menu__hidden" type="text" placeholder="지브리 영화를 검색해보세요." spellcheck="false">
       <div class="recommend-search-wrap">
-        {% comment %} <p class="recommend-search">하울의 움직이는 성</p> {% endcomment %}
       </div>
       <i class="fa-solid fa-xmark menu__hidden"></i>
-      {% comment %} <a href=""> {% endcomment %}
-      {% comment %} </a> {% endcomment %}
     </div>
     <div class="user__info col-4">
       {% if request.user.is_authenticated %}
@@ -72,7 +69,9 @@
               <img class="default-profile-img" src="{% static 'accounts/imgs/default_profile_img.jpg' %}" alt="defaul-profile-img">
             {% endif %}
           </div>
-          {{ user.nickName }}
+          <div class="user-nickname-wrap">
+            {{ user.nickName }}
+          </div>
           <div class="profile-info-wrap invisible">
             <a href="{% url 'accounts:profile' user %}">내 정보 보기</a>
             <a href="{% url 'accounts:update' %}">프로필 변경하기</a>
