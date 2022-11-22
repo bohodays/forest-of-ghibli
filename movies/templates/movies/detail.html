@@ -89,20 +89,6 @@
           <input class="comment__input" type="submit" value="리뷰 남기기">
         </div>
       </form>
-        {% comment %} <form class="form-comment" action="{% url 'movies:comments_create' movie.pk %}" method="POST">
-          {% csrf_token %}
-          {{comment_form.movie_rate}}
-          <div class="nickname-wrap">
-            <i class="fas fa-user"></i>
-            {{ user.nickName }}
-          </div>
-          {{comment_form.content}}
-          <p class="content__count">/ 500</p>
-          <div class="d-flex justify-content-end">
-            <input class="comment__input" type="submit" value="리뷰 남기기">
-          </div>
-        </form>
-     {% endcomment %}
 
       {% comment %}  댓글 목록  {% endcomment %}
       <div class="user-comments__wrap">
@@ -137,7 +123,11 @@
                 {% comment %} <input type="submit" value="좋아요" id="like-{{comment.pk}}"> {% endcomment %}
                 {% endif %}
               </form>
-              <p class="likes__count" id="like_{{ comment.pk }}">{{ comment.like_users.all|length}}</p>
+              {% if comment.like_users.all|length != 0 %}
+                <p class="likes__count" id="like_{{ comment.pk }}">{{ comment.like_users.all|length}}</p>
+              {% else %}
+                <p class="likes__count" id="like_{{ comment.pk }}"></p>
+              {% endif %}
             
             
               {% comment %} 삭제 비동기 {% endcomment %}
@@ -173,6 +163,7 @@ const createForms = document.querySelectorAll('.form-comment')
 createForms.forEach((createForm)=>{
   createForm.addEventListener('submit',event =>{
     event.preventDefault()
+    
     // 해당 영화의 pk 값 저장
     const movieId = event.target.dataset.movieId
   // 보내줄 데이터 가져오기
@@ -181,6 +172,9 @@ createForms.forEach((createForm)=>{
   const user = document.querySelector('.nickname-wrap');
   const userNickName = user.innerText
   
+  const formInput = document.querySelector('#id_content');
+  formInput.value = '';
+
   let data = new FormData()
   data.append("content", content)
   data.append("movie_rate",movieRate)
@@ -209,6 +203,7 @@ createForms.forEach((createForm)=>{
       const reviewContentSummary = document.createElement('p')
       reviewContentSummary.innerText=responseContent
       reviewContentSummary.classList.add('comment__content', 'summary')
+      reviewContentSummary.style.cursor = 'default'
       const userCommentsWrap = document.querySelector('.user-comments__wrap')
       const userComments = document.createElement('div')
       // 댓글 목록과 같은 폼 만들어주기
@@ -243,6 +238,7 @@ createForms.forEach((createForm)=>{
       const functions = document.createElement('div')
       functions.classList.add('like_delete_edit-wrap')
       const likeForm = document.createElement('form')
+      likeForm.style.height = '36px';
       likeForm.classList.add('like-form')
       likeForm.setAttribute('data-comment-id',responseCommentId)
       likeForm.setAttribute('data-movie-id',responseMovieId)
@@ -305,8 +301,6 @@ createForms.forEach((createForm)=>{
             const movieId = responseMovieId
             const commentId = responseCommentId
             const newCommentId = event.target.dataset.commentId
-            //console.log('new', newCommentId)
-            console.log('from like',commentId)
             if( commentId === Number(newCommentId)){
 
               axios({
@@ -327,7 +321,12 @@ createForms.forEach((createForm)=>{
               
               likeCount.setAttribute('id',`#like_${commentId}`)
               likeCount.classList.add('likes__count')
-              likeCount.innerHTML = response.data.like_count
+              likeCount.style.top = '6px';
+              if (response.data.like_count !== 0) {
+                likeCount.innerHTML = response.data.like_count;
+              } else {
+                likeCount.innerHTML = '';
+              }
               })
               .catch((error) => {
                 console.log('like error',error.response)
@@ -346,8 +345,6 @@ createForms.forEach((createForm)=>{
           const movieId = responseMovieId
           const commentId = responseCommentId
           const newCommentId = event.target.dataset.deleteId
-          console.log('newDel', newCommentId)
-          console.log(commentId)
           if (Number(newCommentId) === commentId){
             axios({
               method: 'post',
@@ -357,7 +354,6 @@ createForms.forEach((createForm)=>{
             .then((response) => {
                 // 버튼을 누른 댓글
               const userForm = event.target.parentNode.parentNode.parentNode.parentNode;
-              console.log(userForm)
               userForm.remove();
             })
                 .catch((error) => {

@@ -218,11 +218,12 @@ main {
   position: absolute;
   bottom: 50px;
   right: 20px;
+  margin-bottom: 0px;
 }
 
 .likes__count {
   position: absolute;
-  top: 5px;
+  top: 6px;
   left: 40px;
 }
 
