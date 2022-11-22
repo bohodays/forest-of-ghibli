@@ -78,7 +78,7 @@
       <h4 class="review emphasis">리뷰</h4>
       <form class="form-comment" data-movie-id="{{ movie.pk }}" id='comment-form' >
         {% csrf_token %}
-        <span>평점:    </span>{{comment_form.movie_rate}}
+        {{comment_form.movie_rate}}
         <div class="nickname-wrap">
           <i class="fas fa-user"></i>
           {{ user.nickName }}
