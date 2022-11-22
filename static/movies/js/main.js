@@ -32,6 +32,7 @@ const hiddenMenus = document.querySelectorAll('.menu__hidden');
 
 
 searchMark.addEventListener('click', () => {
+  
   if (!navbarMenu.classList.contains('open')) {
     menuItems.forEach((item) => {
       item.classList.add('menu-invisible');
@@ -51,7 +52,7 @@ searchMark.addEventListener('click', () => {
   } else {
     menuItems.forEach((item) => {
       item.classList.add('menu-invisible');
-      item.style.transform = 'translateY(-10px)';
+      item.style.transformxMark = 'translateY(-10px)';
     })
     
     hiddenMenus.forEach((itme) => {
@@ -68,6 +69,9 @@ searchMark.addEventListener('click', () => {
 })
 
 xMark.addEventListener('click', () => {
+  searchInput.value = '';
+  recommendWrap.style.padding = '0px';
+  recommendWrap.innerHTML = '';
   menuItems.forEach((item) => {
     item.classList.remove('menu-invisible');
     item.style.transform = 'translateY(0px)';
