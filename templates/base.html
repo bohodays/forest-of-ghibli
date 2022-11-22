@@ -23,7 +23,7 @@
   <title>지브리의 숲</title>
   {% block background %}
   {% endblock background %}
-  
+   
 </head>
 <body>
 
@@ -96,6 +96,9 @@
 
   {% block content %}
   {% endblock content %}
+  {% comment %} script {% endcomment %}
+  {% block script %}
+  {% endblock script %}
   
   {% comment %} 맨 위로 가는 버튼 {% endcomment %}
   <button class="arrow-up">
@@ -135,9 +138,7 @@
     </div>
   </div>
 
-  {% block script %}
-  {% endblock script %}
-  
+
 </body>
 
 </html>
