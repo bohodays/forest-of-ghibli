@@ -144,232 +144,242 @@
                   </form>
                   {% comment %} 수정 {% endcomment %}
                   
-                {% endif %}
+                  {% endif %}
+                </div>
               </div>
             </div>
           </div>
+          {% endfor %}
         </div>
-        {% endfor %}
       </div>
-    </div>
-  </main>
-{% endblock content %}
-
-
-{% block script %}
-<script>
-   // 댓글 생성
-const createForms = document.querySelectorAll('.form-comment')
-createForms.forEach((createForm)=>{
-  createForm.addEventListener('submit',event =>{
-    event.preventDefault()
+    </main>
+    {% endblock content %}
     
-    // 해당 영화의 pk 값 저장
-    const movieId = event.target.dataset.movieId
-  // 보내줄 데이터 가져오기
-  const content = document.getElementsByName('content')[0].value
-  const movieRate = document.getElementsByName('movie_rate')[0].value
-  const user = document.querySelector('.nickname-wrap');
-  const userNickName = user.innerText
-  
-  const formInput = document.querySelector('#id_content');
-  formInput.value = '';
-
-  let data = new FormData()
-  data.append("content", content)
-  data.append("movie_rate",movieRate)
-
-  axios({
-    method: 'post',
-    url: `/movies/${movieId}/comments/`,
-    headers: {'X-CSRFToken': csrftoken,},
-    data: data,
-    }).then((response)=>{
-      // 댓글 id
-      const responseCommentId = response.data.comment_id
-      // 댓글 내용
-      const responseContent = response.data.comment_content
-      // 댓글 평점
-      const responseRate = response.data.comment_movie_rate
-      // 영화 id
-      const responseMovieId = response.data.movie_id
-      const responseNickname = response.data.comment_nickname
-      
-
-      // response 데이터 js로 html에 로드 하기
-      const reviewContentFull = document.createElement('p')
-      reviewContentFull.innerText=responseContent
-      reviewContentFull.classList.add('comment_full', 'hidden')
-      const reviewContentSummary = document.createElement('p')
-      reviewContentSummary.innerText=responseContent
-      reviewContentSummary.classList.add('comment__content', 'summary')
-      reviewContentSummary.style.cursor = 'default'
-      const userCommentsWrap = document.querySelector('.user-comments__wrap')
-      const userComments = document.createElement('div')
-      // 댓글 목록과 같은 폼 만들어주기
-      userComments.classList.add('user-comments')
-      userCommentsWrap.appendChild(userComments)
-      // 작성자 정보를 담는 태그
-      const commentNicknameWrap = document.createElement('div')
-      commentNicknameWrap.classList.add('comment-nickname-wrap')
-      commentNicknameWrap.innerHTML += `<i class="fas fa-user" aria-hidden="true"></i>   ${responseNickname}`
-      
-      // 작성한 댓글 정보 들어가는 태그
-      const commentWrap = document.createElement('div')
-      commentWrap.classList.add('comment-wrap')
-      commentWrap.innerHTML= `<p>${responseRate}</p>`
-      // 평점 정보 불러오는 태그 
-      // 좋아요 삭제 수정 버튼 들어가는 div
-      const allWrap = document.createElement('div')
-      allWrap.classList.add('all-wrap')
-      
-      userComments.appendChild(commentNicknameWrap)
-      userComments.appendChild(commentWrap)
-      userComments.appendChild(allWrap)
-      commentWrap.appendChild(reviewContentSummary)
-
-      // 좋아요 삭제에 들어갈 csrf 미리 선언
-      const csrfInput = document.createElement('input')
-      csrfInput.setAttribute('type','hidden')
-      csrfInput.setAttribute('name','csrfmiddlewaretoken')
-      csrfInput.setAttribute('value','gvVcj3wvuUVGNBLdY5d12Q1sVjJltueVo1tmL0aOijfGGVB81XebmpLY398ZDMbA')
-
-      // 좋아요 버튼 만들기
-      const functions = document.createElement('div')
-      functions.classList.add('like_delete_edit-wrap')
-      const likeForm = document.createElement('form')
-      likeForm.style.height = '36px';
-      likeForm.classList.add('like-form')
-      likeForm.setAttribute('data-comment-id',responseCommentId)
-      likeForm.setAttribute('data-movie-id',responseMovieId)
-      
-      // 삭제 버튼 만들기 - functions 하위에 만들기
-      const deleteDiv = document.createElement('div')
-      deleteDiv.classList.add('delete_edit-wrap')
-      const deleteForm = document.createElement('form')
-      deleteForm.classList.add('delete-form')
-      deleteForm.setAttribute('data-delete-id',responseCommentId)
-      deleteForm.setAttribute('data-movie-id',responseMovieId)
-      const deleteBtn = document.createElement('button')
-      deleteBtn.classList.add('btn-wrap', 'delete-btn')
-      deleteBtn.setAttribute('type', 'submit')
-      deleteBtn.setAttribute('value', '삭제')
-      deleteBtn.setAttribute('id', `delete-${responseCommentId}`)
-      deleteBtn.innerHTML = '<i class="fa-solid fa-trash-can"></i>'
-      
-      // 수정 버튼 만들어주기 - functions 하위
-      deleteDiv.innerHTML = `<a class="btn-wrap edit-btn" href="/movies/${responseMovieId}/comments/${responseCommentId}/update/">
-        <i class="fa-solid fa-pen-to-square"></i>
-      </a>`
-
-      
-      //좋아요 개수 태그 미리 만들어 놓기
-      const likeCount = document.createElement('p')
-      // 좋아요 여부에 따른 하트 아이콘 표시
-      const likeBtn = document.createElement('button')
-      likeBtn.setAttribute('type','submit')
-      likeBtn.setAttribute('id',`like-${responseCommentId}`)
-      likeBtn.classList.add('like_btn','btn-wrap')
-      {% if request.user in comment.like_users.all %}
-        likeBtn.innerHTML = '<i class="fa-sharp fa-solid fa-heart"></i>'
-      {% else %}
-        likeBtn.innerHTML = '<i class="fa-regular fa-heart"></i>'
-      {% endif %}
-      
-      
-      
-      // 하위 태그로 지정하기
-      allWrap.appendChild(functions)
-      functions.appendChild(likeForm)
-      likeForm.appendChild(csrfInput)
-      likeForm.appendChild(likeBtn)
-      likeForm.append(likeCount)
-      // 삭제버튼 function 밑에 추가하기
-      functions.appendChild(deleteDiv)
-      deleteDiv.appendChild(csrfInput)
-      deleteDiv.appendChild(deleteForm)
-      deleteForm.appendChild(deleteBtn)
-      
-      
-
-//////////////////////// 좋아요 axios
-      // 방금 생성한 리뷰의 좋아요 버튼에 대해 axios 만들기
-        newForms = document.querySelectorAll('.like-form')
-        newForms.forEach((newForm)=>{
-          newForm.addEventListener('submit',function(event){
+    
+    {% block script %}
+    <script>
+      // 댓글 생성
+      const createForms = document.querySelectorAll('.form-comment')
+      createForms.forEach((createForm)=>{
+        createForm.addEventListener('submit',event =>{
+          event.preventDefault()
+          
+          // 해당 영화의 pk 값 저장
+          const movieId = event.target.dataset.movieId
+          // 보내줄 데이터 가져오기
+          const content = document.getElementsByName('content')[0].value
+          const movieRate = document.getElementsByName('movie_rate')[0].value
+          const user = document.querySelector('.nickname-wrap');
+          const userNickName = user.innerText
+          
+          const formInput = document.querySelector('#id_content');
+          formInput.value = '';
+          
+          let data = new FormData()
+          data.append("content", content)
+          data.append("movie_rate",movieRate)
+          
+          axios({
+            method: 'post',
+            url: `/movies/${movieId}/comments/`,
+            headers: {'X-CSRFToken': csrftoken,},
+            data: data,
+          }).then((response)=>{
+            // 댓글 id
+            const responseCommentId = response.data.comment_id
+            // 댓글 내용
+            const responseContent = response.data.comment_content
+            // 댓글 평점
+            const responseRate = response.data.comment_movie_rate
+            // 영화 id
+            const responseMovieId = response.data.movie_id
+            const responseNickname = response.data.comment_nickname
+            const responseUser = response.data.comment_user
+            //console.log(responseUser)
+            if (responseUser === undefined ){
+              window.location.href="http://127.0.0.1:8000/accounts/login/" 
+            }else{
+            
+              
+              
+              // response 데이터 js로 html에 로드 하기
+              const reviewContentFull = document.createElement('p')
+              reviewContentFull.innerText=responseContent
+              reviewContentFull.classList.add('comment_full', 'hidden')
+              const reviewContentSummary = document.createElement('p')
+              reviewContentSummary.innerText=responseContent
+              reviewContentSummary.classList.add('comment__content', 'summary')
+              reviewContentSummary.style.cursor = 'default'
+              const userCommentsWrap = document.querySelector('.user-comments__wrap')
+              const userComments = document.createElement('div')
+              // 댓글 목록과 같은 폼 만들어주기
+              userComments.classList.add('user-comments')
+              userCommentsWrap.appendChild(userComments)
+          // 작성자 정보를 담는 태그
+          const commentNicknameWrap = document.createElement('div')
+          commentNicknameWrap.classList.add('comment-nickname-wrap')
+          commentNicknameWrap.innerHTML += `<i class="fas fa-user" aria-hidden="true"></i>   ${responseNickname}`
+          
+          // 작성한 댓글 정보 들어가는 태그
+          const commentWrap = document.createElement('div')
+          commentWrap.classList.add('comment-wrap')
+          commentWrap.innerHTML= `<p>${responseRate}</p>`
+          // 평점 정보 불러오는 태그 
+          // 좋아요 삭제 수정 버튼 들어가는 div
+          const allWrap = document.createElement('div')
+          allWrap.classList.add('all-wrap')
+          
+          userComments.appendChild(commentNicknameWrap)
+          userComments.appendChild(commentWrap)
+          userComments.appendChild(allWrap)
+          commentWrap.appendChild(reviewContentSummary)
+          
+          // 좋아요 삭제에 들어갈 csrf 미리 선언
+          const csrfInput = document.createElement('input')
+          csrfInput.setAttribute('type','hidden')
+          csrfInput.setAttribute('name','csrfmiddlewaretoken')
+          csrfInput.setAttribute('value','gvVcj3wvuUVGNBLdY5d12Q1sVjJltueVo1tmL0aOijfGGVB81XebmpLY398ZDMbA')
+          
+          // 좋아요 버튼 만들기
+          const functions = document.createElement('div')
+          functions.classList.add('like_delete_edit-wrap')
+          const likeForm = document.createElement('form')
+          likeForm.style.height = '36px';
+          likeForm.classList.add('like-form')
+          likeForm.setAttribute('data-comment-id',responseCommentId)
+          likeForm.setAttribute('data-movie-id',responseMovieId)
+          
+          // 삭제 버튼 만들기 - functions 하위에 만들기
+          const deleteDiv = document.createElement('div')
+          deleteDiv.classList.add('delete_edit-wrap')
+          const deleteForm = document.createElement('form')
+          deleteForm.classList.add('delete-form')
+          deleteForm.setAttribute('data-delete-id',responseCommentId)
+          deleteForm.setAttribute('data-movie-id',responseMovieId)
+          const deleteBtn = document.createElement('button')
+          deleteBtn.classList.add('btn-wrap', 'delete-btn')
+          deleteBtn.setAttribute('type', 'submit')
+          deleteBtn.setAttribute('value', '삭제')
+          deleteBtn.setAttribute('id', `delete-${responseCommentId}`)
+          deleteBtn.innerHTML = '<i class="fa-solid fa-trash-can"></i>'
+          
+          // 수정 버튼 만들어주기 - functions 하위
+          deleteDiv.innerHTML = `<a class="btn-wrap edit-btn" href="/movies/${responseMovieId}/comments/${responseCommentId}/update/">
+            <i class="fa-solid fa-pen-to-square"></i>
+          </a>`
+          
+          
+          //좋아요 개수 태그 미리 만들어 놓기
+          const likeCount = document.createElement('p')
+          // 좋아요 여부에 따른 하트 아이콘 표시
+          const likeBtn = document.createElement('button')
+          likeBtn.setAttribute('type','submit')
+          likeBtn.setAttribute('id',`like-${responseCommentId}`)
+          likeBtn.classList.add('like_btn','btn-wrap')
+          {% if request.user in comment.like_users.all %}
+          likeBtn.innerHTML = '<i class="fa-sharp fa-solid fa-heart"></i>'
+          {% else %}
+          likeBtn.innerHTML = '<i class="fa-regular fa-heart"></i>'
+          {% endif %}
+          
+          
+          
+          // 하위 태그로 지정하기
+          allWrap.appendChild(functions)
+          functions.appendChild(likeForm)
+          likeForm.appendChild(csrfInput)
+          likeForm.appendChild(likeBtn)
+          likeForm.append(likeCount)
+          // 삭제버튼 function 밑에 추가하기
+          functions.appendChild(deleteDiv)
+          deleteDiv.appendChild(csrfInput)
+          deleteDiv.appendChild(deleteForm)
+          deleteForm.appendChild(deleteBtn)
+          
+          
+          
+          //////////////////////// 좋아요 axios
+          // 방금 생성한 리뷰의 좋아요 버튼에 대해 axios 만들기
+          newForms = document.querySelectorAll('.like-form')
+          newForms.forEach((newForm)=>{
+            newForm.addEventListener('submit',function(event){
+              event.preventDefault()
+              const movieId = responseMovieId
+              const commentId = responseCommentId
+              const newCommentId = event.target.dataset.commentId
+              
+              if( commentId === Number(newCommentId)){
+                
+                axios({
+                  method: 'post',
+                  url: `/movies/${movieId}/comments/${newCommentId}/likes/`,
+                  headers: {'X-CSRFToken': csrftoken,},
+                })
+                .then((response) => {
+                  
+                  const isLiked = response.data.is_liked
+                  
+                  if (isLiked === true){
+                    likeBtn.innerHTML = `<i class="fa-sharp fa-solid fa-heart"></i>`;
+                  } else {
+                    likeBtn.innerHTML = `<i class="fa-regular fa-heart"></i>`;
+                  }
+                  // response 값을 html의 태그 하나 가져와서 그 값에 넣어 줘야함.
+                  
+                  likeCount.setAttribute('id',`#like_${commentId}`)
+                  likeCount.classList.add('likes__count')
+                  likeCount.style.top = '6px';
+                  if (response.data.like_count !== 0) {
+                    likeCount.innerHTML = response.data.like_count;
+                  } else {
+                    likeCount.innerHTML = '';
+                  }
+                
+                })
+                .catch((error) => {
+                  console.log('like error',error.response)
+                })
+              }
+              
+            })
+            
+          })
+          //////////// 좋아요  axios 끝
+          ///////////  삭제 axois 시작
+          newDeleteForms = document.querySelectorAll('.delete-form')
+          newDeleteForms.forEach( (newDelete)=>{
+          newDelete.addEventListener('submit',function(event){
             event.preventDefault()
             const movieId = responseMovieId
             const commentId = responseCommentId
-            const newCommentId = event.target.dataset.commentId
-            if( commentId === Number(newCommentId)){
-
+            const newCommentId = event.target.dataset.deleteId
+            if (Number(newCommentId) === commentId){
               axios({
                 method: 'post',
-                url: `/movies/${movieId}/comments/${newCommentId}/likes/`,
+                url: `http://127.0.0.1:8000/movies/${movieId}/comments/${commentId}/delete/`,
                 headers: {'X-CSRFToken': csrftoken,},
               })
               .then((response) => {
-                
-                const isLiked = response.data.is_liked
-                
-                if (isLiked === true){
-                likeBtn.innerHTML = `<i class="fa-sharp fa-solid fa-heart"></i>`;
-                } else {
-                  likeBtn.innerHTML = `<i class="fa-regular fa-heart"></i>`;
-                }
-              // response 값을 html의 태그 하나 가져와서 그 값에 넣어 줘야함.
-              
-              likeCount.setAttribute('id',`#like_${commentId}`)
-              likeCount.classList.add('likes__count')
-              likeCount.style.top = '6px';
-              if (response.data.like_count !== 0) {
-                likeCount.innerHTML = response.data.like_count;
-              } else {
-                likeCount.innerHTML = '';
-              }
+                // 버튼을 누른 댓글
+                const userForm = event.target.parentNode.parentNode.parentNode.parentNode;
+                userForm.remove();
               })
               .catch((error) => {
-                console.log('like error',error.response)
+                console.log('??',error.response)
               })
             }
             
-          })
-          
-        })
-//////////// 좋아요  axios 끝
-///////////  삭제 axois 시작
-      newDeleteForms = document.querySelectorAll('.delete-form')
-      newDeleteForms.forEach( (newDelete)=>{
-        newDelete.addEventListener('submit',function(event){
-          event.preventDefault()
-          const movieId = responseMovieId
-          const commentId = responseCommentId
-          const newCommentId = event.target.dataset.deleteId
-          if (Number(newCommentId) === commentId){
-            axios({
-              method: 'post',
-              url: `http://127.0.0.1:8000/movies/${movieId}/comments/${commentId}/delete/`,
-              headers: {'X-CSRFToken': csrftoken,},
-            })
-            .then((response) => {
-                // 버튼을 누른 댓글
-              const userForm = event.target.parentNode.parentNode.parentNode.parentNode;
-              userForm.remove();
-            })
-                .catch((error) => {
-                  console.log('??',error.response)
-                })
-          }
+          }) // 댓글 이벤트 핸들러
+        })// 댓글 삭제 for Each
+      }
+      })// 댓글 생성 axios .then
+      .catch(error=>{
+        console.log('??',error);
+      }) // 댓글 생성 axios catch
+    }) // 댓글 생성 axios
+  }) // 댓글 생성 폼 불러오기
+//window.location.href="http://127.0.0.1:8000/accounts/login/" 
 
-        }) // 댓글 이벤트 핸들러
-      })// 댓글 삭제 for Each
-  
-    })// 댓글 생성 axios .then
-    .catch(error=>{
-      console.log('??',error);
-    }) // 댓글 생성 axios catch
-  }) // 댓글 생성 axios
-}) // 댓글 생성 폼 불러오기
 
 
 </script>
