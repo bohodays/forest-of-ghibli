@@ -58,12 +58,28 @@ a:hover {
   opacity: 0.8;
 }
 
+.logo-wrap {
+  /* text-align: center; */
+}
+
 .navbar__menu {
   position: relative;
   padding: 0;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+@keyframes shakeIt{
+  0%, 50%{
+    transform: rotate(0deg) translateY(5px);
+  }
+  5%, 15%, 25%, 35%, 45% {
+    transform: rotate(4deg) translateY(5px);
+  }
+  10%, 20%, 30%, 40% {
+    transform: rotate(-4deg) translateY(5px);
+  }
 }
 
 .logo {
@@ -75,6 +91,11 @@ a:hover {
   width: 40px;
   height: 40px;
   transform: translateY(5px);
+}
+
+.logo__img:hover {
+  animation-name: shakeIt;
+  animation-duration: 3000ms;
 }
 
 .menu__item {
@@ -99,6 +120,7 @@ a:hover {
   margin-bottom: 6px;
   transition: all 1000ms ease;
   z-index: 3;
+  
 }
 
 .fa-magnifying-glass:hover {
@@ -106,7 +128,8 @@ a:hover {
 }
 
 .fa-xmark {
-  transform: translateX(230px);
+  z-index: 10;
+  transform: translateX(190px);
   font-size: 24px;
   color: #ffffff;
   cursor: pointer;
@@ -121,7 +144,7 @@ a:hover {
   padding-right: 8px;
   border: none;
   outline: none;
-  width: 440px;
+  width: 322px;
   background-color: transparent;
   color: white;
   -webkit-box-shadow: 10px 10px 5px 3000px rgba(0,0,0,0.75);
@@ -142,8 +165,16 @@ a:hover {
 }
 
 .profile__container {
+  position: relative;
+  color: #ffffff;
   display: flex;
   align-items: center;
+  cursor: pointer;
+  transition: all 300ms ease;
+}
+
+.profile__container:hover {
+  color: #77aaff;
 }
 
 .default-profile-img {
@@ -154,11 +185,26 @@ a:hover {
 }
 
 .user__info {
+  position: relative;
   padding: 0;
   padding-right: 8px;
   display: flex;
   align-items: center;
   justify-content: end;
+}
+
+.profile-info-wrap {
+  width: 120px;
+  position: absolute;
+  top: 44px;
+  left: 27px;
+  display: flex;
+  flex-direction: column;
+  background-color: #3b3a3a;
+  font-size: 14px;
+  padding: 10px;
+  border-radius: 4px;
+  transition: all 300ms ease;
 }
 
 .img__container {
@@ -177,7 +223,7 @@ a:hover {
   position: absolute;
   width: 100%;
   top: 50px;
-  width: 440px;
+  width: 322px;
   background-color: #ffffff;
   border-radius: 4px;
   display: none;
@@ -185,6 +231,12 @@ a:hover {
 
 .recommend-search {
   margin-bottom: 0px;
+  cursor: pointer;
+  transition: all 300ms ease;
+}
+
+.recommend-search:hover {
+  color: #77aaff;;
 }
 
 /* main page */
@@ -218,6 +270,7 @@ a:hover {
   color: #ffffff;
   font-size: 120px;
   transform: translateY(-150px);
+  transition: all 300ms ease;
 }
 
 .main__img {
@@ -271,4 +324,95 @@ footer {
 
 .cc {
   display: none;
+}
+
+.bars-wrap {
+  display: none;
+  transform: translateY(12px);
+}
+
+.fa-bars {
+  color: #ffffff;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* .open {
+  display: none;
+} */
+
+.menu-films {
+  transition: all 100ms ease;
+}
+
+.menu-directors {
+  transition: all 100ms ease;
+}
+
+.menu-gbti {
+  transition: all 100ms ease;
+}
+
+.menu-quiz {
+  transition: all 100ms ease;
+}
+
+@media screen and (max-width: 840px) {
+  .navbar__menu {
+    position: absolute;
+    display: none;
+    background-color: #000000;
+    width: 100%;
+    transform: translateY(50px);
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  .open {
+    display: flex;
+    flex-direction: column;
+    
+  }
+
+  .bars-wrap {
+    display: block;
+  }
+
+  .logo-wrap {
+    text-align: center;
+  }
+
+  .fa-bars {
+    display: block;
+  }
+
+  .fa-magnifying-glass {
+    order: 1;
+    transition: all 1500ms ease;
+  }
+  
+  .menu-films {
+    order: 2;
+    transition: all 50ms ease;
+  }
+  
+  .menu-directors {
+    order: 3;
+    transition: all 50ms ease;
+  }
+  
+  .menu-gbti {
+    order: 4;
+    transition: all 50ms ease;
+  }
+  
+  .menu-quiz {
+    order: 5;
+    transition: all 50ms ease;
+  }
+  
+  .main__title {
+    font-size: 70px;
+    transition: all 300ms ease;
+  }
 }

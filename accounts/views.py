@@ -2,10 +2,13 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST, require_http_methods
 from .forms import CustomUserCreationForm, CustomUserChangeForm
+from movies.models import Character, Movie
+from django.http.response import JsonResponse
 
 # Create your views here.
 def login(request):
@@ -63,7 +66,6 @@ def update(request):
     context = {
         'form':form,
     }
-    # print('??????????????',form)
     return render(request, 'accounts/update.html',context)
 
 
@@ -79,3 +81,63 @@ def change_password(request):
         'form':form,
     }
     return render(request, 'accounts/change_password.html',context)
+
+
+# 프로필 페이지
+def profile(request, username):
+    User = get_user_model()
+    person = User.objects.get(username=username)
+    movies = Movie.objects.all()
+    bookmark_movies = []
+    context = {}
+    
+    for movie in movies:
+        if movie.bookmark.filter(bookmark_movie= movie.pk).exists() and movie.bookmark.filter(id = request.user.pk).exists():
+            movie_dic = {
+                'pk': movie.pk,
+                'title' : movie.title,
+                'overview': movie.overview,
+                'release_date': movie.release_date,
+                'poster_path': movie.poster_path,
+                'vote_average': movie.vote_average,
+                'director': movie.director,
+                'backgroundImg': movie.backgroundImg,
+                }
+            bookmark_movies.append(movie_dic)
+            context = {
+                'bookmark_movies': bookmark_movies
+            }
+    if person.GBTI:
+        character = Character.objects.get(MBTI=person.GBTI)
+        context['person'] = person
+        context['character'] = character
+        return render(request, 'accounts/profile.html', context)
+    else:
+        context['person'] = person
+        return render(request, 'accounts/profile.html', context)
+
+
+    
+
+# =======
+# def profile(request):
+    
+#     movies = Movie.objects.all()
+#     # print(type(movies))
+#     bookmark_movie = []
+#     index = 0
+#     for movie in movies:
+#         index += 1
+#         if movie.bookmark.filter(bookmark_movie= movie.pk).exists() and movie.bookmark.filter(id = request.user.pk).exists():
+#             # print(type(movie.title))
+#             movie_dic = {
+#                 'title' : movie.title,
+#                 'poster': movie.poster_path,
+#                  }
+#             # print(json.dumps(movie_dic))
+#             bookmark_movie.append(movie_dic)
+#     context = {
+#     'bookmark_movie':bookmark_movie
+#     }
+#     return render(request, 'accounts/profile.html',context)
+# >>>>>>> 393215e34583449c3f219875f8de46a38224f706

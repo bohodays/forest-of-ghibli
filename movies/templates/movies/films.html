@@ -14,18 +14,40 @@
 
 {% block content %}
   <section>
-    {% for movie in movies %}
-      <div class="movie" data-id={{ movie.pk }}>
-        <div class="shadow"></div>
-        <a class="movie-wrap" href="{% url 'movies:detail' movie.pk %}">
-          <img class="movie__poster" src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}" alt="">
-          <div class="movie__description">
-            <h3>{{ movie.title }}</h3>
-            <p>{{ movie.director }}</p>
-            <p>{{ movie.release_date }}</p>
-          </div>
-        </a>
-      </div>
-    {% endfor %}
+    <div class="newest-btn-wrap">
+      <button class="newest-btn">
+        최신순
+      </button>
+    </div>
+    <div class="movie-container container-newest">
+      {% for movie in movies reversed %}
+        <div class="movie" data-id={{ movie.pk }}>
+          <div class="shadow"></div>
+          <a class="movie-wrap" href="{% url 'movies:detail' movie.pk %}">
+            <img class="movie__poster" src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}" alt="">
+            <div class="movie__description">
+              <h3>{{ movie.title }}</h3>
+              <p>{{ movie.director }}</p>
+              <p>{{ movie.release_date }}</p>
+            </div>
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+    <div class="movie-container container-oldest">
+      {% for movie in movies %}
+        <div class="movie" data-id={{ movie.pk }}>
+          <div class="shadow"></div>
+          <a class="movie-wrap" href="{% url 'movies:detail' movie.pk %}">
+            <img class="movie__poster" src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}" alt="">
+            <div class="movie__description">
+              <h3>{{ movie.title }}</h3>
+              <p>{{ movie.director }}</p>
+              <p>{{ movie.release_date }}</p>
+            </div>
+          </a>
+        </div>
+      {% endfor %}
+    </div>
   </section>
 {% endblock content %}

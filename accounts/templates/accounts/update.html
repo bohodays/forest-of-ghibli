@@ -19,6 +19,9 @@
 
 {% block content %}
   <section class="update">
+    <a href="{% url 'movies:main' %}">
+      <img class="move-to-main" src="{% static 'movies/imgs/logo.png' %}" alt="">
+    </a>
     <h1 class="update__title">프로필 수정</h1>
     {% comment %} <img src="{{user.profileImg.url}}" alt="profile image"><br> {% endcomment %}
     {% comment %} 파일 이미지 업로드 하기위해 form 태그에 enctype 작성해야함 {% endcomment %}

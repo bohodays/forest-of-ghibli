@@ -1,0 +1,52 @@
+section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 150px;
+  padding-bottom: 100px;
+}
+
+p {
+  margin: 0px;
+}
+
+.result-wrap {
+  padding: 80px 100px;
+  box-shadow: 10px 10px 30px 0px rgb(158 158 158);
+  border-radius: 8px;
+  text-align: center; 
+}
+
+.result__title {
+  display: inline;
+  border-bottom: 5px solid #77aaff;
+}
+
+.result__score{
+  margin-top: 50px;
+  margin-bottom: 20px;
+}
+
+.rank__img {
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  margin-bottom: 30px;
+}
+
+.green {
+  color: #198754;
+}
+
+.pink {
+  color: #d63384;
+}
+
+.orange {
+  color: #fd7e14;
+}
+
+.purple {
+  color: #6f42c1;
+}

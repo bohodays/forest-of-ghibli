@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block css %}
+  <link rel='stylesheet' href="{% static 'movies/css/main.css' %}"/>
+  <link rel='stylesheet' href="{% static 'movies/css/quiz_result.css' %}"/>
+{% endblock css %}
+
+{% block js %}
+  <script src="{% static 'movies/js/main.js' %}" defer></script>
+  <script src="{% static 'movies/js/quiz_result.js' %}" defer></script>
+{% endblock js %}
+
+{% block content %}
+  <section>
+    <div class="result-wrap">
+      <h1 class="result__title">퀴즈 결과</h1>
+      <h2 class="result__score"> {{ person.quiz_rank }} / 8</h2>
+      {% if person.quiz_rank == "0" or person.quiz_rank == "1" or person.quiz_rank == "2" %}
+        <img class="rank__img" src="{% static 'movies/imgs/rank_1.jpg' %}" alt="">
+        <h3 class="green">지브리 새싹</h3>
+        <p>{{ person.nickName }} 님의 퀴즈 결과는 지브리 새싹입니다.</p>
+        <p>지브리의 숲과 함께 지브리에 대해 더 알아가보세요!</p>
+      {% elif person.quiz_rank == "3" or person.quiz_rank == "4" %}
+        <img class="rank__img" src="{% static 'movies/imgs/rank_2.jpg' %}" alt="">
+        <h3 class="pink">지브리 매니아</h3>
+        <p>{{ person.nickName }} 님의 퀴즈 결과는 지브리 매니아입니다.</p>
+        <p>지브리 영화를 즐겨보셨군요! 지브리의 숲과 함께 지브리 고수가 되어보세요!</p>
+      {% elif person.quiz_rank == "5" or person.quiz_rank == "6" %}
+        <img class="rank__img" src="{% static 'movies/imgs/rank_3.jpg' %}" alt="">
+        <h3 class="orange">지브리 고수</h3>
+        <p>{{ person.nickName }} 님의 퀴즈 결과는 지브리 고수입니다.</p>
+        <p>지브리 영화에 대해 많이 알고 계시군요! 지브리의 숲과 함께 지브리 박사가 되어보세요!</p>
+      {% else %}
+        <img class="rank__img" src="{% static 'movies/imgs/rank_4.jpg' %}" alt="">
+        <h3 class="purple">지브리 박사</h3>
+        <p>{{ person.nickName }} 님의 퀴즈 결과는 지브리 박사입니다.</p>
+        <p>지브리 영화에 대해 모르는 것이 없으시군요! 지브리의 숲과 함께 지브리 영화를 더욱 즐겨보세요!</p>
+      {% endif %}
+    </div>
+
+  </section>
+{% endblock content %}

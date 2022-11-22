@@ -1,0 +1,287 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block css %}
+  <link rel='stylesheet' href="{% static 'movies/css/main.css' %}"/>
+  <link rel='stylesheet' href="{% static 'movies/css/GBTI.css' %}"/>
+{% endblock css %}
+
+{% block js %}
+  <script src="{% static 'movies/js/main.js' %}" defer></script>
+  <script src="{% static 'movies/js/GBTI.js' %}" defer></script>
+{% endblock js %}
+
+{% block content %}
+  <section>
+    <div class="check-wrap">
+      <div class="description">
+        <p class="description__content">
+          1. 전화 통화를 거는 일은 가능한 피하고 싶다.
+        </p>
+      </div>
+      <div class="numbers1">
+        <p class="disagree__content">비동의</p>
+        <button class="number numbers1__number disagree big" data-value="1"></button>
+        <button class="number numbers1__number disagree small" data-value="2"></button>
+        <button class="number numbers1__number agree small" data-value="3"></button>
+        <button class="number numbers1__number agree big" data-value="4"></button>
+        <p class="agree__content">동의</p>
+      </div>
+
+      <hr>
+      
+      <div class="description">
+        <p class="description__content">
+          2. 파티나 행사에서 새로운 사람에게 먼저 자신을 소개하기보다는 주로 이미 알고 있는 사람과 대화하는 편이다.
+        </p>
+      </div>
+      <div class="numbers">
+        <p class="disagree__content">비동의</p>
+        <button class="number numbers2__number disagree big" data-value="1"></button>
+        <button class="number numbers2__number disagree small" data-value="2"></button>
+        <button class="number numbers2__number agree small" data-value="3"></button>
+        <button class="number numbers2__number agree big" data-value="4"></button>
+        <p class="agree__content">동의</p>
+      </div>
+
+      <hr>
+
+      <div class="description">
+        <p class="description__content">
+          3. 관심이 가는 사람에게 다가가서 대화를 시작하기가 어렵지 않다.
+        </p>
+      </div>
+      <div class="numbers">
+        <p class="disagree__content">비동의</p>
+        <button class="number numbers3__number disagree big" data-value="1"></button>
+        <button class="number numbers3__number disagree small" data-value="2"></button>
+        <button class="number numbers3__number agree small" data-value="3"></button>
+        <button class="number numbers3__number agree big" data-value="4"></button>
+        <p class="agree__content">동의</p>
+      </div>
+
+      <hr>
+
+      <div class="description">
+        <p class="description__content">
+          4. 단체 활동에 참여하는 일을 그다지 즐기지 못 한다.
+        </p>
+      </div>
+      <div class="numbers">
+        <p class="disagree__content">비동의</p>
+        <button class="number numbers4__number disagree big" data-value="1"></button>
+        <button class="number numbers4__number disagree small" data-value="2"></button>
+        <button class="number numbers4__number agree small" data-value="3"></button>
+        <button class="number numbers4__number agree big" data-value="4"></button>
+        <p class="agree__content">동의</p>
+      </div>
+
+      <hr>
+
+      <div class="description">
+        <p class="description__content">
+          5. 자유 시간 중 상당 부분을 다양한 관심사를 탐구하는 데 할애한다.
+        </p>
+      </div>
+      <div class="numbers">
+        <p class="disagree__content">비동의</p>
+        <button class="number numbers5__number disagree big" data-value="1"></button>
+        <button class="number numbers5__number disagree small" data-value="2"></button>
+        <button class="number numbers5__number agree small" data-value="3"></button>
+        <button class="number numbers5__number agree big" data-value="4"></button>
+        <p class="agree__content">동의</p>
+      </div>
+
+      <hr>
+
+      <div class="description">
+        <p class="description__content">
+          6. 관심사가 너무 많아 다음에 어떤 일을 해야 할지 모를 때가 있다.
+        </p>
+      </div>
+      <div class="numbers">
+        <p class="disagree__content">비동의</p>
+        <button class="number numbers6__number disagree big" data-value="1"></button>
+        <button class="number numbers6__number disagree small" data-value="2"></button>
+        <button class="number numbers6__number agree small" data-value="3"></button>
+        <button class="number numbers6__number agree big" data-value="4"></button>
+        <p class="agree__content">동의</p>
+      </div>
+
+      <hr>
+
+      <div class="description">
+        <p class="description__content">
+          7. 자신에게 예술적 성향이 있다고 생각한다.
+        </p>
+      </div>
+      <div class="numbers">
+        <p class="disagree__content">비동의</p>
+        <button class="number numbers7__number disagree big" data-value="1"></button>
+        <button class="number numbers7__number disagree small" data-value="2"></button>
+        <button class="number numbers7__number agree small" data-value="3"></button>
+        <button class="number numbers7__number agree big" data-value="4"></button>
+        <p class="agree__content">동의</p>
+      </div>
+
+      <hr>
+
+      <div class="description">
+        <p class="description__content">
+          8. 미술관에 가는 일을 좋아한다.
+        </p>
+      </div>
+      <div class="numbers">
+        <p class="disagree__content">비동의</p>
+        <button class="number numbers8__number disagree big" data-value="1"></button>
+        <button class="number numbers8__number disagree small" data-value="2"></button>
+        <button class="number numbers8__number agree small" data-value="3"></button>
+        <button class="number numbers8__number agree big" data-value="4"></button>
+        <p class="agree__content">동의</p>
+      </div>
+
+      <hr>
+
+      <div class="description">
+        <p class="description__content">
+          9. 감정보다는 이성을 따르는 편이다.
+        </p>
+      </div>
+      <div class="numbers">
+        <p class="disagree__content">비동의</p>
+        <button class="number numbers9__number disagree big" data-value="1"></button>
+        <button class="number numbers9__number disagree small" data-value="2"></button>
+        <button class="number numbers9__number agree small" data-value="3"></button>
+        <button class="number numbers9__number agree big" data-value="4"></button>
+        <p class="agree__content">동의</p>
+      </div>
+
+      <hr>
+
+      <div class="description">
+        <p class="description__content">
+          10. 논란이 되거나 논쟁을 불러일으킬 수 있는 주제에 관심이 많다.
+        </p>
+      </div>
+      <div class="numbers">
+        <p class="disagree__content">비동의</p>
+        <button class="number numbers10__number disagree big" data-value="1"></button>
+        <button class="number numbers10__number disagree small" data-value="2"></button>
+        <button class="number numbers10__number agree small" data-value="3"></button>
+        <button class="number numbers10__number agree big" data-value="4"></button>
+        <p class="agree__content">동의</p>
+      </div>
+
+      <hr>
+
+      <div class="description">
+        <p class="description__content">
+          11. 압박감이 심한 환경에서도 평정심을 유지하는 편이다.
+        </p>
+      </div>
+      <div class="numbers">
+        <p class="disagree__content">비동의</p>
+        <button class="number numbers11__number disagree big" data-value="1"></button>
+        <button class="number numbers11__number disagree small" data-value="2"></button>
+        <button class="number numbers11__number agree small" data-value="3"></button>
+        <button class="number numbers11__number agree big" data-value="4"></button>
+        <p class="agree__content">동의</p>
+      </div>
+
+      <hr>
+
+      <div class="description">
+        <p class="description__content">
+          12. 다른 사람의 감정을 이해하기 힘들 때가 많다.
+        </p>
+      </div>
+      <div class="numbers">
+        <p class="disagree__content">비동의</p>
+        <button class="number numbers12__number disagree big" data-value="1"></button>
+        <button class="number numbers12__number disagree small" data-value="2"></button>
+        <button class="number numbers12__number agree small" data-value="3"></button>
+        <button class="number numbers12__number agree big" data-value="4"></button>
+        <p class="agree__content">동의</p>
+      </div>
+
+      <hr>
+
+      <div class="description">
+        <p class="description__content">
+          13. 일이 잘못될 때를 대비해 여러 대비책을 세우는 편이다.
+        </p>
+      </div>
+      <div class="numbers">
+        <p class="disagree__content">비동의</p>
+        <button class="number numbers13__number disagree big" data-value="1"></button>
+        <button class="number numbers13__number disagree small" data-value="2"></button>
+        <button class="number numbers13__number agree small" data-value="3"></button>
+        <button class="number numbers13__number agree big" data-value="4"></button>
+        <p class="agree__content">동의</p>
+      </div>
+
+      <hr>
+
+      <div class="description">
+        <p class="description__content">
+          14. 일정이나 목록으로 계획을 세우는 일을 좋아한다.
+        </p>
+      </div>
+      <div class="numbers">
+        <p class="disagree__content">비동의</p>
+        <button class="number numbers14__number disagree big" data-value="1"></button>
+        <button class="number numbers14__number disagree small" data-value="2"></button>
+        <button class="number numbers14__number agree small" data-value="3"></button>
+        <button class="number numbers14__number agree big" data-value="4"></button>
+        <p class="agree__content">동의</p>
+      </div>
+
+      <hr>
+
+      <div class="description">
+        <p class="description__content">
+          15. 일이 잘못될까봐 자주 걱정하는 편이다.
+        </p>
+      </div>
+      <div class="numbers">
+        <p class="disagree__content">비동의</p>
+        <button class="number numbers15__number disagree big" data-value="1"></button>
+        <button class="number numbers15__number disagree small" data-value="2"></button>
+        <button class="number numbers15__number agree small" data-value="3"></button>
+        <button class="number numbers15__number agree big" data-value="4"></button>
+        <p class="agree__content">동의</p>
+      </div>
+
+      <hr>
+
+      <div class="description">
+        <p class="description__content">
+          16. 일이 원하는 대로 진행될 것이라는 자신감이 있다.
+        </p>
+      </div>
+      <div class="numbers">
+        <p class="disagree__content">비동의</p>
+        <button class="number numbers16__number disagree big" data-value="1"></button>
+        <button class="number numbers16__number disagree small" data-value="2"></button>
+        <button class="number numbers16__number agree small" data-value="3"></button>
+        <button class="number numbers16__number agree big" data-value="4"></button>
+        <p class="agree__content">동의</p>
+      </div>
+      
+      <p class="caution-message">모든 질문에 응답해주시기 바랍니다.</p>
+      <form class="GBTI-form" action="{% url 'movies:GBTI_create' person.pk %}" method="POST">
+        {% csrf_token %}
+        {{ GBTI_form }}
+        <div class="btn-wrap">
+          <button class="submit" type="submit">
+              제출 하기
+          </button>
+        </div>
+      </form>
+      
+
+    </div>
+  </section>
+
+{% endblock content %}

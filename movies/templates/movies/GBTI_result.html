@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block css %}
+  <link rel='stylesheet' href="{% static 'movies/css/main.css' %}"/>
+  <link rel='stylesheet' href="{% static 'movies/css/GBTI_result.css' %}"/>
+{% endblock css %}
+
+{% block js %}
+  <script src="{% static 'movies/js/main.js' %}" defer></script>
+  <script src="{% static 'movies/js/GBTI_result.js' %}" defer></script>
+{% endblock js %}
+
+{% block content %}
+  <section>
+    <div class="GBTI-wrap">
+      <div class="wrap">
+        <div class="wrap-decorator"></div>
+        <h1 class="character-MBTI">{{ character.MBTI }}</h1>
+      </div>
+      <img class="character-img" src="{{ character.image }}" alt="">
+      <div class="d-flex justify-content-center">
+        <p>{{ person.nickName }} 님과 같은 MBTI를 가진 지브리 캐릭터는</p>
+        <p class='mx-1 emphasis'>{{ character.name }} </p>
+        <p> 입니다.</p>
+      </div>
+      <div class="character-info">
+        <p>{{ character.info }}</p>
+      </div>
+      <div class="movie">
+        <div class="shadow"></div>
+        <a class="movie-wrap" href="{% url 'movies:detail' movie.pk %}">
+          <img class="movie__poster" src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}" alt="">
+          <div class="movie__description">
+            <h3>{{ movie.title }}</h3>
+            <p>{{ movie.director }}</p>
+            <p>{{ movie.release_date }}</p>
+          </div>
+        </a>
+      </div>
+
+    </div>
+    {% comment %} <img class="movie__poster" src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}" alt=""> {% endcomment %}
+
+  </section>
+{% endblock content %}

@@ -8,6 +8,7 @@ class Director(models.Model):
     profileImg = models.TextField()
     wise_saying = models.TextField()
 
+
 class Movie(models.Model):
     title = models.CharField(max_length=100)
     overview = models.TextField()
@@ -17,17 +18,20 @@ class Movie(models.Model):
     director = models.TextField()
     backgroundImg = models.TextField()
     wise_saying = models.TextField()
+    bookmark = models.ManyToManyField(settings.AUTH_USER_MODEL, blank = True, related_name='bookmark_movie')
 
     def __str__(self):
         return f'{ self.title }'
 
+
 class Comment(models.Model):
     RATES = [
-        ('★','★'),
-        ('★★','★★'),
-        ('★★★','★★★'),
-        ('★★★★','★★★★'),
-        ('★★★★★','★★★★★'),
+        
+        ('⭐','⭐'),
+        ('⭐⭐','⭐⭐'),
+        ('⭐⭐⭐','⭐⭐⭐'),
+        ('⭐⭐⭐⭐','⭐⭐⭐⭐'),
+        ('⭐⭐⭐⭐⭐','⭐⭐⭐⭐⭐'),
         ]
     content = models.TextField(max_length=500)  # 리뷰 필드
 
@@ -42,3 +46,11 @@ class Comment(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     # 댓글 마다 좋아요를 달기 위해 like 추가 Comment, User M:N 관계 라서 변수명 뒤에 s 붙임
     like_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_comments',blank= True)
+
+
+class Character(models.Model):
+    name = models.TextField(blank=True)
+    MBTI = models.TextField(blank=True)
+    info = models.TextField(blank=True)
+    movie = models.TextField(blank=True)
+    image = models.TextField(blank=True)

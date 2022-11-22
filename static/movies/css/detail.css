@@ -1,7 +1,3 @@
-p {
-  margin: 0px;
-}
-
 ul {
   list-style: none;
   padding-left: 20px;
@@ -15,6 +11,7 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 50px;
 }
 
 .background {
@@ -70,6 +67,7 @@ main {
   line-height: 50%;
   display: inline-block;
   margin-top: 120px;
+  margin-bottom: 20px;
 }
 
 .movie-video {
@@ -79,7 +77,7 @@ main {
 }
 
 .video__trailer {
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 .review {
@@ -134,7 +132,7 @@ main {
 .user-comments {
   margin-bottom: 20px;
   /* background-color: yellow; */
-  padding: 10px;
+  padding: 10px 20px 10px 14px;
   border-radius: 4px;
   box-shadow: 0px 0px 30px 0px rgb(212 212 212);
 }
@@ -142,6 +140,7 @@ main {
 .comment__content {
   max-width: 1000px;
   margin-bottom: 10px;
+  margin-top: 8px;
   word-wrap: break-word;
   cursor: pointer;
 }
@@ -149,12 +148,14 @@ main {
 .hidden {
   max-width: 1000px;
   margin-bottom: 10px;
+  margin-top: 8px;
   word-wrap: break-word;
   display: none;
   cursor: pointer;
 }
 
 .like_delete_edit-wrap {
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -181,10 +182,15 @@ main {
   outline: none;
   background-color: transparent;
   transform: translateY(2px);
+  transition: all 300ms ease;
 }
 
 .fa-trash-can {
   font-size: 20px;
+}
+
+.fa-trash-can:hover {
+  color: #dc3545;
 }
 
 .edit-btn {
@@ -193,7 +199,7 @@ main {
 }
 
 .edit-btn:hover {
-  color: #000000;
+  color: #77aaff
 }
 
 .btn-wrap {
@@ -212,4 +218,41 @@ main {
   position: absolute;
   bottom: 50px;
   right: 20px;
+  margin-bottom: 0px;
+}
+
+.likes__count {
+  position: absolute;
+  top: 6px;
+  left: 40px;
+}
+
+#id_movie_rate {
+  border: none;
+  outline: none;
+  background-color: #ffffff;
+  box-shadow: 0px 0px 30px 0px rgb(212 212 212);
+  padding: 6px;
+  border-radius: 4px;
+}
+
+.recommend-search {
+  cursor: pointer;
+  transition: all 300ms ease;
+}
+
+.recommend-search:hover {
+  color: #77aaff;;
+}
+
+.menu-films {
+  color: #77aaff;
+}
+
+.bookmark {
+  font-size: 22px;
+}
+
+.full-bookmark {
+  color: #77aaff;
 }

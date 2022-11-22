@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block css %}
+  <link rel='stylesheet' href="{% static 'movies/css/main.css' %}"/>
+  <link rel='stylesheet' href="{% static 'accounts/css/profile.css' %}"/>
+{% endblock css %}
+
+{% block js %}
+  <script src="{% static 'movies/js/main.js' %}" defer></script>
+  <script src="{% static 'accounts/js/profile.js' %}" defer></script>
+{% endblock js %}
+
+{% block content %}
+  <section>
+    <div class="profile__info">
+      <div class="GBTI-quiz-wrap">
+        <div class="GBTI">
+          <h1>GBTI 결과</h1>
+          {% if person.GBTI %}
+            <img class="character__img" src="{{ character.image }}" alt="">
+            <h3 class="character__name">{{ character.name }}</h3>
+            <h3>{{ person.GBTI }}</h3>
+          {% else %}
+            <a class="link" href="{% url 'movies:GBTI' person.pk %}">GBTI 하러 가기</a>
+          {% endif %}
+        </div>
+        <div class="quiz">
+          <h1>QUIZ 결과</h1>
+          {% if person.quiz_rank %}
+            {% if person.quiz_rank == '0' or person.quiz_rank == '1' or person.quiz_rank == '2' %}
+            <img class="rank__img" src="{% static 'movies/imgs/rank_1.jpg' %}" alt="">
+              <h3 class="green">지브리 새싹</h3>
+            {% elif person.quiz_rank == '3' or person.quiz_rank == '4' %}
+              <img class="rank__img" src="{% static 'movies/imgs/rank_2.jpg' %}" alt="">
+              <h3 class="pink">지브리 매니아</h3>
+            {% elif person.quiz_rank == '5' or person.quiz_rank == '6' %}
+              <img class="rank__img" src="{% static 'movies/imgs/rank_3.jpg' %}" alt="">
+              <h3 class="orange">지브리 고수</h3>
+            {% elif person.quiz_rank == '7' or person.quiz_rank == '8' %}
+              <img class="rank__img" src="{% static 'movies/imgs/rank_4.jpg' %}" alt="">
+              <h3 class="purple">지브리 박사</h3>
+            {% endif %}
+          {% else %}
+            <a class="link" href="{% url 'movies:quiz' person.pk %}">QUIZ 풀러 가기</a>
+          {% endif %}
+        </div>
+      </div>
+      <div class="bookmark">
+        <h1>북마크</h1>
+        <div class="bookmark-container">
+          {% for movie in bookmark_movies %}
+            <div class="movie" data-id={{ movie.pk }}>
+              <div class="shadow"></div>
+              <a class="movie-wrap" href="{% url 'movies:detail' movie.pk %}">
+                <img class="movie__poster" src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}" alt="">
+                <div class="movie__description">
+                  <h3 class="movie__title">{{ movie.title }}</h3>
+                  <p>{{ movie.director }}</p>
+                  <p>{{ movie.release_date }}</p>
+                </div>
+              </a>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    <div>
+    </div>
+  </section>
+{% endblock content %}
+
+
