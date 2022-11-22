@@ -66,7 +66,6 @@ def comments_create(request, pk):
             comment.user = request.user
             
             create_flag = True
-            # comment_wrote= json.dumps(comment)
             comment.save()
             print(comment.user.nickName)
         
