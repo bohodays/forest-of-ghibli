@@ -32,21 +32,39 @@ const hiddenMenus = document.querySelectorAll('.menu__hidden');
 
 
 searchMark.addEventListener('click', () => {
-  menuItems.forEach((item) => {
-    item.classList.add('menu-invisible');
-    item.style.transform = 'translateY(-10px)';
-  })
-  
-  hiddenMenus.forEach((itme) => {
-    itme.style.opacity = '1';
-    itme.style.display = 'block';
-    itme.style.pointerEvents = 'all';
-  })
-  
-  searchMark.style.transform = 'translate(-370px, 2px)';
-  // createSearchInput();
+  if (!navbarMenu.classList.contains('open')) {
+    menuItems.forEach((item) => {
+      item.classList.add('menu-invisible');
+      item.style.transform = 'translateY(-10px)';
+    })
+    
+    hiddenMenus.forEach((itme) => {
+      itme.style.opacity = '1';
+      itme.style.display = 'block';
+      itme.style.pointerEvents = 'all';
+    })
+    
+    searchMark.style.transform = 'translate(-370px, 2px)';
+    recommendWrap.style.display = 'block';
+    recommendWrap.style.top = '50px';
 
-  recommendWrap.style.display = 'block';
+  } else {
+    menuItems.forEach((item) => {
+      item.classList.add('menu-invisible');
+      item.style.transform = 'translateY(-10px)';
+    })
+    
+    hiddenMenus.forEach((itme) => {
+      itme.style.opacity = '1';
+      itme.style.display = 'block';
+      itme.style.pointerEvents = 'all';
+    })
+    
+    searchMark.style.transform = 'translate(-180px, 48px)';
+    recommendWrap.style.display = 'block';
+    recommendWrap.style.top = '90px';
+
+  }
 })
 
 xMark.addEventListener('click', () => {
@@ -68,7 +86,10 @@ xMark.addEventListener('click', () => {
 // 메인 화면을 유저의 브라우저 크기에 맞추기
 const mainWrap = document.querySelector('.main__wrap')
 window.addEventListener('load', () => {
-  mainWrap.style.height = `${window.innerHeight}px`;
+  if (mainWrap) {
+    mainWrap.style.height = `${window.innerHeight}px`;
+
+  }
   // mainImg.style.width = `${window.innerWidth}px`;
 })
 
@@ -173,4 +194,49 @@ const profileContainer = document.querySelector('.profile__container');
 const profileInfoWrap = document.querySelector('.profile-info-wrap');
 profileContainer.addEventListener('click', () => {
   profileInfoWrap.classList.toggle('invisible');
+})
+
+
+// 토글 클릭시 메뉴 보이게 하기
+const toggleBtn = document.querySelector('.fa-bars');
+const menuItem = document.querySelector('.menu__item');
+toggleBtn.addEventListener('click', () => {
+  navbarMenu.classList.toggle('open');
+  if (navbarMenu.classList.contains('open')) {
+    navbarMenu.classList.remove('col-4');
+    const recommendSearch = document.querySelector('.recommend-search');
+    if (recommendSearch) {
+      searchMark.style.transform = 'translate(-180px, 48px)';
+      recommendWrap.style.display = 'block';
+      recommendWrap.style.top = '90px';
+    } else if (menuItem.classList.contains('menu-invisible')) {
+      searchMark.style.transform = 'translate(-180px, 48px)';
+    }
+  } else {
+    navbarMenu.classList.add('col-4');
+  }
+})
+
+window.addEventListener('resize', () => {
+  if (window.innerWidth >= 840) {
+    if (navbarMenu.classList.contains('open')) {
+      navbarMenu.classList.remove('open')
+      navbarMenu.classList.add('col-4');
+      if (menuItem.classList.contains('menu-invisible')) {
+        searchMark.style.transform = 'translate(-370px, 2px)';
+        recommendWrap.style.top = '50px';
+      } else {
+      }
+    } else {
+      if (menuItem.classList.contains('menu-invisible')) {
+        searchMark.style.transform = 'translate(-370px, 2px)';
+        recommendWrap.style.top = '50px'
+      } else {
+      }
+    }
+  } 
+
+
+
+  
 })

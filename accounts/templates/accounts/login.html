@@ -52,13 +52,24 @@
           <img class="error__img error__visible" src="{% static 'accounts/imgs/icon-error.svg' %}" alt="error icon">
         </div>
       </div>
+
+      {% if form.non_field_errors %}
+        <div class="non-field-errors">
+          {% for err in form.non_field_errors %}
+            <p class="form-error">{{ err }}</p>
+          {% endfor %}
+        </div>
+      {% endif %}
       
-      {% comment %} <button type="submit" class="submit__button btn btn-primary"> {% endcomment %}
       <button type="submit" class="submit__button btn">
         로그인
       </button>
 
     </form>
+
+
+
+
     <div class="link-signup">
       <p class="link-signup__comment">아이디가 없으신가요?</p>
       <a class="link-signup__a" href="{% url 'accounts:signup' %}">회원가입</a>

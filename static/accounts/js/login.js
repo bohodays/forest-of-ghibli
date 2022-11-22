@@ -61,3 +61,12 @@ userNameInput.addEventListener('keyup', (event) => {
     event.target.parentNode.previousElementSibling.style.color = 'rgb(130 193 237)';
   }
 })
+
+
+const formError = document.querySelector('.form-error');
+if (formError) {
+  formError.innerText = `올바른 아이디와 비밀번호를 입력하십시오. 
+  두 입력 모두 대문자와 소문자를 구별합니다.`;
+  submitBtn.style.marginTop = '0px'
+  formError.style.marginTop = '45px'
+}

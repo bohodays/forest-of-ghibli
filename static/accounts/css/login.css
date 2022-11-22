@@ -120,3 +120,8 @@ input {
   text-decoration: none;
   font-size: 12px;
 }
+
+.form-error {
+  color: #dc3545;
+  font-size: 12px;
+}

@@ -76,15 +76,64 @@ password2Input.addEventListener('blur', () => {
 
 const submitBtn = document.querySelector('.submit__button');
 const inputs = [nickNameInput, userNameInput, passwordInput,  password2Input];
+const nicknameError = document.querySelector('.nickname__error');
+const usernameError = document.querySelector('.username__error');
+const password1Error = document.querySelector('.password1__error');
+const password2Error = document.querySelector('.password2__error');
+
 submitBtn.addEventListener('click', () => {
   inputs.forEach((input) => {
     if (input.value === '') {
+      if (input === nickNameInput) {
+        nicknameError.style.display = 'block';
+        nicknameError.style.transform = 'translateX(-73px)';
+        nicknameError.innerText = '필수 항목입니다.';
+      } else if (input === userNameInput) {
+        usernameError.style.display = 'block';
+        usernameError.style.transform = 'translateX(-73px)';
+        usernameError.innerText = '필수 항목입니다.';
+      } else if (input === passwordInput) {
+        if (password1Error) {
+          password1Error.style.display = 'block';
+          password1Error.style.transform = 'translateX(-73px)';
+          password1Error.innerText = '필수 항목입니다.';
+        }
+      } else if (input === password2Input) {
+        if (password2Error) {
+          password2Error.style.display = 'block';
+          password2Error.style.transform = 'translateX(-73px)';
+          password2Error.innerText = '필수 항목입니다.';
+
+        }
+      }
       input.nextElementSibling.classList.remove('error__visible');
+    } else if (input.value !== '' && nicknameError.innerText.length > 9) {
+      nicknameError.style.display = 'block';
+      nicknameError.style.transform = 'translateX(-42px)';
+      nicknameError.innerText = '이미 존재하는 닉네임입니다.';
+    } else if (input.value !== '' && usernameError.innerText.length > 9) {
+      usernameError.style.display = 'block';
+      usernameError.style.transform = 'translateX(-42px)';
+      usernameError.innerText = '이미 존재하는 닉네임입니다.';
     } else {
+      if (input === nickNameInput) {
+        nicknameError.style.display = 'none';
+        nicknameError.innerText = '';
+      } else if (input === userNameInput) {
+        usernameError.style.display = 'none';
+        usernameError.innerText = '';
+      } else if (input === passwordInput) {
+        password1Error.style.display = 'none';
+        password1Error.innerText = '';
+      } else if (input === password2Input) {
+        password2Error.style.display = 'none';
+        password2Error.innerText = '';
+      }
       input.nextElementSibling.classList.add('error__visible');
     }
   })
 })
+
 
 window.addEventListener('load', () => {
   inputs.forEach((input) => {
@@ -92,10 +141,22 @@ window.addEventListener('load', () => {
       // 라벨을 가리킴 (부모노드의 이전형제 요소)
       input.parentNode.previousElementSibling.style.transform = 'translateY(0px)';
       input.parentNode.previousElementSibling.style.color = '#000000';
-    } else {
+    } else if (input.value !== '') {
       input.parentNode.previousElementSibling.style.transform = 'translateY(-30px)';
       input.parentNode.previousElementSibling.style.color = 'rgb(146 96 58)';
-    }
+      if (nicknameError) {
+        if (nicknameError.innerText.length > 9) {
+          nicknameError.style.display = 'block';
+          nicknameError.style.transform = 'translateX(-42px)';
+          nicknameError.innerText = '이미 존재하는 닉네임입니다.';
+        } 
+      }
+      if (usernameError.innerText.length > 9) {
+        usernameError.style.display = 'block';
+        usernameError.style.transform = 'translateX(-42px)';
+        usernameError.innerText = '이미 존재하는 아이디입니다.';
+      } else {
+    }}
   })
 })
 
