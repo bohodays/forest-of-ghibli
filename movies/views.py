@@ -68,7 +68,7 @@ def comments_create(request, pk):
             create_flag = True
             # comment_wrote= json.dumps(comment)
             comment.save()
-            print(comment.content)
+            print(comment.user.nickName)
         
         context= {
             'create_flag': create_flag,
@@ -76,6 +76,7 @@ def comments_create(request, pk):
             'comment_content':comment.content,
             'comment_movie_rate':comment.movie_rate,
             'movie_id' : movie.id,
+            'comment_nickname': comment.user.nickName,
             }
         return JsonResponse(context)
         # return redirect('movies:detail',movie.pk)
