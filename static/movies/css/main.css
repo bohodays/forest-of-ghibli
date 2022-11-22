@@ -415,4 +415,8 @@ footer {
     font-size: 70px;
     transition: all 300ms ease;
   }
+
+  .user-nickname-wrap {
+    display: none;
+  }
 }
