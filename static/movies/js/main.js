@@ -192,9 +192,11 @@ searchInput.addEventListener('keyup', (event) => {
 // 프로필 사진이나 닉네임 누르면 프로필 정보와 변경하기 보이게 하기
 const profileContainer = document.querySelector('.profile__container');
 const profileInfoWrap = document.querySelector('.profile-info-wrap');
-profileContainer.addEventListener('click', () => {
-  profileInfoWrap.classList.toggle('invisible');
-})
+if (profileContainer) {
+  profileContainer.addEventListener('click', () => {
+    profileInfoWrap.classList.toggle('invisible');
+  })
+}
 
 
 // 토글 클릭시 메뉴 보이게 하기
