@@ -5,17 +5,18 @@ const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
 
 
 // 좋아요
-const forms = document.querySelectorAll('.like-forms')
-forms.forEach((form) => {
-  form.addEventListener('submit', function (event) {
-    event.preventDefault()
-
-    const movieId = event.target.dataset.movieId
-    const commentId = event.target.dataset.commentId
-    console.log(9999999999999,commentId);
-    axios({
+  const forms = document.querySelectorAll('.like-forms')
+  
+  forms.forEach((form) => {
+    form.addEventListener('submit', function (event) {
+      event.preventDefault()
+      
+      const movieId = event.target.dataset.movieId
+      const commentId = event.target.dataset.commentId
+      console.log(99999999999991,commentId);
+      axios({
       method: 'post',
-      url: `http://127.0.0.1:8000/movies/${movieId}/comments/${commentId}/likes/`,
+      url: `/movies/${movieId}/comments/${commentId}/likes/`,
       headers: {'X-CSRFToken': csrftoken,},
     })
     .then((response) => {
