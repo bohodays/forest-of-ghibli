@@ -13,7 +13,6 @@ const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
       
       const movieId = event.target.dataset.movieId
       const commentId = event.target.dataset.commentId
-      console.log(99999999999991,commentId);
       axios({
       method: 'post',
       url: `/movies/${movieId}/comments/${commentId}/likes/`,
@@ -23,8 +22,11 @@ const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
       // console.log(response.data.like_count);
       // response 값을 html의 태그 하나 가져와서 그 값에 넣어 줘야함.
       const likeCount = document.querySelector(`#like_${commentId}`)
-      likeCount.innerHTML = response.data.like_count
-      console.log(likeCount);
+      if (response.data.like_count !== 0) {
+        likeCount.innerHTML = response.data.like_count;
+      } else {
+        likeCount.innerHTML = '';
+      }
       const isLiked = response.data.is_liked
       const likeBtn = document.querySelector(`#like-${commentId}`)
       if (isLiked === true) {
