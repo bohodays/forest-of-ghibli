@@ -54,6 +54,7 @@ def detail(request, pk):
 #     return redirect('accounts:login')
 # 댓글 생성하는 함수
 @require_POST
+@login_required
 def comments_create(request, pk):
     if request.user.is_authenticated:
         movie = Movie.objects.get(pk=pk)
@@ -76,6 +77,7 @@ def comments_create(request, pk):
             'comment_movie_rate':comment.movie_rate,
             'movie_id' : movie.id,
             'comment_nickname': comment.user.nickName,
+            'comment_user': comment.user.username,
             }
         return JsonResponse(context)
         # return redirect('movies:detail',movie.pk)
