@@ -46,9 +46,9 @@ const getMBTI = () => {
   }
 
   if (lifestyle <= 10){
-    gbti += 'J'
-  }else{
     gbti += 'P'
+  }else{
+    gbti += 'J'
   }
 
   console.log(gbti);
