@@ -82,7 +82,10 @@ https://www.figma.com/file/vXuBc6w0viB4nAlZr0jyGU/%EC%A7%80%EB%B8%8C%EB%A6%AC%EC
 - 인트로 페이지에서는 웹사이트의 이름과 함께 컨셉에 대해 간단히 소개했습니다.
 - 화면을 클릭하거나 아무키를 입력하게 되면 메인 페이지로 이동하게 됩니다.
 
-
-
 <br>
 
+##### 2) Account 페이지
+![ezgif com-gif-maker (26)](https://user-images.githubusercontent.com/109454527/204095692-bf2f9eae-cba9-49ce-a9cd-28c98d44d946.gif)
+
+- 회원가입시 기존에 있는 닉네임이나 아이디 입력, 빈칸으로 회원가입을 시도하면 경고 메시지로 알려주었습니다.
+- 로그인, 프로필 수정, 비밀번호 변경 기능을 구현하였으며, 회원가입 탈퇴는 Modal을 통해 유저가 재확인할 수 있도록 알려주었습니다.
