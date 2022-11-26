@@ -77,9 +77,9 @@ https://www.figma.com/file/vXuBc6w0viB4nAlZr0jyGU/%EC%A7%80%EB%B8%8C%EB%A6%AC%EC
 
 ##### 1) 인트로 페이지
 
-![ezgif.com-gif-maker (25)](../../Downloads/ezgif.com-gif-maker (25).gif)
+![ezgif com-gif-maker (25)](https://user-images.githubusercontent.com/109454527/204095305-58755e4c-b041-4dcc-b6ee-12d18ac155cb.gif)
 
-- 인트로 페이지에서는 웹사이트의 이름과 함께 간단한 컨셉에 대한 소개를 했습니다.
+- 인트로 페이지에서는 웹사이트의 이름과 함께 컨셉에 대해 간단히 소개했습니다.
 - 화면을 클릭하거나 아무키를 입력하게 되면 메인 페이지로 이동하게 됩니다.
 
 
