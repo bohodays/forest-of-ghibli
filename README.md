@@ -63,7 +63,7 @@
 
 https://www.figma.com/file/vXuBc6w0viB4nAlZr0jyGU/%EC%A7%80%EB%B8%8C%EB%A6%AC%EC%9D%98-%EC%88%B2?node-id=0%3A1&t=3xdfvMdmsV6lsOCu-0
 
-![img](https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/209eb535-a9e8-4087-ba4a-5031bb956a95)
+![화면 캡처 2023-02-19 235209](https://user-images.githubusercontent.com/109454527/219955815-1d425eb0-f800-423c-93c8-7876981e6470.jpg)
 
 
 
